@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import { VideoHero } from "@/components/VideoHero";
 import { CategoryShowcase } from "@/components/CategoryShowcase";
 import { DesignDevelopment } from "@/components/DesignDevelopment";
-import { FlippingPortfolio } from "@/components/FlippingPortfolio";
+import { PortfolioGrid } from "@/components/PortfolioGrid";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Chatbot } from "@/components/Chatbot";
-import { ProjectCategory } from "@/data/projects";
 
 const Index: React.FC = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | "All">("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const handleViewProjects = (category: string) => {
-    setSelectedCategory(category as ProjectCategory | "All");
+    setSelectedCategory(category);
     setShowPortfolio(true);
   };
 
@@ -38,7 +37,7 @@ const Index: React.FC = () => {
           <Footer />
         </>
       ) : (
-        <FlippingPortfolio 
+        <PortfolioGrid 
           onClose={handleClosePortfolio}
           initialCategory={selectedCategory}
         />

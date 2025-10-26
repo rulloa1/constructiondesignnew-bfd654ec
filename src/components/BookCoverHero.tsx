@@ -43,50 +43,30 @@ export const BookCoverHero: React.FC<BookCoverHeroProps> = ({ onOpenBook }) => {
           
           {/* Content */}
           <div className="relative h-full flex flex-col items-center justify-center p-12 space-y-8">
-            {/* Logo - embossed effect */}
-            <div className="mb-8 opacity-0 animate-fade-in" style={{
-              filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) drop-shadow(0 -1px 2px rgba(201, 169, 97, 0.3))'
-            }}>
-              <img src={logo} alt="MC Logo" className="h-24 w-auto opacity-90" />
+            {/* Logo */}
+            <div className="mb-8 opacity-0 animate-fade-in">
+              <img src={logo} alt="MC Logo" className="h-24 w-auto opacity-80" />
             </div>
 
-            {/* Main title - embossed/debossed effect */}
+            {/* Main title */}
             <div className="text-center space-y-4 opacity-0 animate-fade-in delay-200">
-              <h1 className="font-playfair text-5xl md:text-6xl font-bold tracking-[0.2em] text-gold relative"
-                style={{
-                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(201, 169, 97, 0.3), 0 0 20px rgba(201, 169, 97, 0.2)',
-                  letterSpacing: '0.2em'
-                }}>
+              <h1 className="font-playfair text-5xl md:text-6xl font-semibold tracking-wider text-gold">
                 MICHAEL
               </h1>
-              <h1 className="font-playfair text-5xl md:text-6xl font-bold tracking-[0.2em] text-gold relative"
-                style={{
-                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(201, 169, 97, 0.3), 0 0 20px rgba(201, 169, 97, 0.2)',
-                  letterSpacing: '0.2em'
-                }}>
+              <h1 className="font-playfair text-5xl md:text-6xl font-semibold tracking-wider text-gold">
                 CHANDLER
               </h1>
             </div>
 
-            {/* Decorative divider - embossed */}
+            {/* Decorative divider */}
             <div className="flex items-center gap-4 opacity-0 animate-fade-in delay-300">
-              <div className="w-16 h-px bg-gold/60" style={{
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(201, 169, 97, 0.2)'
-              }} />
-              <div className="w-2 h-2 rotate-45 border-2 border-gold/60" style={{
-                boxShadow: '1px 1px 2px rgba(0, 0, 0, 0.8), -1px -1px 1px rgba(201, 169, 97, 0.2)'
-              }} />
-              <div className="w-16 h-px bg-gold/60" style={{
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(201, 169, 97, 0.2)'
-              }} />
+              <div className="w-16 h-px bg-gold/50" />
+              <div className="w-2 h-2 rotate-45 border border-gold/50" />
+              <div className="w-16 h-px bg-gold/50" />
             </div>
 
-            {/* Subtitle - pressed into leather effect */}
-            <p className="font-inter text-cream text-lg md:text-xl font-medium tracking-[0.25em] uppercase opacity-0 animate-fade-in delay-400"
-              style={{
-                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9), 0 0 10px rgba(242, 234, 211, 0.1)',
-                letterSpacing: '0.25em'
-              }}>
+            {/* Subtitle */}
+            <p className="font-inter text-cream text-lg md:text-xl font-light tracking-[0.3em] uppercase opacity-0 animate-fade-in delay-400">
               Fine Construction & Design
             </p>
 
@@ -94,10 +74,7 @@ export const BookCoverHero: React.FC<BookCoverHeroProps> = ({ onOpenBook }) => {
             <div className="pt-8 opacity-0 animate-fade-in delay-500">
               <Button
                 onClick={onOpenBook}
-                className="bg-gold hover:bg-gold/90 text-charcoal font-inter font-semibold px-8 py-6 text-base tracking-widest uppercase transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 animate-pulse-subtle"
-                style={{
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-                }}
+                className="bg-gold hover:bg-gold/90 text-charcoal font-inter font-medium px-8 py-6 text-base tracking-wide uppercase transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 animate-pulse-subtle"
               >
                 Open Portfolio
               </Button>

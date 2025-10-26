@@ -1,21 +1,10 @@
 // Project imports
 import project1 from "@/assets/projects/2_After.jpg";
 import project2 from "@/assets/projects/4_After.jpg";
+import project3 from "@/assets/projects/5_After.jpg";
 import project4 from "@/assets/projects/IMGP1302.jpg";
 import project5 from "@/assets/projects/IMGP1303.jpg";
 import project6 from "@/assets/projects/IMGP1305.jpg";
-
-// Coastal Hillside Restoration album
-import hillsideBefore1 from "@/assets/projects/hillside-1-before.jpg";
-import hillsideBefore2 from "@/assets/projects/hillside-2-before.jpg";
-import hillsideBefore3 from "@/assets/projects/hillside-3-before.jpg";
-import hillsideBefore5 from "@/assets/projects/hillside-5-before.jpg";
-import hillsideBefore6 from "@/assets/projects/hillside-6-before.jpg";
-import hillsideAfter14 from "@/assets/projects/hillside-14-after.jpg";
-import hillsideAfter15 from "@/assets/projects/hillside-15-after.jpg";
-import hillsideAfter16 from "@/assets/projects/hillside-16-after.jpg";
-import hillsideAfter17 from "@/assets/projects/hillside-17-after.jpg";
-import hillsideAfter18 from "@/assets/projects/hillside-18-after.jpg";
 
 // Pacific Grove Design Build album
 import pgBefore1 from "@/assets/projects/pg-1-before.jpg";
@@ -86,19 +75,8 @@ export const projects: Project[] = [
     location: "Monterey Peninsula, CA",
     category: "Commercial",
     description: "A comprehensive restoration project that revitalizes a hillside property while preserving its architectural integrity and enhancing its connection to the dramatic coastal landscape.",
-    image: hillsideAfter14,
-    images: [
-      hillsideBefore1,
-      hillsideBefore2,
-      hillsideBefore3,
-      hillsideBefore5,
-      hillsideBefore6,
-      hillsideAfter14,
-      hillsideAfter15,
-      hillsideAfter16,
-      hillsideAfter17,
-      hillsideAfter18,
-    ],
+    image: project3,
+    images: [project3],
   },
   {
     id: "commercial-finish-lds-churches",
