@@ -47,34 +47,8 @@ export default function Admin() {
   };
 
   const fetchLeads = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    
-    const { data, error } = await supabase
-      .from("client_leads")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      // RLS will prevent access if user is not admin
-      console.error('Error fetching leads:', error);
-      setIsAdmin(false); // Access denied by RLS
-      toast({
-        title: "Access Denied",
-        description: "You don't have permission to view leads",
-        variant: "destructive",
-      });
-    } else {
-      setLeads(data || []);
-      
-      // Log admin access to customer leads for audit trail
-      if (session?.user?.id && data && data.length > 0) {
-        await supabase.from("audit_logs").insert({
-          table_name: "client_leads",
-          operation: "SELECT_ALL",
-          user_id: session.user.id,
-        });
-      }
-    }
+    // Database tables not yet configured
+    // TODO: Set up client_leads and audit_logs tables
     setLoading(false);
   };
 

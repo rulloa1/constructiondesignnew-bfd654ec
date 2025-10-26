@@ -1,0 +1,187 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import project1 from "@/assets/project-1.jpg";
+import project2 from "@/assets/project-2.jpg";
+import project3 from "@/assets/project-3.jpg";
+import project4 from "@/assets/project-4.jpg";
+import project5 from "@/assets/project-5.jpg";
+import project6 from "@/assets/project-6.jpg";
+
+type Category = "All" | "Residential" | "Commercial" | "Hospitality";
+
+const projects = [
+  {
+    id: 1,
+    title: "Modern Sanctuary",
+    location: "Beverly Hills, CA",
+    category: "Residential" as const,
+    image: project1,
+  },
+  {
+    id: 2,
+    title: "Urban Elegance",
+    location: "Manhattan, NY",
+    category: "Residential" as const,
+    image: project2,
+  },
+  {
+    id: 3,
+    title: "Creative Studio",
+    location: "Downtown LA",
+    category: "Commercial" as const,
+    image: project3,
+  },
+  {
+    id: 4,
+    title: "Refined Dining",
+    location: "Miami Beach, FL",
+    category: "Hospitality" as const,
+    image: project4,
+  },
+  {
+    id: 5,
+    title: "Spa Retreat",
+    location: "Scottsdale, AZ",
+    category: "Hospitality" as const,
+    image: project5,
+  },
+  {
+    id: 6,
+    title: "Contemporary Haven",
+    location: "San Francisco, CA",
+    category: "Residential" as const,
+    image: project6,
+  },
+];
+
+const categories: Category[] = ["All", "Residential", "Commercial", "Hospitality"];
+
+const categoryColors = {
+  Residential: "bg-gold text-charcoal",
+  Commercial: "bg-steelBlue text-white",
+  Hospitality: "bg-burgundy text-white",
+};
+
+interface PortfolioGridProps {
+  onClose: () => void;
+}
+
+export const PortfolioGrid = ({ onClose }: PortfolioGridProps) => {
+  const [selectedCategory, setSelectedCategory] = useState<Category>("All");
+  const [isClosing, setIsClosing] = useState(false);
+
+  const filteredProjects = selectedCategory === "All" 
+    ? projects 
+    : projects.filter(p => p.category === selectedCategory);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 600);
+  };
+
+  const getCategoryCount = (category: Category) => {
+    if (category === "All") return projects.length;
+    return projects.filter(p => p.category === category).length;
+  };
+
+  return (
+    <div 
+      className={`fixed inset-0 z-40 bg-cream overflow-y-auto transition-opacity duration-600 ${
+        isClosing ? 'animate-fade-out' : 'animate-fade-in'
+      }`}
+    >
+      {/* Close button */}
+      <Button
+        onClick={handleClose}
+        variant="ghost"
+        size="icon"
+        className="fixed top-6 right-6 z-50 text-charcoal hover:text-gold hover:bg-gold/10 transition-all duration-300"
+      >
+        <X className="h-6 w-6" />
+      </Button>
+
+      <div className="container mx-auto px-6 lg:px-12 py-24">
+        {/* Header */}
+        <div className="mb-12 text-center opacity-0 animate-fade-in">
+          <h2 className="font-playfair text-5xl md:text-6xl font-semibold text-charcoal mb-4">
+            Portfolio
+          </h2>
+          <p className="font-inter text-muted-foreground text-lg font-light">
+            A curated collection of exceptional spaces
+          </p>
+        </div>
+
+        {/* Category filters */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16 opacity-0 animate-fade-in delay-200">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`font-inter px-6 py-3 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300 ${
+                selectedCategory === category
+                  ? 'bg-gold text-charcoal shadow-lg scale-105'
+                  : 'bg-white text-charcoal hover:bg-gold/10 border border-gold/20'
+              }`}
+            >
+              {category}
+              <span className="ml-2 text-xs opacity-70">
+                ({getCategoryCount(category)})
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Projects grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <Link
+              key={project.id}
+              to={`/project/${project.id}`}
+              className={`group cursor-pointer opacity-0 animate-fade-in-up`}
+              style={{ animationDelay: `${index * 100 + 400}ms` }}
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-4 bg-charcoal hover-lift">
+                <img
+                  src={project.image}
+                  alt={`${project.title} - ${project.location}`}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Overlay content */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <span className={`inline-block w-fit px-3 py-1 rounded-full text-xs uppercase tracking-wider font-medium mb-3 ${
+                    categoryColors[project.category]
+                  }`}>
+                    {project.category}
+                  </span>
+                  <h3 className="font-playfair text-2xl font-semibold text-cream mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="font-inter text-sm text-cream/80 font-light">
+                    {project.location}
+                  </p>
+                </div>
+              </div>
+
+              {/* Text below image */}
+              <div className="space-y-1">
+                <h3 className="font-playfair text-xl font-medium text-charcoal transition-colors duration-300 group-hover:text-gold">
+                  {project.title}
+                </h3>
+                <p className="font-inter text-sm text-muted-foreground font-light">
+                  {project.location}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
