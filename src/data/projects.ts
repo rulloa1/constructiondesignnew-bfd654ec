@@ -7,6 +7,7 @@ import project5 from "@/assets/projects/IMGP1303.jpg";
 import project6 from "@/assets/projects/IMGP1305.jpg";
 
 // Pacific Grove Design Build album
+import pgCover from "@/assets/projects/pg-12-after.jpg";
 import pgBefore1 from "@/assets/projects/pg-1-before.jpg";
 import pgBefore2 from "@/assets/projects/pg-2-before.jpg";
 import pgBefore3 from "@/assets/projects/pg-3-before.jpg";
@@ -37,7 +38,7 @@ export const projects: Project[] = [
     location: "Pacific Grove, CA",
     category: "Design Build",
     description: "A comprehensive transformation of a historic property, seamlessly blending traditional craftsman character with modern comfort and functionality. This complete design-build project showcases our expertise in preserving neighborhood heritage while creating contemporary living spaces.",
-    image: pgAfter1,
+    image: pgCover,
     images: [
       pgBefore1,
       pgAfter1,
