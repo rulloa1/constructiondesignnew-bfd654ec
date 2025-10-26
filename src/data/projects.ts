@@ -19,6 +19,13 @@ import hillside4 from "@/assets/projects/hillside-4.jpg";
 import hillside5 from "@/assets/projects/hillside-5.jpg";
 import hillside6 from "@/assets/projects/hillside-6.jpg";
 import hillside7 from "@/assets/projects/hillside-7.jpg";
+import cleanupCover from "@/assets/projects/cleanup-cover.jpg";
+import cleanup1 from "@/assets/projects/cleanup-1-before.jpg";
+import cleanup2 from "@/assets/projects/cleanup-2-before.jpg";
+import cleanup3 from "@/assets/projects/cleanup-3-before.jpg";
+import cleanup4 from "@/assets/projects/cleanup-4-before.jpg";
+import cleanup5 from "@/assets/projects/cleanup-5-during.jpg";
+import cleanup6 from "@/assets/projects/cleanup-6-after.jpg";
 import project1 from "@/assets/projects/2_After.jpg";
 import project2 from "@/assets/projects/4_After.jpg";
 import project3 from "@/assets/projects/5_After.jpg";
@@ -114,8 +121,8 @@ export const projects: Project[] = [
     location: "Monterey Peninsula, CA",
     category: "Commercial",
     description: "Comprehensive site preparation and environmental restoration services that transform challenging hillside properties into beautiful, buildable lots.",
-    image: project5,
-    images: [project5],
+    image: cleanupCover,
+    images: [cleanup1, cleanup2, cleanup3, cleanup4, cleanup5, cleanup6, cleanupCover],
   },
   {
     id: "laguna-grande-design-build",
