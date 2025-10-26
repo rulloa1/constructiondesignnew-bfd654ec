@@ -1,4 +1,5 @@
 // Project imports
+import carmel1Cover from "@/assets/projects/carmel-1-cover.jpg";
 import project1 from "@/assets/projects/2_After.jpg";
 import project2 from "@/assets/projects/4_After.jpg";
 import project3 from "@/assets/projects/5_After.jpg";
@@ -58,8 +59,8 @@ export const projects: Project[] = [
     location: "Carmel, CA",
     category: "Residential",
     description: "An elegant coastal residence featuring custom architectural details and high-end finishes that capture the essence of Carmel's sophisticated charm.",
-    image: project1,
-    images: [project1],
+    image: carmel1Cover,
+    images: [carmel1Cover],
   },
   {
     id: "carmel-house-2",
