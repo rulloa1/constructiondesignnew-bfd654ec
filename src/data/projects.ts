@@ -119,7 +119,7 @@ export const projects: Project[] = [
     location: "Pacific Grove, CA",
     category: "Design Build",
     description: "A comprehensive transformation of a historic property, seamlessly blending traditional craftsman character with modern comfort and functionality. This complete design-build project showcases our expertise in preserving neighborhood heritage while creating contemporary living spaces.",
-    image: pgCover,
+    image: pgBefore1,
     images: [
       pgBefore1,
       pgAfter1,
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     location: "Monterey Peninsula, CA",
     category: "Commercial",
     description: "Comprehensive site preparation and environmental restoration services that transform challenging hillside properties into beautiful, buildable lots.",
-    image: cleanupCover,
+    image: cleanup1,
     images: [cleanup1, cleanup2, cleanup3, cleanup4, cleanup5, cleanup6, cleanupCover],
   },
   {
