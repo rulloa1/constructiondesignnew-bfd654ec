@@ -66,25 +66,6 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
           </p>
         </div>
 
-        {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16 opacity-0 animate-fade-in delay-200">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`font-inter px-6 py-3 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300 ${
-                selectedCategory === category
-                  ? 'bg-gold text-charcoal shadow-lg scale-105'
-                  : 'bg-white text-charcoal hover:bg-gold/10 border border-gold/20'
-              }`}
-            >
-              {category}
-              <span className="ml-2 text-xs opacity-70">
-                ({getCategoryCount(category)})
-              </span>
-            </button>
-          ))}
-        </div>
 
         {/* Projects grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
