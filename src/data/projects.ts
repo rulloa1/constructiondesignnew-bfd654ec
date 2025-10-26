@@ -30,6 +30,15 @@ import project1 from "@/assets/projects/2_After.jpg";
 import project2 from "@/assets/projects/4_After.jpg";
 import project3 from "@/assets/projects/5_After.jpg";
 import project4 from "@/assets/projects/IMGP1302.jpg";
+import lds1 from "@/assets/projects/lds-1.jpg";
+import lds2 from "@/assets/projects/lds-2.jpg";
+import lds3 from "@/assets/projects/lds-3.jpg";
+import lds4 from "@/assets/projects/lds-4.jpg";
+import lds5 from "@/assets/projects/lds-5.jpg";
+import lds6 from "@/assets/projects/lds-6.jpg";
+import lds7 from "@/assets/projects/lds-7.jpg";
+import lds8 from "@/assets/projects/lds-8.jpg";
+import lds9 from "@/assets/projects/lds-9.jpg";
 import project5 from "@/assets/projects/IMGP1303.jpg";
 import project6 from "@/assets/projects/IMGP1305.jpg";
 import lagunaGrandeCover from "@/assets/projects/laguna-cover.jpg";
@@ -119,8 +128,8 @@ export const projects: Project[] = [
     location: "Central California",
     category: "Commercial",
     description: "Specialized commercial finishing work for religious facilities, featuring meticulous attention to detail and high-quality craftsmanship that creates welcoming and inspiring spaces.",
-    image: project4,
-    images: [project4],
+    image: lds7,
+    images: [lds7, lds2, lds3, lds4, lds5, lds6, lds1, lds8, lds9, project4],
   },
   {
     id: "hillside-cleanup",
