@@ -21,7 +21,7 @@ interface PortfolioGridProps {
   initialCategory?: string;
 }
 
-export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCategory = "All" }) => {
+export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCategory = "Residential" }) => {
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory as Category);
   const [isClosing, setIsClosing] = useState(false);
 
