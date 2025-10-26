@@ -68,6 +68,14 @@ import laguna3 from "@/assets/projects/laguna-3.jpg";
 import laguna4 from "@/assets/projects/laguna-4.jpg";
 import laguna5 from "@/assets/projects/laguna-5.jpg";
 import laguna6 from "@/assets/projects/laguna-6.jpg";
+import bigsurCover from "@/assets/projects/bigsur-cover.jpg";
+import bigsur1 from "@/assets/projects/bigsur-1.jpg";
+import bigsur2 from "@/assets/projects/bigsur-2.jpg";
+import bigsur3 from "@/assets/projects/bigsur-3.jpg";
+import bigsur4 from "@/assets/projects/bigsur-4.jpg";
+import bigsur5 from "@/assets/projects/bigsur-5.jpg";
+import bigsur6 from "@/assets/projects/bigsur-6.jpg";
+import bigsur7 from "@/assets/projects/bigsur-7.jpg";
 
 // Pacific Grove Design Build album
 import pgCover from "@/assets/projects/pg-12-after.jpg";
@@ -177,6 +185,15 @@ export const projects: Project[] = [
     description: "A comprehensive remodel and design-build project that transforms existing spaces into modern, functional, and aesthetically stunning environments.",
     image: southcoast4,
     images: [southcoast4, southcoast3, southcoast1, southcoast2, southcoast5, southcoast6, southcoast7, southcoast8, project1],
+  },
+  {
+    id: "big-sur-house",
+    title: "Big Sur House",
+    location: "Big Sur, CA",
+    category: "Residential",
+    description: "A spectacular coastal property featuring dramatic ocean views and sophisticated site work, including extensive hillside stabilization and custom driveway construction with stone walls.",
+    image: bigsurCover,
+    images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7],
   },
 ];
 
