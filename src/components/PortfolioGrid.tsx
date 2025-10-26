@@ -2,91 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import project1 from "@/assets/projects/2_After.jpg";
-import project2 from "@/assets/projects/4_After.jpg";
-import project3 from "@/assets/projects/5_After.jpg";
-import project4 from "@/assets/projects/IMGP1302.jpg";
-import project5 from "@/assets/projects/IMGP1303.jpg";
-import project6 from "@/assets/projects/IMGP1305.jpg";
-import pgProject1 from "@/assets/projects/pg-4-after.jpg";
-import pgProject2 from "@/assets/projects/pg-5-after.jpg";
-import pgProject3 from "@/assets/projects/pg-6-after.jpg";
+import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
 
-type Category = "All" | "Residential" | "Commercial" | "Hospitality" | "Pacific Grove Design Build";
+type Category = "All" | ProjectCategory;
 
-const projects = [
-  {
-    id: 1,
-    title: "Modern Sanctuary",
-    location: "Beverly Hills, CA",
-    category: "Residential" as const,
-    image: project1,
-  },
-  {
-    id: 2,
-    title: "Urban Elegance",
-    location: "Manhattan, NY",
-    category: "Residential" as const,
-    image: project2,
-  },
-  {
-    id: 3,
-    title: "Creative Studio",
-    location: "Downtown LA",
-    category: "Commercial" as const,
-    image: project3,
-  },
-  {
-    id: 4,
-    title: "Refined Dining",
-    location: "Miami Beach, FL",
-    category: "Hospitality" as const,
-    image: project4,
-  },
-  {
-    id: 5,
-    title: "Spa Retreat",
-    location: "Scottsdale, AZ",
-    category: "Hospitality" as const,
-    image: project5,
-  },
-  {
-    id: 6,
-    title: "Contemporary Haven",
-    location: "San Francisco, CA",
-    category: "Residential" as const,
-    image: project6,
-  },
-  {
-    id: 7,
-    title: "Craftsman Revival",
-    location: "Pacific Grove, CA",
-    category: "Pacific Grove Design Build" as const,
-    image: pgProject1,
-  },
-  {
-    id: 8,
-    title: "Coastal Transformation",
-    location: "Pacific Grove, CA",
-    category: "Pacific Grove Design Build" as const,
-    image: pgProject2,
-  },
-  {
-    id: 9,
-    title: "Historic Reimagined",
-    location: "Pacific Grove, CA",
-    category: "Pacific Grove Design Build" as const,
-    image: pgProject3,
-  },
-];
+const categories: Category[] = ["All", "Residential", "Commercial", "Hospitality", "Design Build", "Pacific Grove Design Build"];
 
-const categories: Category[] = ["All", "Residential", "Commercial", "Hospitality", "Pacific Grove Design Build"];
-
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   Residential: "bg-gold text-charcoal",
   Commercial: "bg-steelBlue text-white",
   Hospitality: "bg-burgundy text-white",
   "Pacific Grove Design Build": "bg-gold text-charcoal",
+  "Design Build": "bg-gold text-charcoal",
 };
 
 interface PortfolioGridProps {
@@ -98,9 +25,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory as Category);
   const [isClosing, setIsClosing] = useState(false);
 
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
-    : projects.filter(p => p.category === selectedCategory);
+  const filteredProjects = getProjectsByCategory(selectedCategory);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -111,7 +36,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
 
   const getCategoryCount = (category: Category) => {
     if (category === "All") return projects.length;
-    return projects.filter(p => p.category === category).length;
+    return getProjectsByCategory(category).length;
   };
 
   return (
