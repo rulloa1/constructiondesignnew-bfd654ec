@@ -106,6 +106,11 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
                 
                 {/* Overlay content */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500">
+                  {project.featured && (
+                    <span className="inline-block w-fit px-3 py-1 rounded-full text-xs uppercase tracking-wider font-bold mb-2 bg-burgundy text-white animate-pulse">
+                      ★ Featured
+                    </span>
+                  )}
                   <span className={`inline-block w-fit px-3 py-1 rounded-full text-xs uppercase tracking-wider font-medium mb-3 transition-colors duration-300 ${
                     categoryColors[project.category]
                   }`}>

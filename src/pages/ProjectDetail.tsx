@@ -50,6 +50,19 @@ const ProjectDetail = () => {
           </p>
         </div>
 
+        {project.video && (
+          <div className="mb-8 md:mb-12">
+            <video 
+              controls 
+              className="w-full rounded-lg shadow-lg"
+              poster={project.image}
+            >
+              <source src={project.video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {project.images.map((image, index) => (
             <div

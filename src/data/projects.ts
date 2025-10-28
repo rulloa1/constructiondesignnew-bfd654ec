@@ -106,6 +106,9 @@ import bigsur15 from "@/assets/projects/bigsur-15.jpg";
 import carmelValleyCover from "@/assets/projects/carmel-valley-cover.jpg";
 import carmelValley1 from "@/assets/projects/carmel-valley-1.jpg";
 
+// Featured video project
+import featuredVideo from "@/assets/projects/featured-video.mov";
+
 // Pacific Grove Design Build album
 import pgCover from "@/assets/projects/pg-12-after.jpg";
 import pgBefore1 from "@/assets/projects/pg-1-before.jpg";
@@ -129,9 +132,22 @@ export interface Project {
   description: string;
   image: string;
   images: string[];
+  video?: string;
+  featured?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    id: "featured-showcase",
+    title: "Featured Showcase",
+    location: "Monterey Peninsula, CA",
+    category: "Design Build",
+    description: "An exclusive showcase of our premium construction and design expertise, featuring exceptional craftsmanship and innovative solutions.",
+    image: pgCover,
+    images: [pgCover],
+    video: featuredVideo,
+    featured: true,
+  },
   {
     id: "pacific-grove-design-build",
     title: "Pacific Grove Design Build",
