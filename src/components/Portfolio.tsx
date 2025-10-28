@@ -31,160 +31,152 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onClose }) => {
 
   return (
     <div className="min-h-screen bg-background relative">
-      {/* Construction-themed animated background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-70" style={{ zIndex: -1 }}>
-        {/* Animated blueprint grid */}
-        <div className="absolute inset-0" style={{
+      {/* Luxurious animated background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
+        {/* Rich gradient base */}
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-background to-charcoal/95" />
+        
+        {/* Elegant art deco pattern */}
+        <div className="absolute inset-0 opacity-[0.15]" style={{
           backgroundImage: `
-            linear-gradient(hsl(var(--gold) / 0.08) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--gold) / 0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
-          animation: 'gridMove 60s linear infinite'
+            radial-gradient(circle at 20% 50%, hsl(var(--gold) / 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, hsl(var(--burgundy) / 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 40% 20%, hsl(var(--steelBlue) / 0.1) 0%, transparent 50%)
+          `
         }} />
         
-        {/* Floating architectural elements */}
+        {/* Luxury geometric pattern */}
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: `
+            linear-gradient(30deg, hsl(var(--gold) / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold) / 0.05) 87.5%, hsl(var(--gold) / 0.05)),
+            linear-gradient(150deg, hsl(var(--gold) / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold) / 0.05) 87.5%, hsl(var(--gold) / 0.05)),
+            linear-gradient(30deg, hsl(var(--gold) / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold) / 0.05) 87.5%, hsl(var(--gold) / 0.05)),
+            linear-gradient(150deg, hsl(var(--gold) / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold) / 0.05) 87.5%, hsl(var(--gold) / 0.05))
+          `,
+          backgroundSize: '80px 140px',
+          backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px',
+          animation: 'luxuryPatternMove 120s linear infinite'
+        }} />
+        
+        {/* Floating art deco shapes */}
         <div className="absolute inset-0">
-          {[...Array(6)].map((_, i) => (
+          {/* Elegant diamonds */}
+          {[...Array(8)].map((_, i) => (
             <div
-              key={`arch-${i}`}
-              className="absolute border border-gold/10"
+              key={`diamond-${i}`}
+              className="absolute"
               style={{
-                width: `${80 + i * 40}px`,
-                height: `${80 + i * 40}px`,
-                left: `${10 + i * 15}%`,
-                top: `${5 + i * 10}%`,
+                width: `${60 + i * 30}px`,
+                height: `${60 + i * 30}px`,
+                left: `${5 + i * 12}%`,
+                top: `${10 + i * 8}%`,
+                background: `linear-gradient(135deg, hsl(var(--gold) / ${0.08 + i * 0.02}), transparent)`,
                 transform: 'rotate(45deg)',
-                animation: `float-arch-${i % 3} ${20 + i * 3}s ease-in-out infinite`,
-                animationDelay: `${i * 1.5}s`
+                borderRadius: '8px',
+                animation: `float-luxury-${i % 3} ${25 + i * 2}s ease-in-out infinite`,
+                animationDelay: `${i * 0.8}s`,
+                boxShadow: `0 0 30px hsl(var(--gold) / ${0.1 + i * 0.02})`
               }}
             />
           ))}
         </div>
 
-        {/* Floating construction tool silhouettes */}
-        <div className="absolute inset-0">
-          {/* Hammers */}
-          <svg className="absolute" width="100" height="100" viewBox="0 0 24 24" fill="hsl(var(--gold))" style={{ left: '15%', top: '15%', opacity: 0.25, animation: 'float-tool-1 25s ease-in-out infinite' }}>
-            <path d="M20.2 4.4l-.6-.6c-.4-.4-1-.4-1.4 0l-1.4 1.4-1.4-1.4c-.4-.4-1-.4-1.4 0l-.6.6c-.4.4-.4 1 0 1.4l1.4 1.4-8 8c-.4.4-.4 1 0 1.4l2.8 2.8c.4.4 1 .4 1.4 0l8-8 1.4 1.4c.4.4 1 .4 1.4 0l.6-.6c.4-.4.4-1 0-1.4l-1.4-1.4 1.4-1.4c.2-.4.2-1-.2-1.4z"/>
-          </svg>
-          
-          <svg className="absolute" width="90" height="90" viewBox="0 0 24 24" fill="hsl(var(--gold))" style={{ right: '20%', top: '40%', opacity: 0.25, animation: 'float-tool-2 30s ease-in-out infinite' }}>
-            <path d="M20.2 4.4l-.6-.6c-.4-.4-1-.4-1.4 0l-1.4 1.4-1.4-1.4c-.4-.4-1-.4-1.4 0l-.6.6c-.4.4-.4 1 0 1.4l1.4 1.4-8 8c-.4.4-.4 1 0 1.4l2.8 2.8c.4.4 1 .4 1.4 0l8-8 1.4 1.4c.4.4 1 .4 1.4 0l.6-.6c.4-.4.4-1 0-1.4l-1.4-1.4 1.4-1.4c.2-.4.2-1-.2-1.4z"/>
-          </svg>
+        {/* Premium gradient orbs */}
+        <div className="absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
+          style={{
+            background: 'radial-gradient(circle, hsl(var(--gold) / 0.4) 0%, hsl(var(--gold) / 0.1) 40%, transparent 70%)',
+            top: '-10%',
+            right: '-5%',
+            animation: 'float-luxury-orb-1 35s ease-in-out infinite'
+          }}
+        />
+        <div className="absolute w-[500px] h-[500px] rounded-full blur-[100px] opacity-25"
+          style={{
+            background: 'radial-gradient(circle, hsl(var(--burgundy) / 0.3) 0%, hsl(var(--burgundy) / 0.1) 40%, transparent 70%)',
+            bottom: '-5%',
+            left: '-8%',
+            animation: 'float-luxury-orb-2 40s ease-in-out infinite reverse'
+          }}
+        />
+        <div className="absolute w-[450px] h-[450px] rounded-full blur-[90px] opacity-20"
+          style={{
+            background: 'radial-gradient(circle, hsl(var(--steelBlue) / 0.3) 0%, hsl(var(--steelBlue) / 0.1) 40%, transparent 70%)',
+            top: '40%',
+            right: '15%',
+            animation: 'float-luxury-orb-3 45s ease-in-out infinite'
+          }}
+        />
 
-          {/* Hardhats */}
-          <svg className="absolute" width="95" height="95" viewBox="0 0 24 24" fill="hsl(var(--gold))" style={{ left: '70%', top: '25%', opacity: 0.25, animation: 'float-tool-3 28s ease-in-out infinite' }}>
-            <path d="M12 2C9.79 2 8 3.79 8 6v5H4v2c0 3.31 2.69 6 6 6h4c3.31 0 6-2.69 6-6v-2h-4V6c0-2.21-1.79-4-4-4zm0 2c1.1 0 2 .9 2 2v5h-4V6c0-1.1.9-2 2-2z"/>
-          </svg>
-
-          <svg className="absolute" width="85" height="85" viewBox="0 0 24 24" fill="hsl(var(--gold))" style={{ left: '25%', bottom: '30%', opacity: 0.25, animation: 'float-tool-1 27s ease-in-out infinite reverse' }}>
-            <path d="M12 2C9.79 2 8 3.79 8 6v5H4v2c0 3.31 2.69 6 6 6h4c3.31 0 6-2.69 6-6v-2h-4V6c0-2.21-1.79-4-4-4zm0 2c1.1 0 2 .9 2 2v5h-4V6c0-1.1.9-2 2-2z"/>
-          </svg>
-
-          {/* Ladders */}
-          <svg className="absolute" width="70" height="120" viewBox="0 0 24 24" fill="hsl(var(--gold))" style={{ right: '15%', bottom: '20%', opacity: 0.25, animation: 'float-tool-2 32s ease-in-out infinite' }}>
-            <path d="M8 2v20M16 2v20M8 6h8M8 10h8M8 14h8M8 18h8"/>
-            <rect x="7" y="2" width="2" height="20" />
-            <rect x="15" y="2" width="2" height="20" />
-            <rect x="8" y="5" width="8" height="1.5" />
-            <rect x="8" y="9" width="8" height="1.5" />
-            <rect x="8" y="13" width="8" height="1.5" />
-            <rect x="8" y="17" width="8" height="1.5" />
-          </svg>
-
-          <svg className="absolute" width="65" height="110" viewBox="0 0 24 24" fill="hsl(var(--gold))" style={{ left: '50%', top: '60%', opacity: 0.25, animation: 'float-tool-3 29s ease-in-out infinite reverse' }}>
-            <rect x="7" y="2" width="2" height="20" />
-            <rect x="15" y="2" width="2" height="20" />
-            <rect x="8" y="5" width="8" height="1.5" />
-            <rect x="8" y="9" width="8" height="1.5" />
-            <rect x="8" y="13" width="8" height="1.5" />
-            <rect x="8" y="17" width="8" height="1.5" />
-          </svg>
-        </div>
-
-        {/* Animated construction lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-30">
+        {/* Shimmering light rays */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.15]">
           <defs>
-            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="luxuryRay" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" style={{ stopColor: 'hsl(var(--gold))', stopOpacity: 0 }} />
-              <stop offset="50%" style={{ stopColor: 'hsl(var(--gold))', stopOpacity: 0.3 }} />
+              <stop offset="50%" style={{ stopColor: 'hsl(var(--gold))', stopOpacity: 0.4 }} />
               <stop offset="100%" style={{ stopColor: 'hsl(var(--gold))', stopOpacity: 0 }} />
             </linearGradient>
+            <linearGradient id="burgundyRay" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: 'hsl(var(--burgundy))', stopOpacity: 0 }} />
+              <stop offset="50%" style={{ stopColor: 'hsl(var(--burgundy))', stopOpacity: 0.3 }} />
+              <stop offset="100%" style={{ stopColor: 'hsl(var(--burgundy))', stopOpacity: 0 }} />
+            </linearGradient>
           </defs>
-          <line x1="0" y1="20%" x2="100%" y2="20%" stroke="url(#lineGrad)" strokeWidth="1">
-            <animate attributeName="y1" values="20%;80%;20%" dur="25s" repeatCount="indefinite" />
-            <animate attributeName="y2" values="20%;80%;20%" dur="25s" repeatCount="indefinite" />
+          <line x1="0%" y1="0%" x2="100%" y2="50%" stroke="url(#luxuryRay)" strokeWidth="2">
+            <animate attributeName="x2" values="100%;50%;100%" dur="30s" repeatCount="indefinite" />
+            <animate attributeName="y2" values="50%;80%;50%" dur="30s" repeatCount="indefinite" />
           </line>
-          <line x1="0" y1="60%" x2="100%" y2="60%" stroke="url(#lineGrad)" strokeWidth="1">
-            <animate attributeName="y1" values="60%;20%;60%" dur="30s" repeatCount="indefinite" />
-            <animate attributeName="y2" values="60%;20%;60%" dur="30s" repeatCount="indefinite" />
+          <line x1="100%" y1="30%" x2="0%" y2="80%" stroke="url(#burgundyRay)" strokeWidth="2">
+            <animate attributeName="x1" values="100%;80%;100%" dur="35s" repeatCount="indefinite" />
+            <animate attributeName="y1" values="30%;60%;30%" dur="35s" repeatCount="indefinite" />
           </line>
         </svg>
 
-        {/* Subtle gradient orbs */}
-        <div className="absolute w-96 h-96 rounded-full blur-3xl opacity-25"
+        {/* Metallic shine effect */}
+        <div className="absolute inset-0 opacity-[0.08]"
           style={{
-            background: 'radial-gradient(circle, hsl(var(--gold)) 0%, transparent 70%)',
-            top: '10%',
-            right: '10%',
-            animation: 'float-orb-1 30s ease-in-out infinite'
-          }}
-        />
-        <div className="absolute w-80 h-80 rounded-full blur-3xl opacity-25"
-          style={{
-            background: 'radial-gradient(circle, hsl(var(--steelBlue)) 0%, transparent 70%)',
-            bottom: '20%',
-            left: '15%',
-            animation: 'float-orb-2 35s ease-in-out infinite reverse'
+            background: 'linear-gradient(110deg, transparent 0%, hsl(var(--gold)) 45%, transparent 50%, transparent 100%)',
+            animation: 'luxuryShine 8s ease-in-out infinite',
+            backgroundSize: '200% 100%'
           }}
         />
       </div>
 
       <style>{`
-        @keyframes gridMove {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(60px, 60px); }
+        @keyframes luxuryPatternMove {
+          0% { transform: translate(0, 0) scale(1); }
+          100% { transform: translate(80px, 140px) scale(1); }
         }
-        @keyframes float-arch-0 {
-          0%, 100% { transform: translate(0, 0) rotate(45deg); opacity: 0.1; }
-          33% { transform: translate(20px, -30px) rotate(50deg); opacity: 0.2; }
-          66% { transform: translate(-15px, 20px) rotate(40deg); opacity: 0.15; }
+        @keyframes float-luxury-0 {
+          0%, 100% { transform: translate(0, 0) rotate(45deg) scale(1); opacity: 0.15; }
+          33% { transform: translate(30px, -40px) rotate(55deg) scale(1.1); opacity: 0.25; }
+          66% { transform: translate(-20px, 30px) rotate(35deg) scale(0.95); opacity: 0.2; }
         }
-        @keyframes float-arch-1 {
-          0%, 100% { transform: translate(0, 0) rotate(45deg); opacity: 0.1; }
-          33% { transform: translate(-25px, 25px) rotate(35deg); opacity: 0.15; }
-          66% { transform: translate(20px, -15px) rotate(55deg); opacity: 0.2; }
+        @keyframes float-luxury-1 {
+          0%, 100% { transform: translate(0, 0) rotate(45deg) scale(1); opacity: 0.15; }
+          33% { transform: translate(-35px, 35px) rotate(30deg) scale(0.9); opacity: 0.2; }
+          66% { transform: translate(25px, -25px) rotate(60deg) scale(1.05); opacity: 0.25; }
         }
-        @keyframes float-arch-2 {
-          0%, 100% { transform: translate(0, 0) rotate(45deg); opacity: 0.1; }
-          50% { transform: translate(15px, 30px) rotate(48deg); opacity: 0.18; }
+        @keyframes float-luxury-2 {
+          0%, 100% { transform: translate(0, 0) rotate(45deg) scale(1); opacity: 0.15; }
+          50% { transform: translate(20px, 40px) rotate(50deg) scale(1.08); opacity: 0.22; }
         }
-        @keyframes float-tool-1 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          25% { transform: translate(30px, -20px) rotate(5deg); }
-          50% { transform: translate(50px, 10px) rotate(-5deg); }
-          75% { transform: translate(20px, 30px) rotate(3deg); }
+        @keyframes float-luxury-orb-1 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+          33% { transform: translate(60px, -50px) scale(1.15); opacity: 0.4; }
+          66% { transform: translate(-40px, 40px) scale(0.95); opacity: 0.25; }
         }
-        @keyframes float-tool-2 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          33% { transform: translate(-40px, 30px) rotate(-8deg); }
-          66% { transform: translate(25px, -25px) rotate(8deg); }
+        @keyframes float-luxury-orb-2 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+          33% { transform: translate(-50px, 50px) scale(0.9); opacity: 0.2; }
+          66% { transform: translate(50px, -40px) scale(1.12); opacity: 0.3; }
         }
-        @keyframes float-tool-3 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          40% { transform: translate(35px, 35px) rotate(6deg); }
-          80% { transform: translate(-20px, -15px) rotate(-6deg); }
+        @keyframes float-luxury-orb-3 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+          50% { transform: translate(40px, 60px) scale(1.1); opacity: 0.28; }
         }
-        @keyframes float-orb-1 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(50px, -40px) scale(1.1); }
-          66% { transform: translate(-30px, 30px) scale(0.9); }
-        }
-        @keyframes float-orb-2 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(-40px, 40px) scale(0.9); }
-          66% { transform: translate(40px, -30px) scale(1.1); }
+        @keyframes luxuryShine {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
         }
       `}</style>
 
