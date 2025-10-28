@@ -9,10 +9,10 @@ type Category = "All" | ProjectCategory;
 const categories: Category[] = ["All", "Residential", "Commercial", "Hospitality", "Design Build"];
 
 const categoryColors: Record<string, string> = {
-  Residential: "bg-gold text-charcoal",
-  Commercial: "bg-steelBlue text-white",
-  Hospitality: "bg-burgundy text-white",
-  "Design Build": "bg-gold text-charcoal",
+  Residential: "bg-charcoal/90 text-cream",
+  Commercial: "bg-charcoal/90 text-cream",
+  Hospitality: "bg-charcoal/90 text-cream",
+  "Design Build": "bg-charcoal/90 text-cream",
 };
 
 interface PortfolioGridProps {
