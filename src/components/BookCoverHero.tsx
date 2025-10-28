@@ -36,7 +36,7 @@ export const BookCoverHero: React.FC<BookCoverHeroProps> = ({
           <div className="relative h-full flex flex-col items-center justify-center p-12 space-y-8">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img src={logo} alt="MC Logo" className="h-40 w-auto opacity-100" />
+              <img src={logo} alt="MC Logo" className="h-56 w-auto opacity-100" />
             </div>
 
             {/* Main title */}
