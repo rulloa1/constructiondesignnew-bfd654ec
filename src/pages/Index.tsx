@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Contact } from "@/components/Contact";
 import { BookCoverHero } from "@/components/BookCoverHero";
 import { Portfolio } from "@/components/Portfolio";
 import { MusicPlayer } from "@/components/MusicPlayer";
@@ -37,7 +38,6 @@ const Index: React.FC = () => {
         <>
           <Header />
           <Hero />
-          <About />
           
           {/* 30+ Years Section */}
           <section className="relative py-16 bg-background">
@@ -57,6 +57,8 @@ const Index: React.FC = () => {
         <>
           <MusicPlayer />
           <Portfolio onClose={handleClosebook} />
+          <About />
+          <Contact />
         </>
       )}
 
