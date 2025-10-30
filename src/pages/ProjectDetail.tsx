@@ -72,9 +72,6 @@ const ProjectDetail = () => {
             <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-cream mb-4 md:mb-6">
               {project.title}
             </h1>
-            <p className="font-inter text-base md:text-lg text-cream/90 font-light leading-relaxed mb-2">
-              {project.description}
-            </p>
             <p className="font-inter text-sm text-cream/70 font-light">
               {project.location}
             </p>
