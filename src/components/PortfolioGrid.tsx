@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
+import { ProjectCardCarousel } from "@/components/ProjectCardCarousel";
 
 type Category = "All" | ProjectCategory;
 
@@ -89,37 +89,12 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
         {/* Projects grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {filteredProjects.map((project, index) => (
-            <Link
+            <ProjectCardCarousel
               key={project.id}
-              to={`/project/${project.id}`}
-              className={`group cursor-pointer opacity-0 animate-fade-in-up`}
-              style={{ animationDelay: `${index * 100 + 400}ms` }}
-            >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-4 bg-charcoal hover-lift">
-                <img
-                  src={project.image}
-                  alt={`${project.title} - ${project.location}`}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-                
-                {/* Overlay content */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500">
-                  <span className={`inline-block w-fit px-3 py-1 rounded-full text-xs uppercase tracking-wider font-medium mb-3 transition-colors duration-300 ${
-                    categoryColors[project.category]
-                  }`}>
-                    {project.category}
-                  </span>
-                  <h3 className="font-playfair text-2xl font-semibold text-cream group-hover:text-gold mb-2 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="font-inter text-sm text-cream/80 group-hover:text-cream font-light transition-colors duration-300">
-                    {project.location}
-                  </p>
-                </div>
-              </div>
-            </Link>
+              project={project}
+              categoryColor={categoryColors[project.category]}
+              index={index}
+            />
           ))}
         </div>
       </div>
