@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { X, Construction } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { projects, getProjectsByCategory, getInProgressProjects, type ProjectCategory } from "@/data/projects";
+import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
 
-type Category = "All" | "In Progress" | ProjectCategory;
+type Category = "All" | ProjectCategory;
 
-const categories: Category[] = ["All", "In Progress", "Residential", "Commercial", "Hospitality", "Design Build"];
+const categories: Category[] = ["All", "Residential", "Commercial", "Hospitality", "Design Build"];
 
 const categoryColors: Record<string, string> = {
   Residential: "bg-gold text-charcoal",
   Commercial: "bg-steelBlue text-white",
   Hospitality: "bg-burgundy text-white",
   "Design Build": "bg-gold text-charcoal",
-  "In Progress": "bg-construction text-white",
 };
 
 interface PortfolioGridProps {
@@ -26,9 +24,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory as Category);
   const [isClosing, setIsClosing] = useState(false);
 
-  const filteredProjects = selectedCategory === "In Progress"
-    ? getInProgressProjects()
-    : getProjectsByCategory(selectedCategory);
+  const filteredProjects = getProjectsByCategory(selectedCategory);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -39,7 +35,6 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
 
   const getCategoryCount = (category: Category) => {
     if (category === "All") return projects.length;
-    if (category === "In Progress") return getInProgressProjects().length;
     return getProjectsByCategory(category).length;
   };
 
@@ -108,16 +103,6 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-                
-                {/* In Progress Badge */}
-                {project.status === "in-progress" && (
-                  <div className="absolute top-4 right-4 z-10">
-                    <Badge className="bg-construction text-cream border-none shadow-lg animate-pulse-subtle flex items-center gap-1.5 px-3 py-1.5">
-                      <Construction className="h-3.5 w-3.5" />
-                      <span className="text-xs font-semibold uppercase tracking-wider">In Progress</span>
-                    </Badge>
-                  </div>
-                )}
                 
                 {/* Overlay content */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500">
