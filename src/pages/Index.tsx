@@ -1,6 +1,6 @@
 import React from "react";
 import { Hero } from "@/components/Hero";
-import { PortfolioSection } from "@/components/PortfolioSection";
+import { PortfolioPreview } from "@/components/PortfolioPreview";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { Chatbot } from "@/components/Chatbot";
 
@@ -10,7 +10,7 @@ const Index: React.FC = () => {
       <Hero />
       
       <div id="portfolio-section">
-        <PortfolioSection />
+        <PortfolioPreview />
       </div>
 
       <MusicPlayer />
