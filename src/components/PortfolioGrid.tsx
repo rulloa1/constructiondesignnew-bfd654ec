@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X } from "lucide-react";
+import { X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
 import { ProjectCardCarousel } from "@/components/ProjectCardCarousel";
@@ -55,6 +55,20 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
       </Button>
 
       <div className="container mx-auto px-6 lg:px-12 py-24">
+        {/* Back button - shows when category is selected */}
+        {selectedCategory !== "All" && (
+          <div className="mb-8 opacity-0 animate-fade-in">
+            <Button
+              onClick={() => setSelectedCategory("All")}
+              variant="outline"
+              className="bg-cream border-gold/30 text-charcoal hover:bg-gold/10 transition-all font-medium"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to All Projects
+            </Button>
+          </div>
+        )}
+
         {/* Header */}
         <div className="mb-12 text-center opacity-0 animate-fade-in">
           <h2 className="font-playfair text-5xl md:text-6xl font-semibold text-charcoal mb-4">
