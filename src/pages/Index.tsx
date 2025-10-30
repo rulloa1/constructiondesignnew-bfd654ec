@@ -7,6 +7,8 @@ import { BookCoverHero } from "@/components/BookCoverHero";
 import { Portfolio } from "@/components/Portfolio";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { Chatbot } from "@/components/Chatbot";
+import { Services } from "@/components/Services";
+import { Footer } from "@/components/Footer";
 
 const Index: React.FC = () => {
   const [bookOpened, setBookOpened] = useState(false);
@@ -51,18 +53,21 @@ const Index: React.FC = () => {
             </div>
           </section>
 
+          <Services />
           <BookCoverHero onOpenBook={handleOpenBook} />
         </>
       ) : (
         <>
           <MusicPlayer />
           <Portfolio onClose={handleClosebook} />
+          <Services />
           <About />
           <Contact />
         </>
       )}
 
       <Chatbot />
+      <Footer />
     </div>
   );
 };
