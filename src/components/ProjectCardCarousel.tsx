@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
@@ -23,18 +23,24 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
   index,
 }) => {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const [current, setCurrent] = useState(1);
+  const [count, setCount] = useState(project.images.length);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) return;
 
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    const handleSelect = () => {
       setCurrent(api.selectedScrollSnap() + 1);
-    });
+    };
+
+    api.on("select", handleSelect);
+
+    return () => {
+      api.off("select", handleSelect);
+    };
   }, [api]);
 
   return (
@@ -44,16 +50,24 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
       style={{ animationDelay: `${index * 100 + 400}ms` }}
     >
       <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-4 bg-charcoal hover-lift">
-        <Carousel setApi={setApi} className="w-full h-full">
-          <CarouselContent className="h-full">
+        <Carousel 
+          setApi={setApi} 
+          className="w-full h-full"
+          opts={{
+            loop: true,
+          }}
+        >
+          <CarouselContent className="h-full -ml-0">
             {project.images.map((image, imgIndex) => (
-              <CarouselItem key={imgIndex} className="h-full">
-                <img
-                  src={image}
-                  alt={`${project.title} - Image ${imgIndex + 1}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+              <CarouselItem key={imgIndex} className="h-full pl-0">
+                <div className="h-full">
+                  <img
+                    src={image}
+                    alt={`${project.title} - Image ${imgIndex + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -61,25 +75,33 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
           {/* Navigation Arrows - Only show if more than 1 image */}
           {project.images.length > 1 && (
             <>
-              <CarouselPrevious
-                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 rounded-full bg-white/90 hover:bg-white border-0 text-charcoal"
-                onClick={(e) => e.preventDefault()}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  api?.scrollPrev();
+                }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 rounded-full bg-white/90 hover:bg-white text-charcoal flex items-center justify-center z-10"
+                aria-label="Previous image"
               >
                 <ChevronLeft className="h-4 w-4" />
-              </CarouselPrevious>
-              <CarouselNext
-                className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 rounded-full bg-white/90 hover:bg-white border-0 text-charcoal"
-                onClick={(e) => e.preventDefault()}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  api?.scrollNext();
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 rounded-full bg-white/90 hover:bg-white text-charcoal flex items-center justify-center z-10"
+                aria-label="Next image"
               >
                 <ChevronRight className="h-4 w-4" />
-              </CarouselNext>
+              </button>
             </>
           )}
         </Carousel>
 
         {/* Image Counter Badge */}
         {project.images.length > 1 && (
-          <div className="absolute top-4 right-4 bg-charcoal/80 backdrop-blur-sm text-cream px-3 py-1 rounded-full text-xs font-medium">
+          <div className="absolute top-4 right-4 bg-charcoal/80 backdrop-blur-sm text-cream px-3 py-1 rounded-full text-xs font-medium z-10">
             {current} / {count}
           </div>
         )}
