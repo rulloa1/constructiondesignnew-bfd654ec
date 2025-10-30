@@ -89,9 +89,9 @@ const Index: React.FC = () => {
       {!bookOpened ? <>
           <Header />
           <Hero />
-          <Services />
           <About />
-          <BookCoverHero onOpenBook={handleOpenBook} disabled={animating} />
+          <Services />
+          <BookCoverHero onOpenBook={handleOpenBook} />
           <Contact />
         </> : <>
           {/* Portfolio view with navigation header */}
