@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -11,9 +11,15 @@ import { Services } from "@/components/Services";
 import { Footer } from "@/components/Footer";
 const Index: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [bookOpened, setBookOpened] = useState(false);
   const [animating, setAnimating] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Navigate to residential development site plan project on load
+  useEffect(() => {
+    navigate("/project/residential-development-site-plan");
+  }, [navigate]);
 
   // Check for navigation state to open portfolio
   useEffect(() => {
