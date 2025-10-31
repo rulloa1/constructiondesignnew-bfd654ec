@@ -5,8 +5,10 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { BookCoverHero } from "@/components/BookCoverHero";
 import { Portfolio } from "@/components/Portfolio";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { Chatbot } from "@/components/Chatbot";
-
+import { Services } from "@/components/Services";
+import { Footer } from "@/components/Footer";
 const Index: React.FC = () => {
   const location = useLocation();
   const [bookOpened, setBookOpened] = useState(false);
@@ -98,6 +100,7 @@ const Index: React.FC = () => {
           <Header onPortfolioClick={handleOpenBook} />
           <Hero />
           <About />
+          <Services />
           <BookCoverHero onOpenBook={handleOpenBook} />
         </> : <>
           {/* Portfolio view with navigation header */}
