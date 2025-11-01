@@ -251,7 +251,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({
               </div>
 
               {/* Project info below image */}
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <h3 className="font-playfair text-xl text-foreground transition-colors duration-300 group-hover:text-gold">
                   {project.title}
                   {project.subtitle && (
