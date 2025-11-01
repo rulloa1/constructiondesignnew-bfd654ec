@@ -49,8 +49,9 @@ export const About = () => {
           <div className="max-w-3xl mx-auto">
             <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-1 opacity-0 animate-fade-in-up delay-200">
               {/* Arrow pointing to Portfolio */}
-              <div className="absolute bottom-4 right-4 opacity-40 hover:opacity-70 transition-opacity duration-300 animate-bounce">
-                <ArrowDown size={48} className="text-accent" strokeWidth={2.5} />
+              <div className="absolute bottom-4 right-4 opacity-40 hover:opacity-70 transition-all duration-300 flex flex-col items-center gap-1">
+                <ArrowDown size={48} className="text-accent animate-bounce" strokeWidth={2.5} />
+                <span className="text-sm font-playfair font-semibold text-accent">Portfolio</span>
               </div>
               <div className="space-y-8 text-lg font-inter font-light leading-relaxed text-charcoal/80">
                 <p className="transition-all duration-300">
