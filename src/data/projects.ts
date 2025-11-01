@@ -180,7 +180,9 @@ export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "De
 export interface Project {
   id: string;
   title: string;
+  subtitle?: string;
   location: string;
+  additionalInfo?: string;
   category: ProjectCategory;
   description: string;
   image: string;
@@ -190,8 +192,10 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "pacific-grove-design-build",
-    title: "Pacific Grove New Home",
+    title: "Pacific Grove",
+    subtitle: "New Home",
     location: "Design Build",
+    additionalInfo: "Pacific Grove, CA",
     category: "Design Build",
     description: "A comprehensive transformation of a historic property, seamlessly blending traditional craftsman character with modern comfort and functionality. This complete design-build project showcases our expertise in preserving neighborhood heritage while creating contemporary living spaces.",
     image: pgCover,

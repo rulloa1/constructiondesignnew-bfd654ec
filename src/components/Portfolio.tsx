@@ -254,10 +254,21 @@ export const Portfolio: React.FC<PortfolioProps> = ({
               <div className="space-y-2">
                 <h3 className="font-playfair text-xl text-foreground transition-colors duration-300 group-hover:text-gold">
                   {project.title}
+                  {project.subtitle && (
+                    <>
+                      <br />
+                      {project.subtitle}
+                    </>
+                  )}
                 </h3>
                 <p className="text-sm font-inter text-muted-foreground font-light tracking-wide transition-all duration-300 group-hover:text-foreground group-hover:translate-x-1">
                   {project.location}
                 </p>
+                {project.additionalInfo && (
+                  <p className="text-sm font-inter text-muted-foreground font-light tracking-wide transition-all duration-300 group-hover:text-foreground group-hover:translate-x-1">
+                    {project.additionalInfo}
+                  </p>
+                )}
               </div>
             </Link>)}
         </div>
