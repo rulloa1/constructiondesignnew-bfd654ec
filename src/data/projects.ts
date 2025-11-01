@@ -186,6 +186,12 @@ import coastalRestoration6 from "@/assets/projects/coastal-restoration-6.jpg";
 import coastalRestoration7 from "@/assets/projects/coastal-restoration-7.jpg";
 import coastalRestoration8 from "@/assets/projects/coastal-restoration-8.jpg";
 import coastalRestoration9 from "@/assets/projects/coastal-restoration-9.jpg";
+import coastalRestoration10 from "@/assets/projects/coastal-restoration-10.jpg";
+import coastalRestoration11 from "@/assets/projects/coastal-restoration-11.jpg";
+import coastalRestoration12 from "@/assets/projects/coastal-restoration-12.jpg";
+import coastalRestoration13 from "@/assets/projects/coastal-restoration-13.jpg";
+import coastalRestoration14 from "@/assets/projects/coastal-restoration-14.jpg";
+import coastalRestoration15 from "@/assets/projects/coastal-restoration-15.jpg";
 
 export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "Design Build";
 
@@ -388,7 +394,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A dramatic coastal restoration project showcasing erosion repair and hillside stabilization. This comprehensive project transformed an eroded coastal property through extensive retaining wall systems, foundation work, and structural reinforcement to preserve and restore this spectacular oceanfront site.",
     image: coastalRestorationCover,
-    images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9],
+    images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9, coastalRestoration10, coastalRestoration11, coastalRestoration12, coastalRestoration13, coastalRestoration14, coastalRestoration15],
   },
 ];
 
