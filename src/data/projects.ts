@@ -250,7 +250,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A stunning coastal home showcasing refined craftsmanship and thoughtful design that harmonizes with the natural beauty of the Carmel coastline.",
     image: carmel2Cover,
-    images: [carmel2Cover, carmel2_1, carmel2_2, carmel2_3, carmel2_4, carmel2_5, carmel2_6, carmel2_7, carmel2_8, carmel2_9, carmel2_10],
+    images: [carmel2Cover, carmel2_1, carmel2_2, carmel2_3, carmel2_4, carmel2_5],
   },
   {
     id: "coastal-hillside-restoration",
