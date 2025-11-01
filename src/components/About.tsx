@@ -45,22 +45,30 @@ export const About = () => {
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-playfair font-semibold text-center mb-8 text-charcoal opacity-0 animate-slide-in-left">About</h2>
+          <h2 className="text-5xl md:text-6xl font-playfair font-semibold text-center mb-8 text-charcoal opacity-0 animate-slide-in-left">About Me</h2>
           <div className="max-w-3xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm rounded-lg p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-1 opacity-0 animate-fade-in-up delay-200">
-              <div className="space-y-6 text-lg font-inter font-light leading-relaxed text-charcoal/80">
+              <div className="space-y-8 text-lg font-inter font-light leading-relaxed text-charcoal/80">
                 <p className="transition-all duration-300">
-                  With over a decade of experience in design, I specialize in creating spaces
-                  that seamlessly blend functionality with aesthetic excellence. My approach
-                  centers on understanding the unique needs of each client and translating
-                  their vision into reality.
+                  I'm Michael, a construction professional who believes that exceptional results come from exceptional teams. My approach is simple: bring together the right people, create an environment built on mutual respect, and stay closely attuned to client feedback throughout every phase of a project.
                 </p>
                 <p className="transition-all duration-300">
-                  Every project is an opportunity to push creative boundaries while maintaining
-                  a commitment to timeless design principles. I believe great design should
-                  enhance the way people live and work, creating environments that inspire
-                  and endure.
+                  I've built my career on the principle that quality construction isn't just about meeting standards—it's about exceeding them. By combining rigorous processes with forward-thinking design and fostering a collaborative team culture, I've found that excellence becomes not just achievable, but inevitable.
                 </p>
+                
+                <div className="pt-4">
+                  <h3 className="text-2xl font-playfair font-semibold mb-4 text-charcoal">My Philosophy</h3>
+                  <p className="transition-all duration-300">
+                    Superior construction is accomplished through three core elements: assembling the right group of people, empowering them with the respect and environment they need to thrive, and making thoughtful course corrections based on real-time feedback from project owners and end users. When these elements align, teams don't just meet expectations—they consistently surpass them.
+                  </p>
+                </div>
+
+                <div className="pt-4">
+                  <h3 className="text-2xl font-playfair font-semibold mb-4 text-charcoal">My Commitment</h3>
+                  <p className="transition-all duration-300">
+                    Every client, every project, every time: I'm dedicated to exceeding expectations under all conditions. It's not just a goal—it's the standard by which I measure success.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
