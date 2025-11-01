@@ -158,6 +158,18 @@ import nfl013 from "@/assets/projects/nfl-013.jpg";
 import nfl014 from "@/assets/projects/nfl-014.jpg";
 import nfl015 from "@/assets/projects/nfl-015.jpg";
 
+// Carmel House Remdl No.23
+import carmel3Cover from "@/assets/projects/carmel-3-cover.jpg";
+import carmel3_1 from "@/assets/projects/carmel-3-1.jpg";
+import carmel3_2 from "@/assets/projects/carmel-3-2.jpg";
+import carmel3_3 from "@/assets/projects/carmel-3-3.jpg";
+import carmel3_4 from "@/assets/projects/carmel-3-4.jpg";
+import carmel3_5 from "@/assets/projects/carmel-3-5.jpg";
+import carmel3_6 from "@/assets/projects/carmel-3-6.jpg";
+import carmel3_7 from "@/assets/projects/carmel-3-7.jpg";
+import carmel3_8 from "@/assets/projects/carmel-3-8.jpg";
+import carmel3_9 from "@/assets/projects/carmel-3-9.jpg";
+
 export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "Design Build";
 
 export interface Project {
@@ -308,6 +320,15 @@ export const projects: Project[] = [
     description: "Scenic mountain remodel project featuring stunning ocean views, retaining wall construction, custom garage building, and comprehensive site development with careful attention to the natural landscape.",
     image: bigsurCover,
     images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7, bigsur8, bigsur9, bigsur10, bigsur11, bigsur12, bigsur13, bigsur14, bigsur15],
+  },
+  {
+    id: "carmel-house-remdl-23",
+    title: "Carmel House Remdl No.23",
+    location: "Carmel, CA",
+    category: "Residential",
+    description: "A complete remodel showcasing the transformation from original condition to a beautifully finished home with updated decking, new windows, architectural improvements, and custom exterior details.",
+    image: carmel3Cover,
+    images: [carmel3Cover, carmel3_1, carmel3_2, carmel3_3, carmel3_4, carmel3_5, carmel3_6, carmel3_7, carmel3_8, carmel3_9],
   },
 ];
 
