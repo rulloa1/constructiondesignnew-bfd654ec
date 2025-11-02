@@ -15,8 +15,6 @@ export const Hero = () => {
     }} />
       
       {/* Text Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent py-16 px-6">
-        
-      </div>
+      
     </section>;
 };
