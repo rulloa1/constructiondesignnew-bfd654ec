@@ -256,6 +256,10 @@ import coastalRestoration13 from "@/assets/projects/coastal-restoration-13.jpg";
 import coastalRestoration14 from "@/assets/projects/coastal-restoration-14.jpg";
 import coastalRestoration15 from "@/assets/projects/coastal-restoration-15.jpg";
 
+// Bakers Bay
+import bakersBay1 from "@/assets/projects/bakers-bay-1.png";
+import bakersBay2 from "@/assets/projects/bakers-bay-2.png";
+
 export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "Design Build";
 
 export interface Project {
@@ -436,6 +440,39 @@ export const projects: Project[] = [
     description: "A dramatic coastal restoration project showcasing erosion repair and hillside stabilization. This comprehensive project transformed an eroded coastal property through extensive retaining wall systems, foundation work, and structural reinforcement to preserve and restore this spectacular oceanfront site.",
     image: coastalRestorationCover,
     images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9, coastalRestoration10, coastalRestoration11, coastalRestoration12, coastalRestoration13, coastalRestoration14, coastalRestoration15],
+  },
+  {
+    id: "bakers-bay",
+    title: "Bakers Bay",
+    subtitle: "Development",
+    location: "Residential",
+    additionalInfo: "Abaco, Bahamas",
+    category: "Residential",
+    description: "Luxury residential development featuring custom-built homes in the exclusive Bakers Bay community on the Abaco Islands, showcasing Caribbean coastal architecture and premium boathouse-style designs.",
+    image: bakersBay1,
+    images: [bakersBay1, bakersBay2],
+  },
+  {
+    id: "bahamas-beachfront-estate",
+    title: "Bahamas, Beachfront Estate Property",
+    subtitle: "",
+    location: "Residential",
+    additionalInfo: "Bahamas",
+    category: "Residential",
+    description: "Premier beachfront estate property development showcasing luxury coastal living in the Bahamas.",
+    image: bakersBay1,
+    images: [],
+  },
+  {
+    id: "bahamas-abaco-development",
+    title: "Bahamas, Abaco Islands Development",
+    subtitle: "",
+    location: "Residential",
+    additionalInfo: "Abaco Islands, Bahamas",
+    category: "Residential",
+    description: "Comprehensive development project on the pristine Abaco Islands featuring luxury residential properties.",
+    image: bakersBay1,
+    images: [],
   },
 ];
 
