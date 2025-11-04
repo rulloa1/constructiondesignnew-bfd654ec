@@ -469,17 +469,6 @@ export const projects: Project[] = [
     images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9, coastalRestoration10, coastalRestoration11, coastalRestoration12, coastalRestoration13, coastalRestoration14, coastalRestoration15],
   },
   {
-    id: "bakers-bay",
-    title: "Bakers Bay - Development Project",
-    subtitle: "Luxury Residential Development",
-    location: "Residential",
-    additionalInfo: "Abaco, Bahamas",
-    category: "Residential",
-    description: "Luxury residential development featuring custom-built homes in the exclusive Bakers Bay community on the Abaco Islands, showcasing Caribbean coastal architecture and premium boathouse-style designs.",
-    image: bakersBay1,
-    images: [bakersBay1, bakersBay2],
-  },
-  {
     id: "bahamas-beachfront-estate",
     title: "Beachfront Estate - Bahamas",
     subtitle: "Premier Estate Development",
@@ -510,7 +499,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A collection of development projects showcasing comprehensive construction and site development work.",
     image: development1,
-    images: [development1, development2, development3, development4, development5, development6, development7, development8, development9, development10],
+    images: [development1, development2, development3, development4, development5, development6, development7, development8, development9, development10, bakersBay1, bakersBay2],
   },
   {
     id: "hospitality-pool",
