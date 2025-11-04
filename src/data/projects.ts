@@ -286,6 +286,12 @@ import development10 from "@/assets/projects/development-10.jpg";
 
 // Hospitality Pool
 import hospitalityPool1 from "@/assets/projects/hospitality-pool-1.jpg";
+import poolDesignCover from "@/assets/projects/pool-design-cover.jpg";
+import poolDesign1 from "@/assets/projects/pool-design-1.jpg";
+import poolDesign2 from "@/assets/projects/pool-design-2.jpg";
+import poolDesign3 from "@/assets/projects/pool-design-3.jpg";
+import poolDesign4 from "@/assets/projects/pool-design-4.jpg";
+import poolDesign5 from "@/assets/projects/pool-design-5.jpg";
 
 // Civil Engineering
 import civilCover from "@/assets/projects/civil-cover.jpg";
@@ -562,8 +568,8 @@ export const projects: Project[] = [
     additionalInfo: "California",
     category: "Hospitality",
     description: "Luxury pool and outdoor living space design featuring custom stone work, pool house structures, and beautifully landscaped entertainment areas.",
-    image: hospitalityPool1,
-    images: [hospitalityPool1],
+    image: poolDesignCover,
+    images: [poolDesignCover, poolDesign2, poolDesign5, poolDesign1, poolDesign3, poolDesign4, hospitalityPool1],
   },
   {
     id: "civil-engineering",
