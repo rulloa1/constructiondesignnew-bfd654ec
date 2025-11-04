@@ -503,8 +503,8 @@ export const projects: Project[] = [
   },
   {
     id: "development",
-    title: "Abaco Islands - Portfolio Showcase",
-    subtitle: "Development Project Collection",
+    title: "Development",
+    subtitle: "Project Collection",
     location: "Residential",
     additionalInfo: "Abaco Islands, Bahamas",
     category: "Residential",
