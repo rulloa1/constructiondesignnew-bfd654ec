@@ -287,6 +287,18 @@ import development10 from "@/assets/projects/development-10.jpg";
 // Hospitality Pool
 import hospitalityPool1 from "@/assets/projects/hospitality-pool-1.jpg";
 
+// Civil Engineering
+import civilCover from "@/assets/projects/civil-cover.jpg";
+import civil1 from "@/assets/projects/civil-1.jpg";
+import civil2 from "@/assets/projects/civil-2.jpg";
+import civil3 from "@/assets/projects/civil-3.jpg";
+import civil4 from "@/assets/projects/civil-4.jpg";
+import civil5 from "@/assets/projects/civil-5.jpg";
+import civil6 from "@/assets/projects/civil-6.jpg";
+import civil7 from "@/assets/projects/civil-7.jpg";
+import civil8 from "@/assets/projects/civil-8.jpg";
+import civil9 from "@/assets/projects/civil-9.jpg";
+
 export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "Design Build";
 
 export interface Project {
@@ -500,6 +512,17 @@ export const projects: Project[] = [
     description: "Luxury pool and outdoor living space design featuring custom stone work, pool house structures, and beautifully landscaped entertainment areas.",
     image: hospitalityPool1,
     images: [hospitalityPool1],
+  },
+  {
+    id: "civil-engineering",
+    title: "Civil Engineering & Site Work",
+    subtitle: "Infrastructure & Grading Excellence",
+    location: "Commercial",
+    additionalInfo: "Various Locations",
+    category: "Commercial",
+    description: "Comprehensive civil engineering projects including excavation, coastal restoration, retaining wall systems, hillside stabilization, and site grading. Our expertise in heavy construction and infrastructure development delivers exceptional results for complex sites and challenging terrain.",
+    image: civilCover,
+    images: [civilCover, civil1, civil2, civil3, civil4, civil5, civil6, civil7, civil8, civil9],
   },
 ];
 
