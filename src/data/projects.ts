@@ -358,6 +358,9 @@ import alpineRanch4 from "@/assets/projects/alpine-ranch-4.jpg";
 import alpineRanch5 from "@/assets/projects/alpine-ranch-5.jpg";
 import alpineRanch6 from "@/assets/projects/alpine-ranch-6.jpg";
 import alpineRanch7 from "@/assets/projects/alpine-ranch-7.jpg";
+import alpineRanch8 from "@/assets/projects/alpine-ranch-8.jpg";
+import alpineRanch9 from "@/assets/projects/alpine-ranch-9.jpg";
+import alpineRanch10 from "@/assets/projects/alpine-ranch-10.jpg";
 
 export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "Design Build";
 
@@ -615,7 +618,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "Spectacular high-alpine luxury ranch featuring modern mountain architecture with floor-to-ceiling windows, custom stone masonry, and exposed timber construction. This exceptional residence seamlessly blends contemporary design with rustic mountain charm, showcasing breathtaking panoramic views, a gourmet kitchen with natural stone countertops, and luxurious interiors with vaulted ceilings and custom millwork throughout.",
     image: alpineRanchCover,
-    images: [alpineRanchCover, alpineRanch1, alpineRanch2, alpineRanch3, alpineRanch4, alpineRanch5, alpineRanch6, alpineRanch7],
+    images: [alpineRanchCover, alpineRanch1, alpineRanch2, alpineRanch3, alpineRanch4, alpineRanch5, alpineRanch6, alpineRanch7, alpineRanch8, alpineRanch9, alpineRanch10],
   },
 ];
 
