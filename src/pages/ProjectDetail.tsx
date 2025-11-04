@@ -38,7 +38,7 @@ const ProjectDetail = () => {
       </div>;
   }
   return <>
-      <div className="relative min-h-screen bg-charcoal">
+      <div className="relative min-h-screen bg-gradient-to-b from-cream/30 via-white to-cream/20">
         {/* Content */}
         <div className="relative z-10 min-h-screen flex flex-col">
           {/* Back button */}
@@ -47,34 +47,39 @@ const ProjectDetail = () => {
             state: {
               openPortfolio: true
             }
-          })} className="bg-cream border-cream/30 text-charcoal hover:bg-cream/90 hover:shadow-lg transition-all font-medium" size="lg">
+          })} className="bg-white border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-cream shadow-sm hover:shadow-md transition-all font-medium" size="lg">
               <ArrowLeft className="mr-2 h-5 w-5" />
               Back to All Projects
             </Button>
           </div>
 
           {/* Project info */}
-          <div className="px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center max-w-2xl">
-            <span className="text-xs sm:text-sm text-cream/80 font-light tracking-wide uppercase mb-2">
-              {project.category}
-            </span>
-            <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-cream mb-4 md:mb-6">
-              {project.title}
-            </h1>
-            <p className="font-inter text-sm text-cream/70 font-light">
-              {project.location}
-            </p>
+          <div className="px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center max-w-4xl mx-auto">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-charcoal/10">
+              <div className="mb-4">
+                <span className="text-xs sm:text-sm text-charcoal/60 font-light tracking-widest uppercase">
+                  {project.category}
+                </span>
+                <div className="w-12 h-px bg-charcoal/20 mt-2"></div>
+              </div>
+              <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-charcoal mb-4 md:mb-6 leading-tight">
+                {project.title}
+              </h1>
+              <p className="font-inter text-base text-charcoal/50 font-light tracking-wide">
+                {project.location}
+              </p>
+            </div>
           </div>
 
           {/* Simple gallery grid */}
-          <div className="p-4 sm:p-6 lg:p-8">
-            <div className="max-w-6xl mx-auto">
-              <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ${project.category === "Design Build" ? "gap-0.5" : "gap-3"}`}>
-                {project.images.map((image, index) => <button key={`${image}-${index}`} onClick={() => setSelectedImageIndex(index)} className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer transition-all hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-cream/50">
+          <div className="pt-12 pb-8 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ${project.category === "Design Build" ? "gap-1" : "gap-4 md:gap-6"}`}>
+                {project.images.map((image, index) => <button key={`${image}-${index}`} onClick={() => setSelectedImageIndex(index)} className="relative aspect-square overflow-hidden rounded-xl bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30">
                     <img 
                       src={image} 
                       alt={`${project.title} - Image ${index + 1}`} 
-                      className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </button>)}
               </div>
@@ -84,14 +89,14 @@ const ProjectDetail = () => {
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImageIndex !== null && <div className="fixed inset-0 z-50 bg-charcoal/95 backdrop-blur-sm animate-fade-in" onClick={() => setSelectedImageIndex(null)}>
+      {selectedImageIndex !== null && <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-md animate-fade-in" onClick={() => setSelectedImageIndex(null)}>
           {/* Close button */}
-          <button onClick={() => setSelectedImageIndex(null)} className="absolute top-4 right-4 z-50 p-2 rounded-full bg-cream/10 hover:bg-cream/20 text-cream transition-colors focus:outline-none focus:ring-2 focus:ring-cream/50" aria-label="Close">
+          <button onClick={() => setSelectedImageIndex(null)} className="absolute top-4 right-4 z-50 p-2 rounded-full bg-charcoal/10 hover:bg-charcoal/20 text-charcoal transition-colors focus:outline-none focus:ring-2 focus:ring-charcoal/30" aria-label="Close">
             <X className="h-6 w-6" />
           </button>
 
           {/* Image counter */}
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-cream/10 backdrop-blur-md text-cream text-sm font-light">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-charcoal/10 backdrop-blur-md text-charcoal text-sm font-light border border-charcoal/20">
             {selectedImageIndex + 1} / {project.images.length}
           </div>
 
@@ -99,7 +104,7 @@ const ProjectDetail = () => {
           <button onClick={e => {
         e.stopPropagation();
         setSelectedImageIndex(selectedImageIndex === 0 ? project.images.length - 1 : selectedImageIndex - 1);
-      }} className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-cream/10 hover:bg-cream/20 text-cream transition-colors focus:outline-none focus:ring-2 focus:ring-cream/50" aria-label="Previous image">
+      }} className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-charcoal/10 hover:bg-charcoal/20 text-charcoal transition-colors focus:outline-none focus:ring-2 focus:ring-charcoal/30" aria-label="Previous image">
             <ChevronLeft className="h-8 w-8" />
           </button>
 
@@ -107,13 +112,13 @@ const ProjectDetail = () => {
           <button onClick={e => {
         e.stopPropagation();
         setSelectedImageIndex(selectedImageIndex === project.images.length - 1 ? 0 : selectedImageIndex + 1);
-      }} className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-cream/10 hover:bg-cream/20 text-cream transition-colors focus:outline-none focus:ring-2 focus:ring-cream/50" aria-label="Next image">
+      }} className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-charcoal/10 hover:bg-charcoal/20 text-charcoal transition-colors focus:outline-none focus:ring-2 focus:ring-charcoal/30" aria-label="Next image">
             <ChevronRight className="h-8 w-8" />
           </button>
 
           {/* Image */}
           <div className="flex items-center justify-center h-full p-16" onClick={e => e.stopPropagation()}>
-            <img src={project.images[selectedImageIndex]} alt={`${project.title} - Image ${selectedImageIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in" />
+            <img src={project.images[selectedImageIndex]} alt={`${project.title} - Image ${selectedImageIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" />
           </div>
         </div>}
     </>;
