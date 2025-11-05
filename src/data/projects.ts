@@ -521,8 +521,8 @@ export const projects: Project[] = [
     additionalInfo: "Seaside, CA",
     category: "Commercial",
     description: "A comprehensive commercial design-build project featuring Spanish Colonial Revival architecture. This multi-building complex showcases careful attention to traditional architectural details while creating modern commercial spaces in a strategic coastal location.",
-    image: lagunaGrandeCover,
-    images: [lagunaGrandeCover, laguna1, laguna2, laguna3, laguna4, laguna5],
+    image: laguna1,
+    images: [laguna1, lagunaGrandeCover, laguna2, laguna3, laguna4, laguna5],
   },
   {
     id: "southcoast-remodel-design-build",
