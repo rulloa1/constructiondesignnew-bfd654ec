@@ -304,6 +304,17 @@ import poolDesign2 from "@/assets/projects/pool-design-2.jpg";
 import poolDesign3 from "@/assets/projects/pool-design-3.jpg";
 import poolDesign4 from "@/assets/projects/pool-design-4.jpg";
 import poolDesign5 from "@/assets/projects/pool-design-5.jpg";
+import poolDesign6 from "@/assets/projects/pool-design-6.jpg";
+import poolDesign7 from "@/assets/projects/pool-design-7.jpg";
+import poolDesign8 from "@/assets/projects/pool-design-8.jpg";
+import poolDesign9 from "@/assets/projects/pool-design-9.jpg";
+import poolDesign10 from "@/assets/projects/pool-design-10.jpg";
+import poolDesign11 from "@/assets/projects/pool-design-11.jpg";
+import poolDesign12 from "@/assets/projects/pool-design-12.jpg";
+import poolDesign13 from "@/assets/projects/pool-design-13.jpg";
+import poolDesign14 from "@/assets/projects/pool-design-14.jpg";
+import poolDesign15 from "@/assets/projects/pool-design-15.jpg";
+import poolDesign16 from "@/assets/projects/pool-design-16.jpg";
 
 // Civil Engineering
 import civilCover from "@/assets/projects/civil-cover.jpg";
@@ -455,7 +466,7 @@ export const projects: Project[] = [
     category: "Hospitality",
     description: "Luxury pool and outdoor living space design featuring custom stone work, pool house structures, and beautifully landscaped entertainment areas.",
     image: poolDesignCover,
-    images: [poolDesignCover, poolDesign2, poolDesign5, poolDesign1, poolDesign3, poolDesign4, hospitalityPool1],
+    images: [poolDesignCover, poolDesign2, poolDesign5, poolDesign1, poolDesign3, poolDesign4, hospitalityPool1, poolDesign6, poolDesign7, poolDesign8, poolDesign9, poolDesign10, poolDesign11, poolDesign12, poolDesign13, poolDesign14, poolDesign15, poolDesign16],
   },
   {
     id: "bahamas-beachfront-estate",
