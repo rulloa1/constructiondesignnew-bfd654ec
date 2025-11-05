@@ -20,12 +20,17 @@ import carmel1_18 from "@/assets/projects/carmel1-18-after.jpg";
 import carmel1_19 from "@/assets/projects/carmel1-19-before.jpg";
 import carmel1_20 from "@/assets/projects/carmel1-20-after.jpg";
 import carmel2Cover from "@/assets/projects/carmel-2-cover.jpg";
+import carmel2_1 from "@/assets/projects/carmel-2-1.jpg";
+import carmel2_2 from "@/assets/projects/carmel-2-2.jpg";
+import carmel2_3 from "@/assets/projects/carmel-2-3.jpg";
 import carmel2_4 from "@/assets/projects/carmel-2-4.jpg";
 import carmel2_5 from "@/assets/projects/carmel-2-5.jpg";
 import carmel2_6 from "@/assets/projects/carmel-2-6.jpg";
 import carmel2_7 from "@/assets/projects/carmel-2-7.jpg";
 import carmel2_8 from "@/assets/projects/carmel-2-8.jpg";
 import carmel2_9 from "@/assets/projects/carmel-2-9.jpg";
+import carmel2_10 from "@/assets/projects/carmel-2-10.jpg";
+import carmel2_11 from "@/assets/projects/carmel-2-11.jpg";
 import hillsideCover from "@/assets/projects/hillside-cover.jpg";
 import hillside1 from "@/assets/projects/hillside-1.jpg";
 import hillside2 from "@/assets/projects/hillside-2.jpg";
@@ -160,6 +165,12 @@ import bigsur12 from "@/assets/projects/bigsur-12.jpg";
 import bigsur13 from "@/assets/projects/bigsur-13.jpg";
 import bigsur14 from "@/assets/projects/bigsur-14.jpg";
 import bigsur15 from "@/assets/projects/bigsur-15.jpg";
+import bigsur16 from "@/assets/projects/bigsur-16.jpg";
+import bigsur17 from "@/assets/projects/bigsur-17.jpg";
+import bigsur18 from "@/assets/projects/bigsur-18.jpg";
+import bigsur19 from "@/assets/projects/bigsur-19.jpg";
+import bigsur20 from "@/assets/projects/bigsur-20.jpg";
+import bigsur21 from "@/assets/projects/bigsur-21.jpg";
 import carmelValleyCover from "@/assets/projects/carmel-valley-cover.jpg";
 import carmelValley1 from "@/assets/projects/carmel-valley-1.jpg";
 import carmelValley2 from "@/assets/projects/carmel-valley-2.jpg";
@@ -500,7 +511,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A stunning coastal home showcasing refined craftsmanship and thoughtful design that harmonizes with the natural beauty of the Carmel coastline.",
     image: carmel2Cover,
-    images: [carmel2Cover, carmel2_4, carmel2_5, carmel2_6, carmel2_7, carmel2_8],
+    images: [carmel2Cover, carmel2_1, carmel2_2, carmel2_3, carmel2_4, carmel2_5, carmel2_6, carmel2_7, carmel2_8, carmel2_9, carmel2_10, carmel2_11],
   },
   {
     id: "hillside-cleanup",
@@ -588,7 +599,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "Scenic mountain remodel project featuring stunning ocean views, retaining wall construction, custom garage building, and comprehensive site development with careful attention to the natural landscape.",
     image: bigsurCover,
-    images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7, bigsur8, bigsur9, bigsur10, bigsur11, bigsur12, bigsur13, bigsur14, bigsur15],
+    images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7, bigsur8, bigsur9, bigsur10, bigsur11, bigsur12, bigsur13, bigsur14, bigsur15, bigsur16, bigsur17, bigsur18, bigsur19, bigsur20, bigsur21],
   },
   {
     id: "carmel-house-remdl-23",
