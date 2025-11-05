@@ -54,18 +54,18 @@ const ProjectDetail = () => {
           </div>
 
           {/* Project info */}
-          <div className="px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center max-w-4xl mx-auto">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-charcoal/10">
-              <div className="mb-4">
-                <span className="text-xs sm:text-sm text-charcoal/60 font-light tracking-widest uppercase">
+          <div className="px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center max-w-3xl mx-auto">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-charcoal/10">
+              <div className="mb-3">
+                <span className="text-xs text-charcoal/60 font-light tracking-widest uppercase">
                   {project.category}
                 </span>
-                <div className="w-12 h-px bg-charcoal/20 mt-2"></div>
+                <div className="w-10 h-px bg-charcoal/20 mt-2"></div>
               </div>
-              <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-charcoal mb-4 md:mb-6 leading-tight">
+              <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-3 md:mb-4 leading-tight">
                 {project.title}
               </h1>
-              <p className="font-inter text-base text-charcoal/50 font-light tracking-wide">
+              <p className="font-inter text-sm text-charcoal/50 font-light tracking-wide">
                 {project.location}
               </p>
             </div>
