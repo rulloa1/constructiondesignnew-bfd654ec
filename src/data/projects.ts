@@ -492,7 +492,7 @@ export const projects: Project[] = [
     category: "Hospitality",
     description: "Luxury pool and outdoor living space design featuring custom stone work, pool house structures, and beautifully landscaped entertainment areas.",
     image: poolDesignCover,
-    images: [poolDesignCover, poolDesign6, poolDesign15, poolDesign16, poolDesign8, poolDesign9, poolDesign10, poolDesign11, poolDesign17, poolDesign7, poolDesign18, poolDesign14, poolDesign19, poolDesign12, poolDesign26, poolDesign27, poolDesign28, poolDesign29, poolDesign30, poolDesign31, poolDesign32, poolDesign33, poolDesign34, poolDesign35, poolDesign36, poolDesign37, poolDesign38, poolDesign20, poolDesign39, poolDesign13, poolDesign40, poolDesign41, poolDesign42, poolDesign21, poolDesign22, poolDesign23, poolDesign24, poolDesign25, poolDesign1, poolDesign2, poolDesign3, poolDesign4, poolDesign5, hospitalityPool1],
+    images: [poolDesignCover, poolDesign6, poolDesign15, poolDesign16, poolDesign8, poolDesign9, poolDesign10, poolDesign11, poolDesign17, poolDesign7, poolDesign18, poolDesign14, poolDesign19, poolDesign12, poolDesign26, poolDesign27, poolDesign28, poolDesign29, poolDesign30, poolDesign31, poolDesign32, poolDesign33, poolDesign34, poolDesign35, poolDesign36, poolDesign37, poolDesign38, poolDesign20, poolDesign39, poolDesign13, poolDesign40, poolDesign41, poolDesign42, poolDesign21, poolDesign22, poolDesign23, poolDesign24, poolDesign25],
   },
   {
     id: "bahamas-beachfront-estate",
