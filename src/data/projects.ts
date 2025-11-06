@@ -593,7 +593,7 @@ export const projects: Project[] = [
     title: "North Florida",
     subtitle: "Foundation to Finish",
     location: "Design Build",
-    additionalInfo: "North Florida",
+    additionalInfo: "Vero Beach, Florida",
     category: "Design Build",
     description: "A comprehensive design-build project showcasing quality construction from foundation to finish, featuring custom framing, concrete block construction, and meticulous attention to architectural details.",
     image: nfl001,
