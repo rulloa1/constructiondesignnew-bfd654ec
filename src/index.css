@@ -51,6 +51,9 @@ All colors MUST be HSL.
     --ring: 42 50% 58%;
 
     --radius: 0.25rem;
+    
+    --header-bg: 0 0% 8%;
+    --footer-bg: 0 0% 10%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -111,6 +114,10 @@ All colors MUST be HSL.
     --border: 0 0% 22%;
     --input: 0 0% 22%;
     --ring: 42 50% 58%;
+    
+    --header-bg: 0 0% 8%;
+    --footer-bg: 0 0% 10%;
+    
     --sidebar-background: 30 10% 15%;
     --sidebar-foreground: 35 20% 97%;
     --sidebar-primary: 42 85% 55%;

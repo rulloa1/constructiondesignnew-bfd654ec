@@ -275,6 +275,14 @@ import development6 from "@/assets/projects/development-6.jpg";
 import development7 from "@/assets/projects/development-7.jpg";
 import development8 from "@/assets/projects/development-8.jpg";
 import development9 from "@/assets/projects/development-9.jpg";
+import development10 from "@/assets/projects/development-10.jpg";
+import development11 from "@/assets/projects/development-11.jpg";
+import development12 from "@/assets/projects/development-12.jpg";
+import development13 from "@/assets/projects/development-13.jpg";
+import development14 from "@/assets/projects/development-14.jpg";
+import development15 from "@/assets/projects/development-15.jpg";
+import development16 from "@/assets/projects/development-16.jpg";
+import development17 from "@/assets/projects/development-17.jpg";
 
 // Hospitality Pool
 import poolDesignCover from "@/assets/projects/pool-design-cover.jpg";
@@ -488,7 +496,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A collection of development projects showcasing comprehensive construction and site development work.",
     image: developmentCover,
-    images: [developmentCover, development1, development2, development3, development4, development5, development6, development7, development8, development9],
+    images: [developmentCover, development1, development2, development3, development4, development5, development6, development7, development8, development9, development10, development11, development12, development13, development14, development15, development16, development17],
   },
   {
     id: "pacific-grove-design-build",
