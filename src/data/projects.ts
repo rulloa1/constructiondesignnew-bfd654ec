@@ -177,7 +177,6 @@ import pg9 from "@/assets/projects/pg-9.jpg";
 import pg10 from "@/assets/projects/pg-10.jpg";
 
 // N. FL Des Consult
-import nfl001 from "@/assets/projects/nfl-001-cover.webp";
 import nfl002 from "@/assets/projects/nfl-002.webp";
 import nfl003 from "@/assets/projects/nfl-003.png";
 import nfl004 from "@/assets/projects/nfl-004.png";
@@ -592,8 +591,8 @@ export const projects: Project[] = [
     additionalInfo: "Vero Beach, Florida",
     category: "Design Build",
     description: "A comprehensive design-build project showcasing quality construction from foundation to finish, featuring custom framing, concrete block construction, and meticulous attention to architectural details.",
-    image: nfl001,
-    images: [nfl001, nfl002, nfl003, nfl004, nfl005, nfl006, nfl007, nfl008, nfl009, nfl010, nfl011, nfl012, nfl013],
+    image: nfl002,
+    images: [nfl002, nfl003, nfl004, nfl005, nfl006, nfl007, nfl008, nfl009, nfl010, nfl011, nfl012, nfl013],
   },
   {
     id: "bigsur-mountain-remodel",
