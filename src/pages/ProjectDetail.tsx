@@ -126,7 +126,12 @@ const ProjectDetail = () => {
 
           {/* Image */}
           <div className="flex items-center justify-center h-full p-16" onClick={e => e.stopPropagation()}>
-            <img src={project.images[selectedImageIndex]} alt={`${project.title} - Image ${selectedImageIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" />
+            <img 
+              key={selectedImageIndex}
+              src={project.images[selectedImageIndex]} 
+              alt={`${project.title} - Image ${selectedImageIndex + 1}`} 
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-fade-in border border-charcoal/10" 
+            />
           </div>
         </div>}
     </>;
