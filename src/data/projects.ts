@@ -176,20 +176,6 @@ import pg8 from "@/assets/projects/pg-8.jpg";
 import pg9 from "@/assets/projects/pg-9.jpg";
 import pg10 from "@/assets/projects/pg-10.jpg";
 
-// N. FL Des Consult
-import nfl002 from "@/assets/projects/nfl-002.webp";
-import nfl003 from "@/assets/projects/nfl-003.png";
-import nfl004 from "@/assets/projects/nfl-004.png";
-import nfl005 from "@/assets/projects/nfl-005.jpg";
-import nfl006 from "@/assets/projects/nfl-006.jpg";
-import nfl007 from "@/assets/projects/nfl-007.jpg";
-import nfl008 from "@/assets/projects/nfl-008.jpg";
-import nfl009 from "@/assets/projects/nfl-009.jpg";
-import nfl010 from "@/assets/projects/nfl-010.jpg";
-import nfl011 from "@/assets/projects/nfl-011.jpg";
-import nfl012 from "@/assets/projects/nfl-012.jpg";
-import nfl013 from "@/assets/projects/nfl-013.jpg";
-
 // Carmel House Remdl No.23
 import carmel3Cover from "@/assets/projects/carmel-3-cover-new.png";
 import carmel3_1 from "@/assets/projects/carmel-3-1.jpg";
@@ -582,17 +568,6 @@ export const projects: Project[] = [
     description: "A stunning custom design-build residence featuring elegant architectural details and seamless integration with the natural landscape of Carmel Valley.",
     image: carmelValleyCover,
     images: [carmelValleyCover, carmelValley1, carmelValley2, carmelValley3, carmelValley4],
-  },
-  {
-    id: "nfl-des-consult",
-    title: "North Florida",
-    subtitle: "Foundation to Finish",
-    location: "Design Build",
-    additionalInfo: "Vero Beach, Florida",
-    category: "Design Build",
-    description: "A comprehensive design-build project showcasing quality construction from foundation to finish, featuring custom framing, concrete block construction, and meticulous attention to architectural details.",
-    image: nfl002,
-    images: [nfl002, nfl003, nfl004, nfl005, nfl006, nfl007, nfl008, nfl009, nfl010, nfl011, nfl012, nfl013],
   },
   {
     id: "bigsur-mountain-remodel",
