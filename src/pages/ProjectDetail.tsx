@@ -72,15 +72,15 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          {/* 3D Gallery */}
+          {/* Image Gallery */}
           <div className="pt-6 pb-12 px-4 sm:px-6 lg:px-8">
             <ScrollArea className="w-full whitespace-nowrap">
-              <div className="gallery-3d flex gap-4 pb-4">
+              <div className="flex gap-4 pb-4">
                 {project.images.map((image, index) => (
                   <button
                     key={`${image}-${index}`}
                     onClick={() => setSelectedImageIndex(index)}
-                    className="card relative inline-block h-[60vh] min-h-[400px] w-auto overflow-hidden rounded-lg bg-white border border-charcoal/10 cursor-pointer focus:outline-none flex-shrink-0"
+                    className="relative inline-block h-[60vh] min-h-[400px] w-auto overflow-hidden rounded-lg bg-white border border-charcoal/10 cursor-pointer hover:shadow-lg transition-shadow duration-300 focus:outline-none flex-shrink-0"
                   >
                     <img 
                       src={image} 
