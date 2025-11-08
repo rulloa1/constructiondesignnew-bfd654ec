@@ -237,10 +237,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({
         </div>
       </div>
 
-      {/* Project grid */}
+      {/* Project grid with 3D Gallery Effect */}
       <div className="container mx-auto px-6 lg:px-12 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {filteredProjects.map((project, index) => <Link key={project.id} to={`/project/${project.id}`} className="group opacity-0 animate-fade-in-up" style={{
+        <div className="gallery-3d grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {filteredProjects.map((project, index) => <Link key={project.id} to={`/project/${project.id}`} className="card group opacity-0 animate-fade-in-up" style={{
           animationDelay: `${index * 50}ms`
         }}>
               {/* Project image */}
@@ -249,7 +249,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({
                 {/* Subtle overlay on hover */}
                 <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-all duration-500">
                   <div className="absolute bottom-3 left-3 text-xs font-inter text-white/90 tracking-wider">
-                    {project.category.replace(' ', ' • ')}
+                    {project.category.replace(" ", " • ")}
                   </div>
                 </div>
               </div>
