@@ -512,7 +512,7 @@ export const projects: Project[] = [
   },
   {
     id: "bigsur-mountain-remodel",
-    title: "Big Sur",
+    title: "Partington Ridge Big Sur",
     subtitle: "Coastal Site Work",
     location: "Residential",
     additionalInfo: "Big Sur, CA",
