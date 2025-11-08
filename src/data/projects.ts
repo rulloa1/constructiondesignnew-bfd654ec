@@ -168,12 +168,6 @@ import bigsur12 from "@/assets/projects/bigsur-12.jpg";
 import bigsur13 from "@/assets/projects/bigsur-13.jpg";
 import bigsur14 from "@/assets/projects/bigsur-14.jpg";
 import bigsur15 from "@/assets/projects/bigsur-15.jpg";
-import bigsur16 from "@/assets/projects/bigsur-16.jpg";
-import bigsur17 from "@/assets/projects/bigsur-17.jpg";
-import bigsur18 from "@/assets/projects/bigsur-18.jpg";
-import bigsur19 from "@/assets/projects/bigsur-19.jpg";
-import bigsur20 from "@/assets/projects/bigsur-20.jpg";
-import bigsur21 from "@/assets/projects/bigsur-21.jpg";
 import carmelValleyCover from "@/assets/projects/carmel-valley-cover.jpg";
 import carmelValley1 from "@/assets/projects/carmel-valley-1.jpg";
 import carmelValley2 from "@/assets/projects/carmel-valley-2.jpg";
@@ -207,8 +201,6 @@ import nfl010 from "@/assets/projects/nfl-010.jpg";
 import nfl011 from "@/assets/projects/nfl-011.jpg";
 import nfl012 from "@/assets/projects/nfl-012.jpg";
 import nfl013 from "@/assets/projects/nfl-013.jpg";
-import nfl014 from "@/assets/projects/nfl-014.jpg";
-import nfl015 from "@/assets/projects/nfl-015.jpg";
 
 // Carmel House Remdl No.23
 import carmel3Cover from "@/assets/projects/carmel-3-cover-new.png";
@@ -236,6 +228,7 @@ import carmel3_21 from "@/assets/projects/carmel-3-21.jpg";
 import carmel3_22 from "@/assets/projects/carmel-3-22.jpg";
 import carmel3_23 from "@/assets/projects/carmel-3-23.jpg";
 import carmel3_24 from "@/assets/projects/carmel-3-24.jpg";
+import carmel3_25 from "@/assets/projects/carmel-3-25.jpg";
 
 // Coastal Hillside Restoration
 import coastalRestorationCover from "@/assets/projects/coastal-restoration-cover.jpg";
@@ -282,10 +275,6 @@ import development10 from "@/assets/projects/development-10.jpg";
 import development11 from "@/assets/projects/development-11.jpg";
 import development12 from "@/assets/projects/development-12.jpg";
 import development13 from "@/assets/projects/development-13.jpg";
-import development14 from "@/assets/projects/development-14.jpg";
-import development15 from "@/assets/projects/development-15.jpg";
-import development16 from "@/assets/projects/development-16.jpg";
-import development17 from "@/assets/projects/development-17.jpg";
 
 // Hospitality Pool
 import poolDesignCover from "@/assets/projects/pool-design-cover.jpg";
@@ -361,6 +350,7 @@ import montana7 from "@/assets/projects/montana-7.jpg";
 import montana8 from "@/assets/projects/montana-8.jpg";
 import montana9 from "@/assets/projects/montana-9.jpg";
 import montana10 from "@/assets/projects/montana-10.jpg";
+import montana11 from "@/assets/projects/montana-11.jpg";
 import miamiBeachCover from "@/assets/projects/miami-beach-cover.jpg";
 import miamiBeach1 from "@/assets/projects/miami-beach-1.jpg";
 import miamiBeach2 from "@/assets/projects/miami-beach-2.png";
@@ -409,26 +399,34 @@ import miamiBeach44 from "@/assets/projects/miami-beach-44.jpg";
 import miamiBeach45 from "@/assets/projects/miami-beach-45.jpg";
 import miamiBeach46 from "@/assets/projects/miami-beach-46.jpg";
 import miamiBeach47 from "@/assets/projects/miami-beach-47.jpg";
-import syracuseCover from "@/assets/projects/syracuse-cover.webp";
-import syracuse1 from "@/assets/projects/syracuse-1.webp";
-import syracuse2 from "@/assets/projects/syracuse-2.webp";
-import syracuse3 from "@/assets/projects/syracuse-3.webp";
-import syracuse4 from "@/assets/projects/syracuse-4.webp";
-import syracuse5 from "@/assets/projects/syracuse-5.webp";
-import syracuse6 from "@/assets/projects/syracuse-6.webp";
-import syracuse7 from "@/assets/projects/syracuse-7.webp";
-import syracuse8 from "@/assets/projects/syracuse-8.webp";
-import syracuse9 from "@/assets/projects/syracuse-9.webp";
-import syracuse10 from "@/assets/projects/syracuse-10.webp";
-import syracuse11 from "@/assets/projects/syracuse-11.webp";
-import syracuse12 from "@/assets/projects/syracuse-12.webp";
-import syracuse13 from "@/assets/projects/syracuse-13.webp";
-import syracuse14 from "@/assets/projects/syracuse-14.webp";
-import syracuse15 from "@/assets/projects/syracuse-15.webp";
-import syracuse16 from "@/assets/projects/syracuse-16.webp";
-import syracuse17 from "@/assets/projects/syracuse-17.webp";
-import syracuse18 from "@/assets/projects/syracuse-18.webp";
-import syracuse19 from "@/assets/projects/syracuse-19.webp";
+import syracuseCover from "@/assets/projects/syracuse-cover.png";
+import syracuse1 from "@/assets/projects/syracuse-1.png";
+import syracuse2 from "@/assets/projects/syracuse-2.png";
+import syracuse3 from "@/assets/projects/syracuse-3.png";
+import syracuse4 from "@/assets/projects/syracuse-4.png";
+import syracuse5 from "@/assets/projects/syracuse-5.png";
+import syracuse6 from "@/assets/projects/syracuse-6.png";
+import syracuse7 from "@/assets/projects/syracuse-7.png";
+import syracuse8 from "@/assets/projects/syracuse-8.png";
+import syracuse9 from "@/assets/projects/syracuse-9.png";
+import syracuse10 from "@/assets/projects/syracuse-10.png";
+import syracuse11 from "@/assets/projects/syracuse-11.png";
+import syracuse12 from "@/assets/projects/syracuse-12.png";
+import syracuse13 from "@/assets/projects/syracuse-13.png";
+import syracuse14 from "@/assets/projects/syracuse-14.png";
+import syracuse15 from "@/assets/projects/syracuse-15.png";
+import syracuse16 from "@/assets/projects/syracuse-16.png";
+import syracuse17 from "@/assets/projects/syracuse-17.png";
+import syracuse18 from "@/assets/projects/syracuse-18.png";
+import syracuse19 from "@/assets/projects/syracuse-19.png";
+import syracuse20 from "@/assets/projects/syracuse-20.png";
+import syracuse21 from "@/assets/projects/syracuse-21.png";
+import syracuse22 from "@/assets/projects/syracuse-22.png";
+import syracuse23 from "@/assets/projects/syracuse-23.png";
+import syracuse24 from "@/assets/projects/syracuse-24.png";
+import syracuse25 from "@/assets/projects/syracuse-25.png";
+import syracuse26 from "@/assets/projects/syracuse-26.png";
+import syracuse27 from "@/assets/projects/syracuse-27.png";
 import alpineRanchCover from "@/assets/projects/alpine-ranch-cover.jpg";
 import alpineRanch1 from "@/assets/projects/alpine-ranch-1.jpg";
 import alpineRanch2 from "@/assets/projects/alpine-ranch-2.jpg";
@@ -440,6 +438,8 @@ import alpineRanch7 from "@/assets/projects/alpine-ranch-7.jpg";
 import alpineRanch8 from "@/assets/projects/alpine-ranch-8.jpg";
 import alpineRanch9 from "@/assets/projects/alpine-ranch-9.jpg";
 import alpineRanch10 from "@/assets/projects/alpine-ranch-10.jpg";
+import alpineRanch11 from "@/assets/projects/alpine-ranch-11.jpg";
+import alpineRanch12 from "@/assets/projects/alpine-ranch-12.jpg";
 
 export type ProjectCategory = "Residential" | "Commercial" | "Hospitality" | "Design Build";
 
@@ -476,7 +476,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "Spectacular high-alpine luxury ranch featuring modern mountain architecture with floor-to-ceiling windows, custom stone masonry, and exposed timber construction. This exceptional residence seamlessly blends contemporary design with rustic mountain charm, showcasing breathtaking panoramic views, a gourmet kitchen with natural stone countertops, and luxurious interiors with vaulted ceilings and custom millwork throughout.",
     image: alpineRanchCover,
-    images: [alpineRanchCover, alpineRanch1, alpineRanch2, alpineRanch3, alpineRanch4, alpineRanch5, alpineRanch6, alpineRanch7, alpineRanch8, alpineRanch9, alpineRanch10],
+    images: [alpineRanchCover, alpineRanch1, alpineRanch2, alpineRanch3, alpineRanch4, alpineRanch5, alpineRanch6, alpineRanch7, alpineRanch8, alpineRanch9, alpineRanch10, alpineRanch11, alpineRanch12],
   },
   {
     id: "syracuse-house",
@@ -487,7 +487,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "Stunning craftsman-style estate featuring professional landscaping, custom stone work, and dramatic evening lighting. This comprehensive project showcases exceptional attention to detail in both architecture and landscape design, with native plantings, decorative rock features, and elegant outdoor spaces.",
     image: syracuseCover,
-    images: [syracuseCover, syracuse1, syracuse2, syracuse3, syracuse4, syracuse5, syracuse6, syracuse7, syracuse8, syracuse9, syracuse10, syracuse11, syracuse12, syracuse13, syracuse14, syracuse15, syracuse16, syracuse17, syracuse18, syracuse19],
+    images: [syracuseCover, syracuse1, syracuse2, syracuse3, syracuse4, syracuse5, syracuse6, syracuse7, syracuse8, syracuse9, syracuse10, syracuse11, syracuse12, syracuse13, syracuse14, syracuse15, syracuse16, syracuse17, syracuse18, syracuse19, syracuse20, syracuse21, syracuse22, syracuse23, syracuse24, syracuse25, syracuse26, syracuse27],
   },
   {
     id: "montana-condo",
@@ -498,7 +498,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "Sophisticated condo renovation featuring contemporary finishes, custom millwork, and luxurious bathroom design. This mountain retreat showcases elegant material selections including dramatic marble, warm wood tones, and refined fixtures that create a seamless blend of modern comfort and mountain living.",
     image: montanaCover,
-    images: [montanaCover, montana1, montana2, montana3, montana4, montana5, montana6, montana7, montana8, montana9, montana10],
+    images: [montanaCover, montana1, montana2, montana3, montana4, montana5, montana6, montana7, montana8, montana9, montana10, montana11],
   },
   {
     id: "hospitality-pool",
@@ -531,7 +531,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A collection of development projects showcasing comprehensive construction and site development work.",
     image: developmentCover,
-    images: [developmentCover, development1, development2, development3, development4, development5, development6, development7, development8, development9, development10, development11, development12, development13, development14, development15, development16, development17],
+    images: [developmentCover, development1, development2, development3, development4, development5, development6, development7, development8, development9, development10, development11, development12, development13],
   },
   {
     id: "pacific-grove-design-build",
@@ -620,7 +620,7 @@ export const projects: Project[] = [
     category: "Design Build",
     description: "A comprehensive design-build project showcasing quality construction from foundation to finish, featuring custom framing, concrete block construction, and meticulous attention to architectural details.",
     image: nfl001,
-    images: [nfl001, nfl002, nfl003, nfl004, nfl005, nfl006, nfl007, nfl008, nfl009, nfl010, nfl011, nfl012, nfl013, nfl014, nfl015],
+    images: [nfl001, nfl002, nfl003, nfl004, nfl005, nfl006, nfl007, nfl008, nfl009, nfl010, nfl011, nfl012, nfl013],
   },
   {
     id: "bigsur-mountain-remodel",
@@ -631,7 +631,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "Scenic mountain remodel project featuring stunning ocean views, retaining wall construction, custom garage building, and comprehensive site development with careful attention to the natural landscape.",
     image: bigsurCover,
-    images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7, bigsur8, bigsur9, bigsur10, bigsur11, bigsur12, bigsur13, bigsur14, bigsur15, bigsur16, bigsur17, bigsur18, bigsur19, bigsur20, bigsur21],
+    images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7, bigsur8, bigsur9, bigsur10, bigsur11, bigsur12, bigsur13, bigsur14, bigsur15],
   },
   {
     id: "carmel-house-remdl-23",
@@ -642,7 +642,7 @@ export const projects: Project[] = [
     category: "Residential",
     description: "A complete remodel showcasing the transformation from original condition to a beautifully finished home with updated decking, new windows, architectural improvements, and custom exterior details.",
     image: carmel3Cover,
-    images: [carmel3Cover, carmel3_1, carmel3_2, carmel3_3, carmel3_4, carmel3_5, carmel3_6, carmel3_7, carmel3_8, carmel3_9, carmel3_10, carmel3_11, carmel3_12, carmel3_13, carmel3_14, carmel3_15, carmel3_16, carmel3_17, carmel3_18, carmel3_19, carmel3_20, carmel3_21, carmel3_22, carmel3_23, carmel3_24],
+    images: [carmel3Cover, carmel3_1, carmel3_2, carmel3_3, carmel3_4, carmel3_5, carmel3_6, carmel3_7, carmel3_8, carmel3_9, carmel3_10, carmel3_11, carmel3_12, carmel3_13, carmel3_14, carmel3_15, carmel3_16, carmel3_17, carmel3_18, carmel3_19, carmel3_20, carmel3_21, carmel3_22, carmel3_23, carmel3_24, carmel3_25],
   },
   {
     id: "coastal-hillside-restoration-2",
