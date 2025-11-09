@@ -3,13 +3,40 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { getProjectById } from "@/data/projects";
 import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+interface ProjectVideo {
+  id: string;
+  video_url: string;
+  title: string | null;
+  description: string | null;
+  display_order: number;
+}
 const ProjectDetail = () => {
-  const {
-    id
-  } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const project = id ? getProjectById(id) : undefined;
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [videos, setVideos] = useState<ProjectVideo[]>([]);
+
+  // Fetch videos for this project
+  useEffect(() => {
+    if (!id) return;
+    
+    const fetchVideos = async () => {
+      const { data, error } = await supabase
+        .from('project_videos')
+        .select('*')
+        .eq('project_id', id)
+        .order('display_order', { ascending: true });
+
+      if (!error && data) {
+        setVideos(data);
+      }
+    };
+
+    fetchVideos();
+  }, [id]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -70,6 +97,36 @@ const ProjectDetail = () => {
               </p>
             </div>
           </div>
+
+          {/* Videos Section */}
+          {videos.length > 0 && (
+            <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-5xl mx-auto space-y-6">
+                <h2 className="text-2xl font-playfair font-semibold text-charcoal">Project Videos</h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {videos.map((video) => (
+                    <div key={video.id} className="bg-white rounded-lg overflow-hidden border border-charcoal/10 shadow-md">
+                      <video
+                        src={video.video_url}
+                        controls
+                        className="w-full aspect-video bg-black"
+                      />
+                      {(video.title || video.description) && (
+                        <div className="p-4">
+                          {video.title && (
+                            <h3 className="font-semibold text-charcoal mb-1">{video.title}</h3>
+                          )}
+                          {video.description && (
+                            <p className="text-sm text-charcoal/70">{video.description}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Simple gallery grid */}
           <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">

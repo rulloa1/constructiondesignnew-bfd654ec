@@ -1,33 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { VideoUpload } from "@/components/admin/VideoUpload";
+import { VideoList } from "@/components/admin/VideoList";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-
-interface Lead {
-  id: string;
-  name: string;
-  email: string;
-  phone: string | null;
-  project_type: string | null;
-  budget_range: string | null;
-  message: string | null;
-  status: string | null;
-  conversation_history: any;
-  created_at: string;
-}
+import { projects } from "@/data/projects";
+import { LogOut } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Admin() {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const [selectedProject, setSelectedProject] = useState(projects[0]?.id || "");
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
     checkAuth();
@@ -35,170 +20,67 @@ export default function Admin() {
 
   const checkAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
-    
     if (!session) {
-      navigate("/auth");
-      return;
+      navigate("/login");
     }
-
-    setUserId(session.user.id);
-
-    // Verify admin role server-side
-    const { data: isAdminUser, error } = await (supabase as any).rpc('has_role', {
-      _user_id: session.user.id,
-      _role: 'admin'
-    });
-    
-    if (error) {
-      console.error('Error checking admin role:', error);
-      toast({
-        title: "Error",
-        description: "Failed to verify admin privileges.",
-        variant: "destructive",
-      });
-      setLoading(false);
-      return;
-    }
-
-    if (!isAdminUser) {
-      setLoading(false);
-      return;
-    }
-    
-    setIsAdmin(true);
-    fetchLeads();
-  };
-
-  const fetchLeads = async () => {
-    // Database tables not yet configured
-    // TODO: Set up client_leads and audit_logs tables
     setLoading(false);
   };
 
-  const handleSignOut = async () => {
+  const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/");
+    toast.success("Logged out successfully");
+    navigate("/login");
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>
-              You need admin privileges to access this page.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground mb-4">
-              You don't have permission to access this page. Please contact the administrator if you believe this is an error.
-            </p>
-            <Button onClick={() => navigate("/")} className="w-full">
-              Go Home
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-foreground">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-muted/30 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-            <p className="text-muted-foreground">Manage customer leads</p>
-          </div>
-          <Button onClick={handleSignOut} variant="outline">
-            Sign Out
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-foreground">Video Management</h1>
+          <Button variant="outline" onClick={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
           </Button>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Customer Leads ({leads.length})</CardTitle>
-            <CardDescription>
-              All inquiries from the chatbot and contact form
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {leads.length === 0 ? (
-                <p className="text-center text-muted-foreground py-8">
-                  No leads yet
-                </p>
-              ) : (
-                leads.map((lead) => (
-                  <Card key={lead.id}>
-                    <CardHeader>
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg">{lead.name}</CardTitle>
-                          <CardDescription>{lead.email}</CardDescription>
-                        </div>
-                        <Badge variant={lead.status === "new" ? "default" : "secondary"}>
-                          {lead.status || "new"}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                      {lead.phone && (
-                        <p className="text-sm">
-                          <strong>Phone:</strong> {lead.phone}
-                        </p>
-                      )}
-                      {lead.project_type && (
-                        <p className="text-sm">
-                          <strong>Project Type:</strong> {lead.project_type}
-                        </p>
-                      )}
-                      {lead.budget_range && (
-                        <p className="text-sm">
-                          <strong>Budget:</strong> {lead.budget_range}
-                        </p>
-                      )}
-                      {lead.message && (
-                        <p className="text-sm">
-                          <strong>Message:</strong> {lead.message}
-                        </p>
-                      )}
-                      {lead.conversation_history && Array.isArray(lead.conversation_history) && lead.conversation_history.length > 0 && (
-                        <div className="mt-4">
-                          <strong className="text-sm">Conversation History:</strong>
-                          <ScrollArea className="h-48 mt-2 rounded border p-3">
-                            <div className="space-y-2">
-                              {lead.conversation_history.map((msg: any, idx: number) => (
-                                <div key={idx} className="text-sm">
-                                  <strong className={msg.role === "user" ? "text-blue-600" : "text-green-600"}>
-                                    {msg.role}:
-                                  </strong>{" "}
-                                  {msg.content}
-                                </div>
-                              ))}
-                            </div>
-                          </ScrollArea>
-                        </div>
-                      )}
-                      <p className="text-xs text-muted-foreground mt-2">
-                        Received: {new Date(lead.created_at).toLocaleString()}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))
-              )}
-            </div>
-          </CardContent>
-        </Card>
+        <div className="space-y-6">
+          <div>
+            <label htmlFor="project-select" className="block text-sm font-medium text-foreground mb-2">
+              Select Project
+            </label>
+            <select
+              id="project-select"
+              value={selectedProject}
+              onChange={(e) => setSelectedProject(e.target.value)}
+              className="w-full md:w-96 px-4 py-2 bg-background border border-input rounded-md text-foreground"
+            >
+              {projects.map((project) => (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <VideoUpload
+              projectId={selectedProject}
+              onUploadComplete={() => setRefreshTrigger(prev => prev + 1)}
+            />
+            <VideoList
+              projectId={selectedProject}
+              refreshTrigger={refreshTrigger}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
