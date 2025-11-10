@@ -85,7 +85,7 @@ const ProjectDetail = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-charcoal/10">
               <div className="mb-3">
                 <span className="text-xs text-charcoal/60 font-light tracking-widest uppercase">
-                  {project.category}
+                  {project.category.replace(" * Construction", "")}
                 </span>
                 <div className="w-10 h-px bg-charcoal/20 mt-2"></div>
               </div>
