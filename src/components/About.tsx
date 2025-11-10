@@ -1,21 +1,19 @@
 import { Hammer, HardHat, Wrench, ArrowDown, Target, Award } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Card, CardContent } from "@/components/ui/card";
-
 interface AboutProps {
   onPortfolioClick?: () => void;
 }
-
-export const About = ({ onPortfolioClick }: AboutProps) => {
-  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
-
-  return <section 
-    id="about" 
-    ref={elementRef as React.RefObject<HTMLElement>}
-    className={`relative py-24 overflow-hidden bg-background transition-all duration-1000 ${
-      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-    }`}
-  >
+export const About = ({
+  onPortfolioClick
+}: AboutProps) => {
+  const {
+    elementRef,
+    isVisible
+  } = useScrollAnimation({
+    threshold: 0.15
+  });
+  return <section id="about" ref={elementRef as React.RefObject<HTMLElement>} className={`relative py-24 overflow-hidden bg-background transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
       {/* Animated Construction Icons Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Icons */}
@@ -113,20 +111,17 @@ export const About = ({ onPortfolioClick }: AboutProps) => {
                     My Commitment
                   </h3>
                 </div>
-                <p className="text-base md:text-lg font-inter font-light leading-relaxed text-foreground/80">
-                  Every client, every project, every time: I'm dedicated to exceeding expectations under all conditions. It's not just a goal—it's the standard by which I measure success.
-                </p>
+                <p className="text-base md:text-lg font-inter font-light leading-relaxed text-foreground/80">Every client, every project, every time: I'm dedicated to exceeding expectations under all conditions. It's not just a goal—it's the standard by which I measure success.
+
+
+Exceeding the clients expectastions every time, </p>
               </CardContent>
             </Card>
           </div>
 
           {/* Arrow pointing to Portfolio */}
           <div className="flex justify-center opacity-0 animate-fade-in delay-500">
-            <button 
-              onClick={onPortfolioClick}
-              className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer group"
-              aria-label="View Portfolio"
-            >
+            <button onClick={onPortfolioClick} className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer group" aria-label="View Portfolio">
               <span className="text-lg font-playfair font-semibold text-accent">View My Work</span>
               <ArrowDown size={48} className="text-accent animate-bounce group-hover:animate-none" strokeWidth={2.5} />
             </button>
