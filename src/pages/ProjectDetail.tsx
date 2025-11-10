@@ -83,15 +83,6 @@ const ProjectDetail = () => {
           {/* Project info */}
           <div className="px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center max-w-3xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-charcoal/10">
-              <div className="mb-3">
-                <span className="text-xs text-charcoal/60 font-light tracking-widest uppercase block">
-                  {project.category.replace(" Construction", "")}
-                </span>
-                <span className="text-xs text-charcoal/60 font-light tracking-widest uppercase block">
-                  Construction
-                </span>
-                <div className="w-10 h-px bg-charcoal/20 mt-2"></div>
-              </div>
               <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-3 md:mb-4 leading-tight">
                 {project.title}
               </h1>
