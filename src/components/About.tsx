@@ -70,7 +70,7 @@ export const About = ({ onPortfolioClick }: AboutProps) => {
               <CardContent className="p-8 md:p-12">
                 <div className="space-y-6 text-lg font-inter font-light leading-relaxed text-foreground/90">
                   <p className="text-xl md:text-2xl font-medium text-foreground">
-                    I'm Michael, a construction professional who believes that exceptional results come from exceptional teams.
+                    I am Michael Chandler, and I've been a construction professional who believes that exceptional results come from exceptional teams.
                   </p>
                   <p>
                     My approach is simple: bring together the right people, create an environment built on mutual respect, and stay closely attuned to client feedback throughout every phase of a project.
@@ -97,7 +97,7 @@ export const About = ({ onPortfolioClick }: AboutProps) => {
                   </h3>
                 </div>
                 <p className="text-base md:text-lg font-inter font-light leading-relaxed text-foreground/80">
-                  Superior construction is accomplished through three core elements: assembling the right group of people, empowering them with the respect and environment they need to thrive, and making thoughtful course corrections based on real-time feedback from project owners and end users. When these elements align, teams don't just meet expectations—they consistently surpass them.
+                  Superior construction is accomplished through three core elements: assembling the right group of people, empowering them with the respect and environment they need to thrive, and through supportive leadership, thoughtful course corrections based on real-time feedback from project owners and end users. When these elements align, teams don't just meet expectations—they consistently surpass them.
                 </p>
               </CardContent>
             </Card>
