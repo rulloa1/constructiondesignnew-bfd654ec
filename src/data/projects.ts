@@ -174,6 +174,28 @@ import carmelValley2 from "@/assets/projects/carmel-valley-2.jpg";
 import carmelValley3 from "@/assets/projects/carmel-valley-3.jpg";
 import carmelValley4 from "@/assets/projects/carmel-valley-4.jpg";
 
+// Carmel Valley New (updated images)
+import carmelValleyNewCover from "@/assets/projects/carmel-valley-new-cover.png";
+import carmelValleyNew1 from "@/assets/projects/carmel-valley-new-1.png";
+import carmelValleyNew2 from "@/assets/projects/carmel-valley-new-2.jpg";
+import carmelValleyNew3 from "@/assets/projects/carmel-valley-new-3.png";
+import carmelValleyNew4 from "@/assets/projects/carmel-valley-new-4.png";
+
+// North Florida Renovation/Addition
+import northFloridaCover from "@/assets/projects/north-florida-cover.jpg";
+import northFlorida1 from "@/assets/projects/north-florida-1.jpg";
+import northFlorida2 from "@/assets/projects/north-florida-2.jpg";
+import northFlorida3 from "@/assets/projects/north-florida-3.jpg";
+import northFlorida4 from "@/assets/projects/north-florida-4.jpg";
+import northFlorida5 from "@/assets/projects/north-florida-5.jpg";
+import northFlorida6 from "@/assets/projects/north-florida-6.jpg";
+import northFlorida7 from "@/assets/projects/north-florida-7.jpg";
+import northFlorida8 from "@/assets/projects/north-florida-8.jpg";
+import northFlorida9 from "@/assets/projects/north-florida-9.jpg";
+import northFlorida10 from "@/assets/projects/north-florida-10.jpg";
+import northFlorida11 from "@/assets/projects/north-florida-11.png";
+import northFlorida12 from "@/assets/projects/north-florida-12.png";
+
 // Pacific Grove Design Build album
 import pgCover from "@/assets/projects/pg-cover.jpg";
 import pg1 from "@/assets/projects/pg-1.jpg";
@@ -216,6 +238,34 @@ import carmel3_23 from "@/assets/projects/carmel-3-23.jpg";
 import carmel3_24 from "@/assets/projects/carmel-3-24.jpg";
 import carmel3_25 from "@/assets/projects/carmel-3-25.jpg";
 
+// Carmel Knolls
+import carmelKnollsCover from "@/assets/projects/carmel-knolls-cover.jpg";
+import carmelKnolls1 from "@/assets/projects/carmel-knolls-1.jpg";
+import carmelKnolls2 from "@/assets/projects/carmel-knolls-2.jpg";
+import carmelKnolls3 from "@/assets/projects/carmel-knolls-3.jpg";
+import carmelKnolls4 from "@/assets/projects/carmel-knolls-4.jpg";
+import carmelKnolls5 from "@/assets/projects/carmel-knolls-5.jpg";
+import carmelKnolls6 from "@/assets/projects/carmel-knolls-6.jpg";
+import carmelKnolls7 from "@/assets/projects/carmel-knolls-7.jpg";
+import carmelKnolls8 from "@/assets/projects/carmel-knolls-8.jpg";
+import carmelKnolls9 from "@/assets/projects/carmel-knolls-9.jpg";
+import carmelKnolls10 from "@/assets/projects/carmel-knolls-10.jpg";
+import carmelKnolls11 from "@/assets/projects/carmel-knolls-11.jpg";
+import carmelKnolls12 from "@/assets/projects/carmel-knolls-12.jpg";
+import carmelKnolls13 from "@/assets/projects/carmel-knolls-13.jpg";
+import carmelKnolls14 from "@/assets/projects/carmel-knolls-14.jpg";
+import carmelKnolls15 from "@/assets/projects/carmel-knolls-15.jpg";
+import carmelKnolls16 from "@/assets/projects/carmel-knolls-16.jpg";
+import carmelKnolls17 from "@/assets/projects/carmel-knolls-17.jpg";
+import carmelKnolls18 from "@/assets/projects/carmel-knolls-18.jpg";
+import carmelKnolls19 from "@/assets/projects/carmel-knolls-19.jpg";
+import carmelKnolls20 from "@/assets/projects/carmel-knolls-20.jpg";
+import carmelKnolls21 from "@/assets/projects/carmel-knolls-21.jpg";
+import carmelKnolls22 from "@/assets/projects/carmel-knolls-22.jpg";
+import carmelKnolls23 from "@/assets/projects/carmel-knolls-23.jpg";
+import carmelKnolls24 from "@/assets/projects/carmel-knolls-24.jpg";
+import carmelKnolls25 from "@/assets/projects/carmel-knolls-25.jpg";
+
 // Coastal Hillside Restoration
 import coastalRestorationCover from "@/assets/projects/coastal-restoration-cover.jpg";
 import coastalRestoration1 from "@/assets/projects/coastal-restoration-1.jpg";
@@ -245,6 +295,10 @@ import beachfront7 from "@/assets/projects/beachfront-7.jpg";
 
 // Abaco Development
 import abacoDevelopment1 from "@/assets/projects/abaco-development-1.png";
+
+// Abaco Luxe Boat House
+import abacoLuxeBoathouseCover from "@/assets/projects/abaco-luxe-boathouse-cover.png";
+import abacoLuxeBoathouse1 from "@/assets/projects/abaco-luxe-boathouse-1.png";
 
 // Development
 import development1 from "@/assets/projects/development-1.png";
@@ -515,8 +569,30 @@ export const projects: Project[] = [
     additionalInfo: "Carmel Valley, CA",
     category: "Design Build",
     description: "A stunning custom design-build residence featuring elegant architectural details and seamless integration with the natural landscape of Carmel Valley.",
-    image: carmelValleyCover,
-    images: [carmelValleyCover, carmelValley1, carmelValley2, carmelValley3, carmelValley4],
+    image: carmelValleyNewCover,
+    images: [carmelValleyNewCover, carmelValleyNew1, carmelValleyNew2, carmelValleyNew3, carmelValleyNew4],
+  },
+  {
+    id: "north-florida-renovation",
+    title: "North Florida Renovation/Addition",
+    subtitle: "Renovation/Addition",
+    location: "Owners Rep • Estate Management",
+    additionalInfo: "N. Florida",
+    category: "Residential Construction",
+    description: "Comprehensive renovation and addition project featuring thoughtful design updates and estate management services. This project showcases professional renovation work with attention to detail and quality craftsmanship.",
+    image: northFloridaCover,
+    images: [northFloridaCover, northFlorida1, northFlorida2, northFlorida3, northFlorida4, northFlorida5, northFlorida6, northFlorida7, northFlorida8, northFlorida9, northFlorida10, northFlorida11, northFlorida12],
+  },
+  {
+    id: "coastal-hillside-restoration-2",
+    title: "Coastal Restoration",
+    subtitle: "Erosion Repair",
+    location: "Civil",
+    additionalInfo: "Monterey Peninsula, CA",
+    category: "Commercial",
+    description: "A dramatic coastal restoration project showcasing erosion repair and hillside stabilization. This comprehensive project transformed an eroded coastal property through extensive retaining wall systems, foundation work, and structural reinforcement to preserve and restore this spectacular oceanfront site.",
+    image: coastalRestorationCover,
+    images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9, coastalRestoration10, coastalRestoration11, coastalRestoration12, coastalRestoration13, coastalRestoration14, coastalRestoration15],
   },
   {
     id: "bigsur-mountain-remodel",
@@ -537,19 +613,8 @@ export const projects: Project[] = [
     additionalInfo: "Carmel, CA",
     category: "Residential Construction",
     description: "A complete remodel showcasing the transformation from original condition to a beautifully finished home with updated decking, new windows, architectural improvements, and custom exterior details.",
-    image: carmel3Cover,
-    images: [carmel3Cover, carmel3_1, carmel3_2, carmel3_3, carmel3_4, carmel3_5, carmel3_6, carmel3_7, carmel3_8, carmel3_9, carmel3_10, carmel3_11, carmel3_12, carmel3_13, carmel3_14, carmel3_15, carmel3_16, carmel3_17, carmel3_18, carmel3_19, carmel3_20, carmel3_21, carmel3_22, carmel3_23, carmel3_24, carmel3_25],
-  },
-  {
-    id: "coastal-hillside-restoration-2",
-    title: "Coastal Restoration",
-    subtitle: "Erosion Repair",
-    location: "Civil",
-    additionalInfo: "Monterey Peninsula, CA",
-    category: "Commercial",
-    description: "A dramatic coastal restoration project showcasing erosion repair and hillside stabilization. This comprehensive project transformed an eroded coastal property through extensive retaining wall systems, foundation work, and structural reinforcement to preserve and restore this spectacular oceanfront site.",
-    image: coastalRestorationCover,
-    images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9, coastalRestoration10, coastalRestoration11, coastalRestoration12, coastalRestoration13, coastalRestoration14, coastalRestoration15],
+    image: carmelKnollsCover,
+    images: [carmelKnollsCover, carmelKnolls1, carmelKnolls2, carmelKnolls3, carmelKnolls4, carmelKnolls5, carmelKnolls6, carmelKnolls7, carmelKnolls8, carmelKnolls9, carmelKnolls10, carmelKnolls11, carmelKnolls12, carmelKnolls13, carmelKnolls14, carmelKnolls15, carmelKnolls16, carmelKnolls17, carmelKnolls18, carmelKnolls19, carmelKnolls20, carmelKnolls21, carmelKnolls22, carmelKnolls23, carmelKnolls24, carmelKnolls25],
   },
   {
     id: "bahamas-abaco-development",
@@ -559,8 +624,8 @@ export const projects: Project[] = [
     additionalInfo: "Abaco, Bahamas",
     category: "Residential Construction",
     description: "Comprehensive development project on the pristine Abaco Islands featuring luxury residential properties.",
-    image: abacoDevelopment1,
-    images: [abacoDevelopment1],
+    image: abacoLuxeBoathouseCover,
+    images: [abacoLuxeBoathouseCover, abacoLuxeBoathouse1],
   },
   {
     id: "civil-engineering",
@@ -599,7 +664,7 @@ export const projects: Project[] = [
     id: "pacific-grove-design-build",
     title: "New Residential Construction",
     subtitle: "In Historic Neighborhood",
-    location: "Design/Build",
+    location: "Design Build",
     additionalInfo: "Central Coast, CA",
     category: "Design Build",
     description: "A comprehensive transformation of a historic property, seamlessly blending traditional craftsman character with modern comfort and functionality. This complete design-build project showcases our expertise in preserving neighborhood heritage while creating contemporary living spaces.",
