@@ -13,9 +13,9 @@ const categories = [{
   image: residentialImg,
   color: "gold"
 }, {
-  id: "commercial",
-  title: "Commercial",
-  description: "Professional workspaces that inspire productivity and innovation",
+  id: "civil",
+  title: "Civil",
+  description: "Infrastructure and civil engineering projects that build communities",
   image: commercialImg,
   color: "steelBlue"
 }, {

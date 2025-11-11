@@ -514,7 +514,7 @@ import alpineRanch10 from "@/assets/projects/alpine-ranch-10.jpg";
 import alpineRanch11 from "@/assets/projects/alpine-ranch-11.jpg";
 import alpineRanch12 from "@/assets/projects/alpine-ranch-12.jpg";
 
-export type ProjectCategory = "Residential Construction" | "Commercial" | "Hospitality" | "Design Build";
+export type ProjectCategory = "Residential Construction" | "Civil" | "Hospitality" | "Design Build";
 
 export interface Project {
   id: string;
@@ -623,7 +623,7 @@ export const projects: Project[] = [
     subtitle: "Erosion Repair",
     location: "Civil",
     additionalInfo: "Monterey Peninsula, CA",
-    category: "Commercial",
+    category: "Civil",
     description: "A dramatic coastal restoration project showcasing erosion repair and hillside stabilization. This comprehensive project transformed an eroded coastal property through extensive retaining wall systems, foundation work, and structural reinforcement to preserve and restore this spectacular oceanfront site.",
     image: coastalRestorationCover,
     images: [coastalRestorationCover, coastalRestoration1, coastalRestoration2, coastalRestoration3, coastalRestoration4, coastalRestoration5, coastalRestoration6, coastalRestoration7, coastalRestoration8, coastalRestoration9, coastalRestoration10, coastalRestoration11, coastalRestoration12, coastalRestoration13, coastalRestoration14, coastalRestoration15],
@@ -634,7 +634,7 @@ export const projects: Project[] = [
     subtitle: "Civil Site Work",
     location: "Civil • Residential",
     additionalInfo: "Big Sur, CA",
-    category: "Residential Construction",
+    category: "Civil",
     description: "Scenic mountain remodel project featuring stunning ocean views, retaining wall construction, custom garage building, and comprehensive site development with careful attention to the natural landscape.",
     image: bigsurCover,
     images: [bigsurCover, bigsur1, bigsur2, bigsur3, bigsur4, bigsur5, bigsur6, bigsur7, bigsur8, bigsur9, bigsur10, bigsur11, bigsur12, bigsur13, bigsur14, bigsur15],
@@ -645,7 +645,7 @@ export const projects: Project[] = [
     subtitle: "More Than Lipstick on an Old Lady!",
     location: "Residential • Civil Design/Build",
     additionalInfo: "Carmel, CA",
-    category: "Residential Construction",
+    category: "Civil",
     description: "A complete remodel showcasing the transformation from original condition to a beautifully finished home with updated decking, new windows, architectural improvements, and custom exterior details.",
     image: carmelKnollsCover,
     images: [carmelKnollsCover, carmelKnolls1, carmelKnolls2, carmelKnolls3, carmelKnolls4, carmelKnolls5, carmelKnolls6, carmelKnolls7, carmelKnolls8, carmelKnolls9, carmelKnolls10, carmelKnolls11, carmelKnolls12, carmelKnolls13, carmelKnolls14, carmelKnolls15, carmelKnolls16, carmelKnolls17, carmelKnolls18, carmelKnolls19, carmelKnolls20, carmelKnolls21, carmelKnolls22, carmelKnolls23, carmelKnolls24, carmelKnolls25],
@@ -654,7 +654,7 @@ export const projects: Project[] = [
     id: "bahamas-abaco-development",
     title: "Abaco Luxe Boat House",
     subtitle: "Construction",
-    location: "Residential Construction",
+    location: "Residential • Construction",
     additionalInfo: "Abaco, Bahamas",
     category: "Residential Construction",
     description: "Comprehensive development project on the pristine Abaco Islands featuring luxury residential properties.",
@@ -667,7 +667,7 @@ export const projects: Project[] = [
     subtitle: "Infrastructure Projects",
     location: "Civil",
     additionalInfo: "CA, TX, NM, CO, MT",
-    category: "Commercial",
+    category: "Civil",
     description: "Comprehensive civil engineering projects including excavation, coastal restoration, retaining wall systems, hillside stabilization, and site grading. Our expertise in heavy construction and infrastructure development delivers exceptional results for complex sites and challenging terrain.",
     image: civilCover,
     images: [civilCover, civil1, civil2, civil3, civil4, civil5, civil6, civil7, civil8, civil9, civil10, civil11, civil12, civil13, civil14, civil15, civil16, civil17, civil18, civil19, civil20, civil21],
@@ -689,7 +689,7 @@ export const projects: Project[] = [
     subtitle: "Construction",
     location: "Residential • Development • Civil Construction",
     additionalInfo: "SE Texas",
-    category: "Residential Construction",
+    category: "Civil",
     description: "A collection of development projects showcasing comprehensive construction and site development work.",
     image: development1,
     images: [development1, development2, development3, development4, development5, development6, development7, development8, development9, development10, development11, development12, development13],
@@ -721,7 +721,7 @@ export const projects: Project[] = [
     id: "carmel-house-2",
     title: "Carmel Forest to Ocean View",
     subtitle: "Custom Addition",
-    location: "Residential Construction",
+    location: "Residential • Design • Construction",
     additionalInfo: "Carmel By the Sea, CA",
     category: "Residential Construction",
     description: "A stunning coastal home showcasing refined craftsmanship and thoughtful design that harmonizes with the natural beauty of the Carmel coastline.",
@@ -734,7 +734,7 @@ export const projects: Project[] = [
     subtitle: "Environmental Restoration",
     location: "Civil • Residential",
     additionalInfo: "Carmel, CA",
-    category: "Residential Construction",
+    category: "Civil",
     description: "Comprehensive hillside restoration and environmental cleanup project removing years of accumulated dumping and debris to restore the natural landscape.",
     image: cleanupCover,
     images: [cleanupCover, cleanup1, cleanup2, cleanup3, cleanup4, cleanup5, cleanup6, cleanup7, cleanup8, cleanup9, cleanup10, cleanup11, cleanup12, cleanup13, cleanup14, cleanup15],
@@ -745,7 +745,7 @@ export const projects: Project[] = [
     subtitle: "Spanish Revival Commercial",
     location: "Design/Build • Commercial",
     additionalInfo: "Seaside, CA",
-    category: "Commercial",
+    category: "Civil",
     description: "A comprehensive commercial design-build project featuring Spanish Colonial Revival architecture. This multi-building complex showcases careful attention to traditional architectural details while creating modern commercial spaces in a strategic coastal location.",
     image: lagunaGrandeCover,
     images: [lagunaGrandeCover, laguna1, laguna2, laguna3, laguna4, laguna5, laguna6],
