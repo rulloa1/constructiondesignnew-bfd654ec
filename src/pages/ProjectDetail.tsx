@@ -5,6 +5,7 @@ import { getProjectById } from "@/data/projects";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { ImageWithWatermark } from "@/components/ImageWithWatermark";
 
 interface ProjectVideo {
   id: string;
@@ -172,24 +173,25 @@ const ProjectDetail = () => {
                 {allImages.map((image, index) => {
                   const label = getImageLabel(image, index);
                   return (
-                    <button 
-                      key={`${image}-${index}`} 
-                      onClick={() => setSelectedImageIndex(index)} 
-                      className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30"
-                    >
-                      <img 
-                        src={image} 
-                        alt={`${project.title} - Image ${index + 1}`} 
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      {label && (
-                        <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${
-                          label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"
-                        }`}>
-                          {label}
-                        </span>
-                      )}
-                    </button>
+                    <ImageWithWatermark key={`${image}-${index}`}>
+                      <button 
+                        onClick={() => setSelectedImageIndex(index)} 
+                        className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30 w-full"
+                      >
+                        <img 
+                          src={image} 
+                          alt={`${project.title} - Image ${index + 1}`} 
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                        {label && (
+                          <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${
+                            label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"
+                          }`}>
+                            {label}
+                          </span>
+                        )}
+                      </button>
+                    </ImageWithWatermark>
                   );
                 })}
               </div>
@@ -228,22 +230,24 @@ const ProjectDetail = () => {
 
           {/* Image */}
           <div className="flex items-center justify-center h-full p-16" onClick={e => e.stopPropagation()}>
-            <div className="relative">
-              <img 
-                src={allImages[selectedImageIndex]} 
-                alt={`${project.title} - Image ${selectedImageIndex + 1}`} 
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" 
-              />
-              {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && (
-                <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${
-                  getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" 
-                    ? "bg-amber-500/90" 
-                    : "bg-emerald-500/90"
-                }`}>
-                  {getImageLabel(allImages[selectedImageIndex], selectedImageIndex)}
-                </span>
-              )}
-            </div>
+            <ImageWithWatermark>
+              <div className="relative">
+                <img 
+                  src={allImages[selectedImageIndex]} 
+                  alt={`${project.title} - Image ${selectedImageIndex + 1}`} 
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" 
+                />
+                {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && (
+                  <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${
+                    getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" 
+                      ? "bg-amber-500/90" 
+                      : "bg-emerald-500/90"
+                  }`}>
+                    {getImageLabel(allImages[selectedImageIndex], selectedImageIndex)}
+                  </span>
+                )}
+              </div>
+            </ImageWithWatermark>
           </div>
         </div>}
     </>;

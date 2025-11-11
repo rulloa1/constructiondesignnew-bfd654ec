@@ -10,6 +10,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import type { Project } from "@/data/projects";
+import { ImageWithWatermark } from "./ImageWithWatermark";
 
 interface ProjectCardCarouselProps {
   project: Project;
@@ -60,14 +61,16 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
           <CarouselContent className="h-full -ml-0">
             {project.images.map((image, imgIndex) => (
               <CarouselItem key={imgIndex} className="h-full pl-0">
-                <div className="h-full">
-                  <img
-                    src={image}
-                    alt={`${project.title} - Image ${imgIndex + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                </div>
+                <ImageWithWatermark>
+                  <div className="h-full">
+                    <img
+                      src={image}
+                      alt={`${project.title} - Image ${imgIndex + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                </ImageWithWatermark>
               </CarouselItem>
             ))}
           </CarouselContent>
