@@ -5,12 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Upload, Trash2, GripVertical, X } from "lucide-react";
+import { Upload, Trash2, GripVertical } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Checkbox } from "@/components/ui/checkbox";
 import { StaticImageMigration } from "@/components/admin/StaticImageMigration";
 import { BulkStaticImageMigration } from "@/components/admin/BulkStaticImageMigration";
-import { Progress } from "@/components/ui/progress";
 
 interface ProjectImage {
   id: string;
@@ -23,19 +22,11 @@ interface ProjectImage {
   is_after: boolean;
 }
 
-interface UploadProgress {
-  fileName: string;
-  progress: number;
-  status: 'uploading' | 'complete' | 'error';
-}
-
 export const ImageGalleryManager = () => {
   const [selectedProject, setSelectedProject] = useState<string>("");
   const [images, setImages] = useState<ProjectImage[]>([]);
   const [uploading, setUploading] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
-  const [isDraggingFile, setIsDraggingFile] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState<UploadProgress[]>([]);
 
   useEffect(() => {
     if (selectedProject) {
@@ -57,104 +48,49 @@ export const ImageGalleryManager = () => {
     }
   };
 
-  const uploadFiles = async (files: FileList | File[]) => {
-    if (!selectedProject) {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0 || !selectedProject) {
       toast.error("Please select a project first");
       return;
     }
 
     setUploading(true);
-    const fileArray = Array.from(files);
-    const progressArray: UploadProgress[] = fileArray.map(file => ({
-      fileName: file.name,
-      progress: 0,
-      status: 'uploading' as const,
-    }));
-    setUploadProgress(progressArray);
 
-    for (let i = 0; i < fileArray.length; i++) {
-      const file = fileArray[i];
+    for (const file of Array.from(e.target.files)) {
       const fileExt = file.name.split('.').pop();
       const fileName = `${selectedProject}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
 
-      try {
-        // Update progress to 30%
-        setUploadProgress(prev => prev.map((p, idx) => 
-          idx === i ? { ...p, progress: 30 } : p
-        ));
+      const { error: uploadError, data } = await supabase.storage
+        .from('project-images')
+        .upload(fileName, file);
 
-        const { error: uploadError } = await supabase.storage
-          .from('project-images')
-          .upload(fileName, file);
-
-        if (uploadError) throw uploadError;
-
-        // Update progress to 60%
-        setUploadProgress(prev => prev.map((p, idx) => 
-          idx === i ? { ...p, progress: 60 } : p
-        ));
-
-        const { data: { publicUrl } } = supabase.storage
-          .from('project-images')
-          .getPublicUrl(fileName);
-
-        const { error: dbError } = await supabase
-          .from('project_images')
-          .insert({
-            project_id: selectedProject,
-            image_url: publicUrl,
-            display_order: images.length + i,
-            is_before: false,
-            is_after: false,
-          });
-
-        if (dbError) throw dbError;
-
-        // Mark as complete
-        setUploadProgress(prev => prev.map((p, idx) => 
-          idx === i ? { ...p, progress: 100, status: 'complete' } : p
-        ));
-      } catch (error) {
-        setUploadProgress(prev => prev.map((p, idx) => 
-          idx === i ? { ...p, status: 'error' } : p
-        ));
+      if (uploadError) {
         toast.error(`Failed to upload ${file.name}`);
+        continue;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('project-images')
+        .getPublicUrl(fileName);
+
+      const { error: dbError } = await supabase
+        .from('project_images')
+        .insert({
+          project_id: selectedProject,
+          image_url: publicUrl,
+          display_order: images.length,
+          is_before: false,
+          is_after: false,
+        });
+
+      if (dbError) {
+        toast.error("Failed to save image metadata");
       }
     }
 
     setUploading(false);
     toast.success("Images uploaded successfully");
     fetchImages();
-    
-    // Clear progress after 2 seconds
-    setTimeout(() => setUploadProgress([]), 2000);
-  };
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files.length === 0) return;
-    await uploadFiles(e.target.files);
-  };
-
-  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDraggingFile(false);
-    
-    if (!e.dataTransfer.files || e.dataTransfer.files.length === 0) return;
-    await uploadFiles(e.dataTransfer.files);
-  };
-
-  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDraggingFile(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDraggingFile(false);
-  };
-
-  const handleDragOverFile = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
   };
 
   const handleDelete = async (image: ProjectImage) => {
@@ -251,64 +187,25 @@ export const ImageGalleryManager = () => {
             <StaticImageMigration projectId={selectedProject} />
             <div className="mt-4">
               <Label htmlFor="file-upload" className="cursor-pointer">
-                <div 
-                  className={`flex items-center justify-center w-full h-32 border-2 border-dashed rounded-lg transition-all ${
-                    isDraggingFile 
-                      ? 'border-primary bg-primary/5 scale-[1.02]' 
-                      : 'border-charcoal/30 hover:border-charcoal/50'
-                  }`}
-                  onDrop={handleDrop}
-                  onDragOver={handleDragOverFile}
-                  onDragEnter={handleDragEnter}
-                  onDragLeave={handleDragLeave}
-                >
-                  <div className="text-center">
-                    <Upload className={`mx-auto h-8 w-8 mb-2 transition-colors ${
-                      isDraggingFile ? 'text-primary' : 'text-charcoal/50'
-                    }`} />
-                    <span className={`text-sm transition-colors ${
-                      isDraggingFile ? 'text-primary font-medium' : 'text-charcoal/60'
-                    }`}>
-                      {isDraggingFile ? 'Drop images here' : 'Click to upload images or drag & drop'}
-                    </span>
-                  </div>
+              <div className="flex items-center justify-center w-full h-32 border-2 border-dashed border-charcoal/30 rounded-lg hover:border-charcoal/50 transition-colors">
+                <div className="text-center">
+                  <Upload className="mx-auto h-8 w-8 text-charcoal/50 mb-2" />
+                  <span className="text-sm text-charcoal/60">
+                    Click to upload images (or drag & drop)
+                  </span>
                 </div>
-              </Label>
-              <Input
-                id="file-upload"
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleFileUpload}
-                disabled={uploading}
-                className="hidden"
-              />
-            </div>
-
-            {/* Upload Progress */}
-            {uploadProgress.length > 0 && (
-              <div className="mt-4 space-y-2">
-                {uploadProgress.map((progress, index) => (
-                  <div key={index} className="bg-cream/20 rounded-lg p-3 space-y-2">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="font-medium truncate flex-1">{progress.fileName}</span>
-                      {progress.status === 'complete' && (
-                        <span className="text-emerald-600 text-xs">✓ Complete</span>
-                      )}
-                      {progress.status === 'error' && (
-                        <span className="text-red-600 text-xs flex items-center gap-1">
-                          <X className="h-3 w-3" /> Failed
-                        </span>
-                      )}
-                    </div>
-                    <Progress 
-                      value={progress.progress} 
-                      className="h-2"
-                    />
-                  </div>
-                ))}
               </div>
-            )}
+            </Label>
+            <Input
+              id="file-upload"
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleFileUpload}
+              disabled={uploading}
+              className="hidden"
+            />
+          </div>
           </>
         )}
       </div>
@@ -318,7 +215,7 @@ export const ImageGalleryManager = () => {
           <h2 className="text-xl font-playfair font-semibold mb-4">
             Project Images ({images.length})
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {images.map((image, index) => (
               <div
                 key={image.id}

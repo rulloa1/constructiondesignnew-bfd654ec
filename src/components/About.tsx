@@ -67,12 +67,12 @@ export const About = ({
             <Card className="bg-card/80 backdrop-blur-sm border-border shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-1">
               <CardContent className="p-6 sm:p-8 md:p-12">
                 <div className="space-y-4 sm:space-y-6 text-base sm:text-lg font-inter font-light leading-relaxed text-foreground/90">
-                  <p className="text-lg sm:text-xl md:text-2xl font-medium text-foreground">Through my experience of 37 years as a business, design and construction professional. I have found that exceptional results come from exceptional teams.</p>
+                  <p className="text-lg sm:text-xl md:text-2xl font-medium text-foreground">I am Michael Chandler, and have been a construction professional who believes that exceptional results come from exceptional teams.</p>
                   <p>
                     My approach is simple: bring together the right people, create an environment built on mutual respect, and stay closely attuned to client feedback throughout every phase of a project.
                   </p>
                   <p>
-                    I've built my career on the principle that quality construction isn't just about meeting standards—it's about exceeding them. By combining rigorous processes with forward-thinking design and fostering a collaborative team culture, excellence is no longer simply a goal, but an inevitable result. Michael E. Chandler
+                    I've built my career on the principle that quality construction isn't just about meeting standards—it's about exceeding them. By combining rigorous processes with forward-thinking design and fostering a collaborative team culture, I've found that excellence becomes not just achievable, but inevitable.
                   </p>
                 </div>
               </CardContent>

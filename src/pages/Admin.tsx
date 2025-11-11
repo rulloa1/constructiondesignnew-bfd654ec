@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { VideoUpload } from "@/components/admin/VideoUpload";
 import { VideoList } from "@/components/admin/VideoList";
 import { ImageGalleryManager } from "@/components/ImageGalleryManager";
-import { DocumentUpload } from "@/components/admin/DocumentUpload";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { projects } from "@/data/projects";
@@ -71,10 +70,9 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="images" className="w-full">
-          <TabsList className="grid w-full max-w-2xl grid-cols-3 mb-8">
+          <TabsList className="grid w-full max-w-md grid-cols-2 mb-8">
             <TabsTrigger value="images">Image Gallery</TabsTrigger>
             <TabsTrigger value="videos">Videos</TabsTrigger>
-            <TabsTrigger value="documents">Documents</TabsTrigger>
           </TabsList>
 
           <TabsContent value="images">
@@ -111,30 +109,6 @@ export default function Admin() {
                   refreshTrigger={refreshTrigger}
                 />
               </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="documents">
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="document-project-select" className="block text-sm font-medium text-foreground mb-2">
-                  Select Project
-                </label>
-                <select
-                  id="document-project-select"
-                  value={selectedProject}
-                  onChange={(e) => setSelectedProject(e.target.value)}
-                  className="w-full md:w-96 px-4 py-2 bg-background border border-input rounded-md text-foreground"
-                >
-                  {projects.map((project) => (
-                    <option key={project.id} value={project.id}>
-                      {project.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <DocumentUpload projectId={selectedProject} />
             </div>
           </TabsContent>
         </Tabs>

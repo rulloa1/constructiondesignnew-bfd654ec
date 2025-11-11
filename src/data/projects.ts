@@ -177,6 +177,9 @@ import carmelValley4 from "@/assets/projects/carmel-valley-4.jpg";
 // Carmel Valley New (updated images)
 import carmelValleyNewCover from "@/assets/projects/carmel-valley-new-cover.png";
 import carmelValleyNew1 from "@/assets/projects/carmel-valley-new-1.png";
+import carmelValleyNew2 from "@/assets/projects/carmel-valley-new-2.jpg";
+import carmelValleyNew3 from "@/assets/projects/carmel-valley-new-3.png";
+import carmelValleyNew4 from "@/assets/projects/carmel-valley-new-4.png";
 
 // North Florida Renovation/Addition
 import veroBeachCover from "@/assets/vero-beach-cover.jpeg";
@@ -388,54 +391,54 @@ import montana8 from "@/assets/projects/montana-8.jpg";
 import montana9 from "@/assets/projects/montana-9.jpg";
 import montana10 from "@/assets/projects/montana-10.jpg";
 import montana11 from "@/assets/projects/montana-11.jpg";
-import sFloridaCover from "@/assets/projects/s-florida-cover.jpg";
-import sFlorida1 from "@/assets/projects/s-florida-1.jpg";
-import sFlorida2 from "@/assets/projects/s-florida-2.png";
-import sFlorida3 from "@/assets/projects/s-florida-3.png";
-import sFlorida4 from "@/assets/projects/s-florida-4.jpg";
-import sFlorida5 from "@/assets/projects/s-florida-5.jpg";
-import sFlorida6 from "@/assets/projects/s-florida-6.jpg";
-import sFlorida7 from "@/assets/projects/s-florida-7.jpg";
-import sFlorida8 from "@/assets/projects/s-florida-8.jpg";
-import sFlorida9 from "@/assets/projects/s-florida-9.jpg";
-import sFlorida10 from "@/assets/projects/s-florida-10.jpg";
-import sFlorida11 from "@/assets/projects/s-florida-11.jpg";
-import sFlorida12 from "@/assets/projects/s-florida-12.jpg";
-import sFlorida13 from "@/assets/projects/s-florida-13.jpg";
-import sFlorida14 from "@/assets/projects/s-florida-14.jpg";
-import sFlorida15 from "@/assets/projects/s-florida-15.jpg";
-import sFlorida16 from "@/assets/projects/s-florida-16.jpg";
-import sFlorida17 from "@/assets/projects/s-florida-17.jpg";
-import sFlorida18 from "@/assets/projects/s-florida-18.png";
-import sFlorida19 from "@/assets/projects/s-florida-19.jpg";
-import sFlorida20 from "@/assets/projects/s-florida-20.jpg";
-import sFlorida21 from "@/assets/projects/s-florida-21.jpg";
-import sFlorida22 from "@/assets/projects/s-florida-22.jpg";
-import sFlorida23 from "@/assets/projects/s-florida-23.jpg";
-import sFlorida24 from "@/assets/projects/s-florida-24.jpg";
-import sFlorida25 from "@/assets/projects/s-florida-25.jpg";
-import sFlorida26 from "@/assets/projects/s-florida-26.jpg";
-import sFlorida27 from "@/assets/projects/s-florida-27.jpg";
-import sFlorida28 from "@/assets/projects/s-florida-28.jpg";
-import sFlorida29 from "@/assets/projects/s-florida-29.jpg";
-import sFlorida30 from "@/assets/projects/s-florida-30.jpg";
-import sFlorida31 from "@/assets/projects/s-florida-31.jpg";
-import sFlorida32 from "@/assets/projects/s-florida-32.jpg";
-import sFlorida33 from "@/assets/projects/s-florida-33.jpg";
-import sFlorida34 from "@/assets/projects/s-florida-34.jpg";
-import sFlorida35 from "@/assets/projects/s-florida-35.jpg";
-import sFlorida36 from "@/assets/projects/s-florida-36.jpg";
-import sFlorida37 from "@/assets/projects/s-florida-37.jpg";
-import sFlorida38 from "@/assets/projects/s-florida-38.jpg";
-import sFlorida39 from "@/assets/projects/s-florida-39.jpg";
-import sFlorida40 from "@/assets/projects/s-florida-40.jpg";
-import sFlorida41 from "@/assets/projects/s-florida-41.jpg";
-import sFlorida42 from "@/assets/projects/s-florida-42.jpg";
-import sFlorida43 from "@/assets/projects/s-florida-43.jpg";
-import sFlorida44 from "@/assets/projects/s-florida-44.jpg";
-import sFlorida45 from "@/assets/projects/s-florida-45.jpg";
-import sFlorida46 from "@/assets/projects/s-florida-46.jpg";
-import sFlorida47 from "@/assets/projects/s-florida-47.jpg";
+import miamiBeachCover from "@/assets/projects/miami-beach-cover.jpg";
+import miamiBeach1 from "@/assets/projects/miami-beach-1.jpg";
+import miamiBeach2 from "@/assets/projects/miami-beach-2.png";
+import miamiBeach3 from "@/assets/projects/miami-beach-3.png";
+import miamiBeach4 from "@/assets/projects/miami-beach-4.jpg";
+import miamiBeach5 from "@/assets/projects/miami-beach-5.jpg";
+import miamiBeach6 from "@/assets/projects/miami-beach-6.jpg";
+import miamiBeach7 from "@/assets/projects/miami-beach-7.jpg";
+import miamiBeach8 from "@/assets/projects/miami-beach-8.jpg";
+import miamiBeach9 from "@/assets/projects/miami-beach-9.jpg";
+import miamiBeach10 from "@/assets/projects/miami-beach-10.jpg";
+import miamiBeach11 from "@/assets/projects/miami-beach-11.jpg";
+import miamiBeach12 from "@/assets/projects/miami-beach-12.jpg";
+import miamiBeach13 from "@/assets/projects/miami-beach-13.jpg";
+import miamiBeach14 from "@/assets/projects/miami-beach-14.jpg";
+import miamiBeach15 from "@/assets/projects/miami-beach-15.jpg";
+import miamiBeach16 from "@/assets/projects/miami-beach-16.jpg";
+import miamiBeach17 from "@/assets/projects/miami-beach-17.jpg";
+import miamiBeach18 from "@/assets/projects/miami-beach-18.png";
+import miamiBeach19 from "@/assets/projects/miami-beach-19.jpg";
+import miamiBeach20 from "@/assets/projects/miami-beach-20.jpg";
+import miamiBeach21 from "@/assets/projects/miami-beach-21.jpg";
+import miamiBeach22 from "@/assets/projects/miami-beach-22.jpg";
+import miamiBeach23 from "@/assets/projects/miami-beach-23.jpg";
+import miamiBeach24 from "@/assets/projects/miami-beach-24.jpg";
+import miamiBeach25 from "@/assets/projects/miami-beach-25.jpg";
+import miamiBeach26 from "@/assets/projects/miami-beach-26.jpg";
+import miamiBeach27 from "@/assets/projects/miami-beach-27.jpg";
+import miamiBeach28 from "@/assets/projects/miami-beach-28.jpg";
+import miamiBeach29 from "@/assets/projects/miami-beach-29.jpg";
+import miamiBeach30 from "@/assets/projects/miami-beach-30.jpg";
+import miamiBeach31 from "@/assets/projects/miami-beach-31.jpg";
+import miamiBeach32 from "@/assets/projects/miami-beach-32.jpg";
+import miamiBeach33 from "@/assets/projects/miami-beach-33.jpg";
+import miamiBeach34 from "@/assets/projects/miami-beach-34.jpg";
+import miamiBeach35 from "@/assets/projects/miami-beach-35.jpg";
+import miamiBeach36 from "@/assets/projects/miami-beach-36.jpg";
+import miamiBeach37 from "@/assets/projects/miami-beach-37.jpg";
+import miamiBeach38 from "@/assets/projects/miami-beach-38.jpg";
+import miamiBeach39 from "@/assets/projects/miami-beach-39.jpg";
+import miamiBeach40 from "@/assets/projects/miami-beach-40.jpg";
+import miamiBeach41 from "@/assets/projects/miami-beach-41.jpg";
+import miamiBeach42 from "@/assets/projects/miami-beach-42.jpg";
+import miamiBeach43 from "@/assets/projects/miami-beach-43.jpg";
+import miamiBeach44 from "@/assets/projects/miami-beach-44.jpg";
+import miamiBeach45 from "@/assets/projects/miami-beach-45.jpg";
+import miamiBeach46 from "@/assets/projects/miami-beach-46.jpg";
+import miamiBeach47 from "@/assets/projects/miami-beach-47.jpg";
 import syracuseCover from "@/assets/projects/syracuse-cover.png";
 import syracuse1 from "@/assets/projects/syracuse-1.png";
 import syracuse2 from "@/assets/projects/syracuse-2.png";
@@ -528,15 +531,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "s-florida-condo",
+    id: "miami-beach-condo",
     title: "S. Florida",
     subtitle: "High Rise Luxe Condo",
     location: "Residential • Construction",
     additionalInfo: "S. Florida",
     category: "Residential Construction",
     description: "Contemporary luxury condominium featuring sophisticated interior design, premium finishes, and breathtaking ocean views. This beachfront residence showcases modern aesthetics with clean lines, custom millwork, and elegant material selections that complement the coastal lifestyle.",
-    image: sFloridaCover,
-    images: [sFloridaCover, sFlorida1, sFlorida2, sFlorida3, sFlorida4, sFlorida5, sFlorida6, sFlorida7, sFlorida8, sFlorida9, sFlorida10, sFlorida11, sFlorida12, sFlorida13, sFlorida14, sFlorida15, sFlorida16, sFlorida17, sFlorida18, sFlorida19, sFlorida20, sFlorida21, sFlorida22, sFlorida23, sFlorida24, sFlorida25, sFlorida26, sFlorida27, sFlorida28, sFlorida29, sFlorida30, sFlorida31, sFlorida32, sFlorida33, sFlorida34, sFlorida35, sFlorida36, sFlorida37, sFlorida38, sFlorida39, sFlorida40, sFlorida41, sFlorida42, sFlorida43, sFlorida44, sFlorida45, sFlorida46, sFlorida47],
+    image: miamiBeachCover,
+    images: [miamiBeachCover, miamiBeach1, miamiBeach2, miamiBeach3, miamiBeach4, miamiBeach5, miamiBeach6, miamiBeach7, miamiBeach8, miamiBeach9, miamiBeach10, miamiBeach11, miamiBeach12, miamiBeach13, miamiBeach14, miamiBeach15, miamiBeach16, miamiBeach17, miamiBeach18, miamiBeach19, miamiBeach20, miamiBeach21, miamiBeach22, miamiBeach23, miamiBeach24, miamiBeach25, miamiBeach26, miamiBeach27, miamiBeach28, miamiBeach29, miamiBeach30, miamiBeach31, miamiBeach32, miamiBeach33, miamiBeach34, miamiBeach35, miamiBeach36, miamiBeach37, miamiBeach38, miamiBeach39, miamiBeach40, miamiBeach41, miamiBeach42, miamiBeach43, miamiBeach44, miamiBeach45, miamiBeach46, miamiBeach47],
   },
   {
     id: "high-alpine-ranch",
@@ -557,7 +560,7 @@ export const projects: Project[] = [
     additionalInfo: "N. Utah",
     category: "Residential Construction",
     description: "Stunning craftsman-style estate featuring professional landscaping, custom stone work, and dramatic evening lighting. This comprehensive project showcases exceptional attention to detail in both architecture and landscape design, with native plantings, decorative rock features, and elegant outdoor spaces.",
-    image: syracuseCover,
+    image: syracuse27,
     images: [
       syracuseCover, // Cover/Exterior
       // Exterior Views
@@ -630,7 +633,7 @@ export const projects: Project[] = [
     category: "Design Build",
     description: "A stunning custom design-build residence featuring elegant architectural details and seamless integration with the natural landscape of Carmel Valley.",
     image: carmelValleyNewCover,
-    images: [carmelValleyNewCover, carmelValleyNew1],
+    images: [carmelValleyNewCover, carmelValleyNew1, carmelValleyNew2, carmelValleyNew3, carmelValleyNew4],
   },
   {
     id: "north-florida-renovation",
