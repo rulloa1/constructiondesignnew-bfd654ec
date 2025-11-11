@@ -24,7 +24,23 @@ export default function Admin() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
       navigate("/login");
+      return;
     }
+    
+    // Verify user has admin role
+    const { data: roles, error } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', session.user.id)
+      .eq('role', 'admin')
+      .single();
+      
+    if (error || !roles) {
+      toast.error("Unauthorized: Admin access required");
+      navigate("/");
+      return;
+    }
+    
     setLoading(false);
   };
 
