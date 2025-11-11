@@ -182,6 +182,7 @@ import carmelValleyNew3 from "@/assets/projects/carmel-valley-new-3.png";
 import carmelValleyNew4 from "@/assets/projects/carmel-valley-new-4.png";
 
 // North Florida Renovation/Addition
+import veroBeachCover from "@/assets/vero-beach-cover.jpeg";
 import northFloridaCover from "@/assets/projects/north-florida-cover.jpg";
 import northFlorida1 from "@/assets/projects/north-florida-1.jpg";
 import northFlorida2 from "@/assets/projects/north-florida-2.jpg";
@@ -629,8 +630,8 @@ export const projects: Project[] = [
     additionalInfo: "N. Florida",
     category: "Residential Construction",
     description: "Comprehensive renovation and addition project featuring thoughtful design updates and estate management services. This project showcases professional renovation work with attention to detail and quality craftsmanship.",
-    image: northFloridaCover,
-    images: [northFloridaCover, northFlorida1, northFlorida2, northFlorida3, northFlorida4, northFlorida5, northFlorida6, northFlorida7, northFlorida8, northFlorida9, northFlorida10, northFlorida11, northFlorida12],
+    image: veroBeachCover,
+    images: [veroBeachCover, northFloridaCover, northFlorida1, northFlorida2, northFlorida3, northFlorida4, northFlorida5, northFlorida6, northFlorida7, northFlorida8, northFlorida9, northFlorida10, northFlorida11, northFlorida12],
   },
   {
     id: "coastal-hillside-restoration-2",
