@@ -215,7 +215,7 @@ export const ImageGalleryManager = () => {
           <h2 className="text-xl font-playfair font-semibold mb-4">
             Project Images ({images.length})
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((image, index) => (
               <div
                 key={image.id}
