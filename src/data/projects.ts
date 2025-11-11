@@ -177,9 +177,6 @@ import carmelValley4 from "@/assets/projects/carmel-valley-4.jpg";
 // Carmel Valley New (updated images)
 import carmelValleyNewCover from "@/assets/projects/carmel-valley-new-cover.png";
 import carmelValleyNew1 from "@/assets/projects/carmel-valley-new-1.png";
-import carmelValleyNew2 from "@/assets/projects/carmel-valley-new-2.jpg";
-import carmelValleyNew3 from "@/assets/projects/carmel-valley-new-3.png";
-import carmelValleyNew4 from "@/assets/projects/carmel-valley-new-4.png";
 
 // North Florida Renovation/Addition
 import veroBeachCover from "@/assets/vero-beach-cover.jpeg";
@@ -633,7 +630,7 @@ export const projects: Project[] = [
     category: "Design Build",
     description: "A stunning custom design-build residence featuring elegant architectural details and seamless integration with the natural landscape of Carmel Valley.",
     image: carmelValleyNewCover,
-    images: [carmelValleyNewCover, carmelValleyNew1, carmelValleyNew2, carmelValleyNew3, carmelValleyNew4],
+    images: [carmelValleyNewCover, carmelValleyNew1],
   },
   {
     id: "north-florida-renovation",
