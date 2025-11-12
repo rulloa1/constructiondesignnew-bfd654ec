@@ -318,6 +318,7 @@ import development12 from "@/assets/projects/development-12.jpg";
 import development13 from "@/assets/projects/development-13.jpg";
 
 // Hospitality Pool
+import poolTestimonialImage from "@/assets/pool-testimonial.jpg";
 import poolDesignCover from "@/assets/projects/pool-design-cover.jpg";
 import poolDesign1 from "@/assets/projects/pool-design-1.jpg";
 import poolDesign2 from "@/assets/projects/pool-design-2.jpg";
@@ -529,6 +530,7 @@ export interface Project {
   image: string;
   images: string[];
   testimonial?: string;
+  testimonialImage?: string;
 }
 
 export const projects: Project[] = [
@@ -596,6 +598,7 @@ export const projects: Project[] = [
     image: poolDesignCover,
     images: [poolDesignCover, poolDesign1, poolDesign2, poolDesign3, poolDesign4, poolDesign5, poolDesign6, poolDesign7, poolDesign8, poolDesign9, poolDesign10, poolDesign11, poolDesign12, poolDesign13, poolDesign14, poolDesign15, poolDesign16, poolDesign17, poolDesign18, poolDesign19, poolDesign20, poolDesign21, poolDesign22, poolDesign23, poolDesign24, poolDesign25, poolDesign26, poolDesign27, poolDesign28, poolDesign29, poolDesign30, poolDesign31, poolDesign32, poolDesign33, poolDesign34, poolDesign35, poolDesign36, poolDesign37],
     testimonial: "While this is my need to showcase my work, I do not want to take anything away from the extraordinary and beautiful work done by Michael and Robert Smelek. Truly gifted, always professionals, and absolute gentlemen!\n\nMichael and Robert designed all of the large element items on this pool, and surrounding structures, and I picked up and did all of the more finite detail work, including establishing the look and feel of the bathrooms, which were purposely patterned to have the look and design aesthetic of a 1950's NY Men's Smoking Club. While this was my initial idea, it was easily integrated into the project and plans, flawlessly by Smelek Design.\n\nI also designed the more finite details of this project, including making final decisions for all of the furniture and fabrics, pool plaster color, swim-up bar front design and back-bar layout and design and even including a custom 'blue' granite backsplash. Also included in this was the custom post and rail design for the railing, leading to the pool slides. The reason behind the meticulous design of these detail items is that with some forethought, subtle design elements make each of these items, extraordinary, and seamlessly blend with the surrounding Architecture and Landscaping, which all must be integral to the park-like setting, in which it sits.\n\nAt no time do I want to take away from the truly beautiful design work of Michael and Robert Smelek!\n\nThank you, both for your work!\n\n— Michael E. Chandler\n8215 Winding Hills Ln, Spring, Texas 77379\nCellular (435) 237-7373\nEmail mike.rcccon@yahoo.com",
+    testimonialImage: poolTestimonialImage,
   },
   {
     id: "southcoast-remodel-design-build",
@@ -691,7 +694,7 @@ export const projects: Project[] = [
     subtitle: "Residence",
     location: "Residential • Development",
     additionalInfo: "Abaco, Bahamas",
-    category: "Residential Construction",
+    category: "Residential Development",
     description: "Premier beachfront estate property development showcasing luxury coastal living in the Bahamas.",
     image: beachfront1,
     images: [beachfront1, beachfront2, beachfront3, beachfront4, beachfront5, beachfront6, beachfront7],
@@ -702,7 +705,7 @@ export const projects: Project[] = [
     subtitle: "Construction",
     location: "Residential • Development • Civil Construction",
     additionalInfo: "SE Texas",
-    category: "Civil",
+    category: "Residential Development",
     description: "A collection of development projects showcasing comprehensive construction and site development work.",
     image: development1,
     images: [development1, development2, development3, development4, development5, development6, development7, development8, development9, development10, development11, development12, development13],

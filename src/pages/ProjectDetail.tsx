@@ -151,6 +151,17 @@ const ProjectDetail = () => {
                   <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-charcoal mb-6 md:mb-8">
                     Project Statement
                   </h2>
+                  {project.testimonialImage && (
+                    <div className="mb-6 md:mb-8">
+                      <ImageWithWatermark>
+                        <img 
+                          src={project.testimonialImage} 
+                          alt="Project Statement" 
+                          className="w-full max-w-2xl mx-auto rounded-lg shadow-md border border-charcoal/10"
+                        />
+                      </ImageWithWatermark>
+                    </div>
+                  )}
                   <div className="font-inter text-base sm:text-lg text-charcoal/90 font-light leading-relaxed whitespace-pre-line space-y-4">
                     {project.testimonial.split('\n\n').map((paragraph, index, arr) => {
                       // Check if this is the signature/contact section (last few paragraphs)
