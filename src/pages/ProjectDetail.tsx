@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ImageWithWatermark } from "@/components/ImageWithWatermark";
-
 interface ProjectVideo {
   id: string;
   video_url: string;
@@ -14,7 +13,6 @@ interface ProjectVideo {
   description: string | null;
   display_order: number;
 }
-
 interface ProjectImage {
   id: string;
   project_id: string;
@@ -25,9 +23,10 @@ interface ProjectImage {
   is_before: boolean;
   is_after: boolean;
 }
-
 const ProjectDetail = () => {
-  const { id } = useParams();
+  const {
+    id
+  } = useParams();
   const navigate = useNavigate();
   const project = id ? getProjectById(id) : undefined;
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
@@ -37,52 +36,43 @@ const ProjectDetail = () => {
   // Fetch videos and images for this project
   useEffect(() => {
     if (!id) return;
-    
     const fetchVideos = async () => {
-      const { data, error } = await supabase
-        .from('project_videos')
-        .select('*')
-        .eq('project_id', id)
-        .order('display_order', { ascending: true });
-
+      const {
+        data,
+        error
+      } = await supabase.from('project_videos').select('*').eq('project_id', id).order('display_order', {
+        ascending: true
+      });
       if (!error && data) {
         setVideos(data);
       }
     };
-
     const fetchImages = async () => {
-      const { data, error } = await supabase
-        .from('project_images')
-        .select('*')
-        .eq('project_id', id)
-        .order('display_order', { ascending: true });
-
+      const {
+        data,
+        error
+      } = await supabase.from('project_images').select('*').eq('project_id', id).order('display_order', {
+        ascending: true
+      });
       if (!error && data) {
         setDbImages(data);
       }
     };
-
     fetchVideos();
     fetchImages();
   }, [id]);
 
   // Filter out invalid/relative URLs from database (static import paths that were migrated incorrectly)
-  const validDbImages = dbImages.filter(img => 
-    img.image_url && 
-    (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
-  );
-  
+  const validDbImages = dbImages.filter(img => img.image_url && (img.image_url.startsWith('http') || img.image_url.startsWith('https://')));
+
   // Prioritize database images if they exist, otherwise use static images
-  const allImages = validDbImages.length > 0 
-    ? validDbImages.map(img => img.image_url)
-    : (project?.images || []);
+  const allImages = validDbImages.length > 0 ? validDbImages.map(img => img.image_url) : project?.images || [];
 
   // Helper function to get image label
   const getImageLabel = (imageUrl: string, index: number): string | null => {
     const dbImage = validDbImages.find(img => img.image_url === imageUrl);
     if (dbImage?.is_before) return "Before";
     if (dbImage?.is_after) return "After";
-    
     const fileName = imageUrl.toLowerCase();
     if (fileName.includes("before")) return "Before";
     if (fileName.includes("after")) return "After";
@@ -144,99 +134,43 @@ const ProjectDetail = () => {
           </div>
 
           {/* Testimonial Section */}
-          {project.testimonial && (
-            <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
+          {project.testimonial && <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl mx-auto">
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 lg:p-10 shadow-lg border border-charcoal/10">
-                  <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-charcoal mb-6 md:mb-8">
-                    Project Statement
-                  </h2>
-                  {project.testimonialImage && (
-                    <div className="mb-6 md:mb-8">
-                      <ImageWithWatermark>
-                        <img 
-                          src={project.testimonialImage} 
-                          alt="Project Statement" 
-                          className="w-full max-w-2xl mx-auto rounded-lg shadow-md border border-charcoal/10"
-                        />
-                      </ImageWithWatermark>
-                    </div>
-                  )}
-                  <div className="font-inter text-base sm:text-lg text-charcoal/90 font-light leading-relaxed whitespace-pre-line space-y-4">
-                    {project.testimonial.split('\n\n').map((paragraph, index, arr) => {
-                      // Check if this is the signature/contact section (last few paragraphs)
-                      const isSignature = index >= arr.length - 3;
-                      if (isSignature) {
-                        return (
-                          <div key={index} className={index === arr.length - 3 ? "mt-6 pt-6 border-t border-charcoal/10" : ""}>
-                            <p className={index === arr.length - 3 ? "font-semibold text-charcoal" : "text-sm text-charcoal/70 font-light"}>
-                              {paragraph}
-                            </p>
-                          </div>
-                        );
-                      }
-                      return <p key={index}>{paragraph}</p>;
-                    })}
-                  </div>
-                </div>
+                
               </div>
-            </div>
-          )}
+            </div>}
 
           {/* Videos Section */}
-          {videos.length > 0 && (
-            <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
+          {videos.length > 0 && <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
               <div className="max-w-5xl mx-auto space-y-6">
                 <h2 className="text-2xl font-playfair font-semibold text-charcoal">Project Videos</h2>
                 <div className="grid md:grid-cols-2 gap-6">
-                  {videos.map((video) => (
-                    <div key={video.id} className="bg-white rounded-lg overflow-hidden border border-charcoal/10 shadow-md">
+                  {videos.map(video => <div key={video.id} className="bg-white rounded-lg overflow-hidden border border-charcoal/10 shadow-md">
                       <VideoPlayer url={video.video_url} />
-                      {(video.title || video.description) && (
-                        <div className="p-4">
-                          {video.title && (
-                            <h3 className="font-semibold text-charcoal mb-1">{video.title}</h3>
-                          )}
-                          {video.description && (
-                            <p className="text-sm text-charcoal/70">{video.description}</p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                      {(video.title || video.description) && <div className="p-4">
+                          {video.title && <h3 className="font-semibold text-charcoal mb-1">{video.title}</h3>}
+                          {video.description && <p className="text-sm text-charcoal/70">{video.description}</p>}
+                        </div>}
+                    </div>)}
                 </div>
               </div>
-            </div>
-          )}
+            </div>}
 
           {/* Simple gallery grid */}
           <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ${project.category === "Design Build" ? "gap-1" : "gap-3 md:gap-4"}`}>
                 {allImages.map((image, index) => {
-                  const label = getImageLabel(image, index);
-                  return (
-                    <ImageWithWatermark key={`${image}-${index}`}>
-                      <button 
-                        onClick={() => setSelectedImageIndex(index)} 
-                        className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30 w-full"
-                      >
-                        <img 
-                          src={image} 
-                          alt={`${project.title} - Image ${index + 1}`} 
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        {label && (
-                          <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${
-                            label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"
-                          }`}>
+                const label = getImageLabel(image, index);
+                return <ImageWithWatermark key={`${image}-${index}`}>
+                      <button onClick={() => setSelectedImageIndex(index)} className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30 w-full">
+                        <img src={image} alt={`${project.title} - Image ${index + 1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                        {label && <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
                             {label}
-                          </span>
-                        )}
+                          </span>}
                       </button>
-                    </ImageWithWatermark>
-                  );
-                })}
+                    </ImageWithWatermark>;
+              })}
               </div>
             </div>
           </div>
@@ -275,20 +209,10 @@ const ProjectDetail = () => {
           <div className="flex items-center justify-center h-full p-16" onClick={e => e.stopPropagation()}>
             <ImageWithWatermark>
               <div className="relative">
-                <img 
-                  src={allImages[selectedImageIndex]} 
-                  alt={`${project.title} - Image ${selectedImageIndex + 1}`} 
-                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" 
-                />
-                {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && (
-                  <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${
-                    getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" 
-                      ? "bg-amber-500/90" 
-                      : "bg-emerald-500/90"
-                  }`}>
+                <img src={allImages[selectedImageIndex]} alt={`${project.title} - Image ${selectedImageIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" />
+                {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
                     {getImageLabel(allImages[selectedImageIndex], selectedImageIndex)}
-                  </span>
-                )}
+                  </span>}
               </div>
             </ImageWithWatermark>
           </div>
