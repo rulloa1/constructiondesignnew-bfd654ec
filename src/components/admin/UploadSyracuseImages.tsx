@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Upload, AlertCircle } from "lucide-react";
+import { Upload, AlertCircle, Trash2 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 
@@ -140,6 +140,7 @@ const syracuseImages = [
 
 export const UploadSyracuseImages = () => {
   const [uploading, setUploading] = useState(false);
+  const [clearing, setClearing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentFile, setCurrentFile] = useState("");
 
@@ -252,6 +253,72 @@ export const UploadSyracuseImages = () => {
     }
   };
 
+  const handleClearDatabaseImages = async () => {
+    const confirm = window.confirm(
+      "This will delete all Syracuse House images from the database and Supabase storage. This action cannot be undone. The static images will still be available. Continue?"
+    );
+    if (!confirm) return;
+
+    setClearing(true);
+
+    try {
+      // Fetch all database images for Syracuse
+      const { data: images, error: fetchError } = await supabase
+        .from('project_images')
+        .select('*')
+        .eq('project_id', PROJECT_ID);
+
+      if (fetchError) {
+        throw fetchError;
+      }
+
+      if (!images || images.length === 0) {
+        toast.success("No database images found to clear.");
+        setClearing(false);
+        return;
+      }
+
+      // Delete from Supabase storage
+      const filesToDelete = images
+        .map(img => {
+          // Extract filename from URL
+          const urlParts = img.image_url.split('/');
+          const fileName = urlParts[urlParts.length - 1];
+          return `${PROJECT_ID}/${fileName}`;
+        })
+        .filter(path => path.includes(PROJECT_ID));
+
+      if (filesToDelete.length > 0) {
+        const { error: storageError } = await supabase.storage
+          .from('project-images')
+          .remove(filesToDelete);
+
+        if (storageError) {
+          console.error("Error deleting from storage:", storageError);
+          // Continue even if storage deletion fails
+        }
+      }
+
+      // Delete from database
+      const { error: deleteError } = await supabase
+        .from('project_images')
+        .delete()
+        .eq('project_id', PROJECT_ID);
+
+      if (deleteError) {
+        throw deleteError;
+      }
+
+      toast.success(`Successfully cleared ${images.length} database images! Static images will now be used.`);
+      setTimeout(() => window.location.reload(), 1500);
+    } catch (error: any) {
+      console.error("Error clearing images:", error);
+      toast.error(`Failed to clear images: ${error.message}`);
+    } finally {
+      setClearing(false);
+    }
+  };
+
   return (
     <Alert className="mb-6">
       <AlertCircle className="h-4 w-4" />
@@ -269,16 +336,26 @@ export const UploadSyracuseImages = () => {
               </div>
             )}
           </div>
-          <Button
-            onClick={handleUpload}
-            disabled={uploading}
-            variant="default"
-            size="sm"
-            className="shrink-0"
-          >
-            <Upload className="mr-2 h-4 w-4" />
-            {uploading ? "Uploading..." : "Upload All Images"}
-          </Button>
+          <div className="flex gap-2 shrink-0">
+            <Button
+              onClick={handleClearDatabaseImages}
+              disabled={uploading || clearing}
+              variant="destructive"
+              size="sm"
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              {clearing ? "Clearing..." : "Clear DB Images"}
+            </Button>
+            <Button
+              onClick={handleUpload}
+              disabled={uploading || clearing}
+              variant="default"
+              size="sm"
+            >
+              <Upload className="mr-2 h-4 w-4" />
+              {uploading ? "Uploading..." : "Upload All Images"}
+            </Button>
+          </div>
         </div>
       </AlertDescription>
     </Alert>

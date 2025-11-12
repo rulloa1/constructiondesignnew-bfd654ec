@@ -152,6 +152,7 @@ import laguna3 from "@/assets/projects/laguna-grande-3.png";
 import laguna4 from "@/assets/projects/laguna-grande-4.png";
 import laguna5 from "@/assets/projects/laguna-grande-5.png";
 import laguna6 from "@/assets/projects/laguna-grande-6.png";
+import laguna7 from "@/assets/projects/laguna-grande-7.jpg";
 import bigsurCover from "@/assets/projects/bigsur-cover.jpg";
 import bigsur1 from "@/assets/projects/bigsur-1.jpg";
 import bigsur2 from "@/assets/projects/bigsur-2.jpg";
@@ -758,7 +759,7 @@ export const projects: Project[] = [
     category: "Civil",
     description: "A comprehensive commercial design-build project featuring Spanish Colonial Revival architecture. This multi-building complex showcases careful attention to traditional architectural details while creating modern commercial spaces in a strategic coastal location.",
     image: lagunaGrandeCover,
-    images: [lagunaGrandeCover, laguna1, laguna2, laguna3, laguna4, laguna5, laguna6],
+    images: [lagunaGrandeCover, laguna1, laguna2, laguna3, laguna4, laguna5, laguna6, laguna7],
   },
 ];
 

@@ -66,15 +66,21 @@ const ProjectDetail = () => {
     fetchImages();
   }, [id]);
 
-  // Use database images if available (to respect display_order from admin panel), otherwise fall back to static images
+  // Combine database images with static images
   // Filter out invalid/relative URLs from database (static import paths that were migrated incorrectly)
   const validDbImages = dbImages.filter(img => 
     img.image_url && 
     (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
   );
-  const allImages = validDbImages.length > 0 
-    ? validDbImages.map(img => img.image_url)
-    : (project?.images || []);
+  
+  // For Syracuse House, prioritize static images (they're in chronological order)
+  // Otherwise, use database images first, then static images as fallback
+  const useStaticImages = id === 'syracuse-house' && project?.images && project.images.length > 0;
+  const allImages = useStaticImages 
+    ? project.images 
+    : (validDbImages.length > 0 
+      ? validDbImages.map(img => img.image_url)
+      : (project?.images || []));
 
   // Helper function to get image label
   const getImageLabel = (imageUrl: string, index: number): string | null => {
