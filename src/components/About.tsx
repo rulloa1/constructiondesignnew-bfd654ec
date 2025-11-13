@@ -13,7 +13,7 @@ export const About = ({
   } = useScrollAnimation({
     threshold: 0.15
   });
-  return <section id="about" ref={elementRef as React.RefObject<HTMLElement>} className={`relative py-12 sm:py-16 overflow-hidden bg-background transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+  return <section id="about" ref={elementRef as React.RefObject<HTMLElement>} className="relative py-12 sm:py-16 overflow-hidden bg-background transition-all duration-1000 opacity-100 translate-y-0">
       {/* Animated Construction Icons Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Icons */}
