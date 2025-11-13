@@ -44,6 +44,9 @@ export const SignupForm = () => {
       const { error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin`
+        }
       });
 
       if (error) throw error;

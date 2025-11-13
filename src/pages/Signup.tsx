@@ -19,6 +19,9 @@ const Signup = () => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/admin`
+      }
     });
 
     if (error) {
