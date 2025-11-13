@@ -97,7 +97,7 @@ export const Services = () => {
               Services
             </h2>
             <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto">
-              Comprehensive solutions for every phase of your project
+              Comprehensive Construction & Development Services
             </p>
           </div>
 
