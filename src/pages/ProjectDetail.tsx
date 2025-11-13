@@ -62,38 +62,47 @@ const ProjectDetail = () => {
     fetchImages();
   }, [id]);
 
-  // Filter out invalid URLs from database - only allow absolute URLs (http/https)
-  // Exclude relative paths that are static import paths (they won't work as URLs)
-  const validDbImages = dbImages.filter(img => 
-    img.image_url && 
-    (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
-  );
-
   // Prioritize static images for projects that have them
   // Only use database images if they are valid absolute URLs AND no static images exist
   // For projects with static images, prefer static images over database images
   // Use useMemo to prevent recalculation on every render
   const hasStaticImages = project?.images && Array.isArray(project.images) && project.images.length > 0;
-  const hasValidDbImages = validDbImages.length > 0;
   
   // Always use static images if available, regardless of database images
   // This ensures projects with static assets always show them
   // Filter out any undefined/null values - Vite handles image imports automatically
   // Vite image imports work directly in img src, whether they're strings or module references
   // Memoize to prevent images from disappearing on re-renders
+  // Compute validDbImages inside useMemo to avoid unnecessary recalculations
   const allImages = useMemo(() => {
     if (hasStaticImages && project?.images) {
       return project.images.filter(img => img != null);
     }
-    if (hasValidDbImages) {
+    
+    // Filter out invalid URLs from database - only allow absolute URLs (http/https)
+    // Exclude relative paths that are static import paths (they won't work as URLs)
+    const validDbImages = dbImages.filter(img => 
+      img.image_url && 
+      (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
+    );
+    
+    if (validDbImages.length > 0) {
       return validDbImages.map(img => img.image_url);
     }
     return [];
-  }, [hasStaticImages, project?.images, hasValidDbImages, validDbImages]);
+  }, [hasStaticImages, project?.images, dbImages]);
+  
+  // Filter out invalid URLs from database for use in other parts of the component
+  // Only allow absolute URLs (http/https)
+  const validDbImages = dbImages.filter(img => 
+    img.image_url && 
+    (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
+  );
 
   // Debug logging to help identify issues
   useEffect(() => {
     if (project) {
+      const hasValidDbImages = validDbImages.length > 0;
       console.log(`Project: ${project.title} (${id})`, {
         hasStaticImages,
         staticImageCount: project.images?.length || 0,
@@ -110,7 +119,7 @@ const ProjectDetail = () => {
         console.warn('Sample images:', project.images.slice(0, 3));
       }
     }
-  }, [id, project, allImages.length, hasStaticImages, hasValidDbImages]);
+  }, [id, project, allImages.length, hasStaticImages, validDbImages.length]);
 
   // Helper function to get image label
   const getImageLabel = (imageUrl: string, index: number): string | null => {
