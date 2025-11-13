@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { getProjectById } from "@/data/projects";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ImageWithWatermark } from "@/components/ImageWithWatermark";
@@ -62,17 +62,55 @@ const ProjectDetail = () => {
     fetchImages();
   }, [id]);
 
-  // Filter out valid database image URLs - allow both absolute URLs and relative paths starting with /
-  const validDbImages = dbImages.filter(img => img.image_url && (img.image_url.startsWith('http') || img.image_url.startsWith('https://') || img.image_url.startsWith('/')));
+  // Filter out invalid URLs from database - only allow absolute URLs (http/https)
+  // Exclude relative paths that are static import paths (they won't work as URLs)
+  const validDbImages = dbImages.filter(img => 
+    img.image_url && 
+    (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
+  );
 
-  // For projects with database images, ONLY use database images (never fall back to static)
-  // For syracuse-house and carmel-valley-design-build, always use static images
-  // For other projects without database images, use static images as fallback
-  const allImages = (id === 'syracuse-house' || id === 'carmel-valley-design-build') && project?.images && project.images.length > 0 
-    ? project.images 
-    : validDbImages.length > 0 
-      ? validDbImages.map(img => img.image_url) 
-      : (dbImages.length === 0 ? project?.images || [] : []);
+  // Prioritize static images for projects that have them
+  // Only use database images if they are valid absolute URLs AND no static images exist
+  // For projects with static images, prefer static images over database images
+  // Use useMemo to prevent recalculation on every render
+  const hasStaticImages = project?.images && Array.isArray(project.images) && project.images.length > 0;
+  const hasValidDbImages = validDbImages.length > 0;
+  
+  // Always use static images if available, regardless of database images
+  // This ensures projects with static assets always show them
+  // Filter out any undefined/null values - Vite handles image imports automatically
+  // Vite image imports work directly in img src, whether they're strings or module references
+  // Memoize to prevent images from disappearing on re-renders
+  const allImages = useMemo(() => {
+    if (hasStaticImages && project?.images) {
+      return project.images.filter(img => img != null);
+    }
+    if (hasValidDbImages) {
+      return validDbImages.map(img => img.image_url);
+    }
+    return [];
+  }, [hasStaticImages, project?.images, hasValidDbImages, validDbImages]);
+
+  // Debug logging to help identify issues
+  useEffect(() => {
+    if (project) {
+      console.log(`Project: ${project.title} (${id})`, {
+        hasStaticImages,
+        staticImageCount: project.images?.length || 0,
+        hasValidDbImages,
+        validDbImageCount: validDbImages.length,
+        allImagesCount: allImages.length,
+        firstImage: allImages[0],
+        projectImagesType: typeof project.images,
+        isArray: Array.isArray(project.images)
+      });
+      
+      if (allImages.length === 0 && project.images && project.images.length > 0) {
+        console.warn(`⚠️ Project ${project.title} has ${project.images.length} static images but allImages is empty!`);
+        console.warn('Sample images:', project.images.slice(0, 3));
+      }
+    }
+  }, [id, project, allImages.length, hasStaticImages, hasValidDbImages]);
 
   // Helper function to get image label
   const getImageLabel = (imageUrl: string, index: number): string | null => {
@@ -163,27 +201,45 @@ const ProjectDetail = () => {
             </div>}
 
           {/* Simple gallery grid */}
-          <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-5xl mx-auto">
-              <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ${project.category === "Design Build" ? "gap-1" : "gap-3 md:gap-4"}`}>
-                {allImages.map((image, index) => {
-                const label = getImageLabel(image, index);
-                return <ImageWithWatermark key={`${image}-${index}`}>
-                      <button onClick={() => setSelectedImageIndex(index)} className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30 w-full">
-                        <img 
-                          src={image} 
-                          alt={`${project.title} - Image ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                        {label && <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
-                            {label}
-                          </span>}
-                      </button>
-                    </ImageWithWatermark>;
-              })}
+          {allImages.length > 0 ? (
+            <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-5xl mx-auto">
+                <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ${project.category === "Design Build" ? "gap-1" : "gap-3 md:gap-4"}`}>
+                  {allImages.map((image, index) => {
+                    const label = getImageLabel(image, index);
+                    return (
+                      <ImageWithWatermark key={`${image}-${index}`}>
+                        <button 
+                          onClick={() => setSelectedImageIndex(index)} 
+                          className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30 w-full"
+                        >
+                          <img 
+                            src={image} 
+                            alt={`${project.title} - Image ${index + 1}`} 
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            onError={(e) => {
+                              console.error('Image failed to load:', image, e);
+                            }}
+                          />
+                          {label && (
+                            <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
+                              {label}
+                            </span>
+                          )}
+                        </button>
+                      </ImageWithWatermark>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="pt-6 pb-6 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-5xl mx-auto text-center">
+                <p className="text-charcoal/60">No images available for this project.</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

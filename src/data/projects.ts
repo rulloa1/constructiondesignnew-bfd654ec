@@ -152,7 +152,6 @@ import laguna3 from "@/assets/projects/laguna-grande-3.jpg";
 import laguna4 from "@/assets/projects/laguna-grande-4.jpg";
 import laguna5 from "@/assets/projects/laguna-grande-5.jpg";
 import laguna6 from "@/assets/projects/laguna-grande-6.jpg";
-import laguna7 from "@/assets/projects/laguna-grande-7.jpg";
 import bigsurCover from "@/assets/projects/bigsur-cover.jpg";
 import bigsur1 from "@/assets/projects/bigsur-1.jpg";
 import bigsur2 from "@/assets/projects/bigsur-2.jpg";

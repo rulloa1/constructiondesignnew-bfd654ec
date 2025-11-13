@@ -75,7 +75,7 @@ const App: React.FC = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <RouterProvider router={router} />
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
       </TooltipProvider>
     </QueryClientProvider>
   );
