@@ -64,19 +64,19 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
         onClick={handleClose}
         variant="ghost"
         size="icon"
-        className="fixed top-6 right-6 z-50 text-charcoal hover:text-gold hover:bg-white/80 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
+        className="fixed top-4 md:top-6 right-4 md:right-6 z-50 h-10 w-10 md:h-11 md:w-11 text-charcoal hover:text-gold hover:bg-white/80 backdrop-blur-sm transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
       >
-        <X className="h-6 w-6" />
+        <X className="h-5 w-5 md:h-6 md:w-6" />
       </Button>
 
-      <div className="container mx-auto px-6 lg:px-12 py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-16 md:py-20 lg:py-24">
         {/* Back button - shows when category is selected */}
         {selectedCategory !== "All" && (
-          <div className="mb-8 opacity-0 animate-fade-in">
+          <div className="mb-10 md:mb-12 opacity-0 animate-fade-in">
             <Button
               onClick={() => setSelectedCategory("All")}
               variant="outline"
-              className="bg-white/60 backdrop-blur-sm border-gold/30 text-charcoal hover:bg-white hover:border-gold/50 hover:shadow-md transition-all font-medium"
+              className="bg-white/70 backdrop-blur-sm border-gold/25 text-charcoal hover:bg-white hover:border-gold/40 hover:shadow-md transition-all duration-300 font-medium text-sm"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to All Projects
@@ -85,53 +85,48 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
         )}
 
         {/* Header with enhanced styling */}
-        <div className="mb-16 text-center opacity-0 animate-fade-in">
-          <div className="inline-block mb-4">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6" />
+        <div className="mb-20 text-center opacity-0 animate-fade-in">
+          <div className="inline-block mb-6">
+            <div className="h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-8" />
           </div>
-          <h2 className="font-playfair text-6xl md:text-7xl font-bold text-charcoal mb-6 tracking-tight">
+          <h2 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-5 tracking-tight">
             Portfolio
           </h2>
-          <p className="font-inter text-charcoal/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="font-inter text-charcoal/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
             A curated collection of exceptional spaces crafted with precision and artistry
           </p>
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-6" />
+          <div className="h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-8" />
         </div>
 
         {/* Enhanced category filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-20 opacity-0 animate-fade-in delay-200">
+        <div className="flex flex-wrap justify-center gap-2.5 mb-24 opacity-0 animate-fade-in delay-200">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`group relative font-inter px-8 py-4 rounded-full text-sm uppercase tracking-widest font-semibold transition-all duration-500 overflow-hidden ${
+              className={`group relative font-inter px-6 md:px-8 py-3 md:py-3.5 rounded-full text-xs md:text-sm uppercase tracking-wider font-semibold transition-all duration-300 overflow-hidden ${
                 selectedCategory === category
-                  ? 'bg-gold text-charcoal shadow-2xl scale-110'
-                  : 'bg-white/80 backdrop-blur-sm text-charcoal hover:bg-white hover:shadow-xl hover:scale-105 border border-gold/20'
+                  ? 'bg-gold text-charcoal shadow-lg scale-105'
+                  : 'bg-white/90 backdrop-blur-sm text-charcoal/80 hover:bg-white hover:text-charcoal hover:shadow-md hover:scale-102 border border-gold/15 hover:border-gold/30'
               }`}
             >
-              {/* Animated background gradient for active state */}
-              {selectedCategory === category && (
-                <div className="absolute inset-0 bg-gradient-to-r from-gold via-gold/90 to-gold animate-pulse -z-10" />
-              )}
-              
-              <span className="relative z-10 flex items-center gap-2">
-                {category}
-                <span className={`text-xs font-normal transition-opacity duration-300 ${
-                  selectedCategory === category ? 'opacity-70' : 'opacity-50 group-hover:opacity-70'
+              <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
+                <span className="font-semibold">{category}</span>
+                <span className={`text-[10px] md:text-xs font-normal transition-opacity duration-300 ${
+                  selectedCategory === category ? 'opacity-80' : 'opacity-60 group-hover:opacity-80'
                 }`}>
                   ({getCategoryCount(category)})
                 </span>
               </span>
 
               {/* Hover effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/20 to-gold/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/15 to-gold/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
             </button>
           ))}
         </div>
 
         {/* Projects grid with enhanced spacing */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 lg:gap-7 xl:gap-8">
           {filteredProjects.map((project, index) => (
             <ProjectCardCarousel
               key={project.id}
@@ -143,8 +138,8 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
         </div>
 
         {/* Bottom decoration */}
-        <div className="mt-24 text-center opacity-0 animate-fade-in delay-[800ms]">
-          <div className="h-px w-32 bg-gradient-to-r from-transparent via-gold/40 to-transparent mx-auto" />
+        <div className="mt-28 mb-12 text-center opacity-0 animate-fade-in delay-[800ms]">
+          <div className="h-px w-24 bg-gradient-to-r from-transparent via-gold/40 to-transparent mx-auto" />
         </div>
       </div>
     </div>
