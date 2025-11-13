@@ -66,9 +66,9 @@ const ProjectDetail = () => {
   const validDbImages = dbImages.filter(img => img.image_url && (img.image_url.startsWith('http') || img.image_url.startsWith('https://') || img.image_url.startsWith('/')));
 
   // For projects with database images, ONLY use database images (never fall back to static)
-  // For syracuse-house, always use static images
+  // For syracuse-house and carmel-valley-design-build, always use static images
   // For other projects without database images, use static images as fallback
-  const allImages = id === 'syracuse-house' && project?.images && project.images.length > 0 
+  const allImages = (id === 'syracuse-house' || id === 'carmel-valley-design-build') && project?.images && project.images.length > 0 
     ? project.images 
     : validDbImages.length > 0 
       ? validDbImages.map(img => img.image_url) 
