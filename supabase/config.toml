@@ -1,1 +1,4 @@
 project_id = "svgfviacuvolubsdkdxk"
+
+[functions.list-users]
+verify_jwt = true
