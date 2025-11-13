@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/mc-logo-new.png";
 
@@ -117,18 +117,6 @@ export const Footer = () => {
                   Contact
                 </a>
               </nav>
-              
-              <Button 
-                onClick={() => {
-                  const chatbot = document.querySelector('[data-chatbot-trigger]') as HTMLElement;
-                  if (chatbot) chatbot.click();
-                }}
-                className="bg-amber-500 hover:bg-amber-600 text-white text-sm"
-                size="sm"
-              >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Talk with Us
-              </Button>
             </div>
           </div>
         </div>
