@@ -13,6 +13,7 @@ import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import Login from "./pages/Login";
+import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/project/:id",
     element: <ProjectDetail />,
+  },
+  {
+    path: "/portfolio",
+    element: <Portfolio />,
   },
   {
     path: "/auth",
