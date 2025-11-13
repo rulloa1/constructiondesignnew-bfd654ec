@@ -129,24 +129,21 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
           </div>
         )}
 
-        {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none" />
-        
-        {/* Subtle shine effect on hover */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none translate-x-[-100%] group-hover:translate-x-[100%]" style={{ transition: 'opacity 0.7s, transform 1s' }} />
+        {/* Enhanced Gradient Overlay - Darker at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent pointer-events-none" />
 
         {/* Overlay Content */}
         <div className="absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 pointer-events-none">
           <span
-            className={`inline-block w-fit px-4 py-1.5 rounded-full text-xs uppercase tracking-widest font-bold mb-4 transition-all duration-300 shadow-lg ${categoryColor}`}
+            className={`inline-block w-fit px-4 py-2 rounded-full text-xs uppercase tracking-widest font-bold mb-3 transition-all duration-300 shadow-lg ${categoryColor}`}
           >
             {project.category}
           </span>
-          <h3 className="font-playfair text-2xl md:text-3xl font-bold text-cream group-hover:text-gold mb-2 transition-all duration-300 transform group-hover:translate-x-1">
+          <h3 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-1 transition-all duration-300">
             {project.title}
           </h3>
-          <p className="font-inter text-sm text-cream/90 group-hover:text-cream font-light transition-all duration-300 tracking-wide">
-            {project.location}
+          <p className="font-inter text-sm text-white/90 font-light tracking-wide">
+            Residential • {project.category.includes('Construction') ? 'Construction' : project.category.includes('Design') ? 'Design' : 'Development'}
           </p>
         </div>
       </div>
