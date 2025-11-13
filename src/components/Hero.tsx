@@ -1,43 +1,34 @@
 import { useState, useEffect } from "react";
 import heroImage from "@/assets/hero-mc-portfolio.png";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
 export const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
-  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
-
+  const {
+    elementRef,
+    isVisible
+  } = useScrollAnimation({
+    threshold: 0.2
+  });
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true
+    });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  return (
-    <section 
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className={`relative h-screen w-full overflow-hidden transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-    >
+  return <section ref={elementRef as React.RefObject<HTMLElement>} className={`relative h-screen w-full overflow-hidden transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
       <div className="absolute inset-0 bg-background">
-        <img 
-          src={heroImage} 
-          alt="Michael Chandler Portfolio - Construction site leader" 
-          className="w-full h-full object-cover object-[center_40%] transition-transform duration-100 ease-out"
-          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
-        />
+        <img src={heroImage} alt="Michael Chandler Portfolio - Construction site leader" className="w-full h-full object-cover object-[center_40%] transition-transform duration-100 ease-out" style={{
+        transform: `translateY(${scrollY * 0.3}px)`
+      }} />
       </div>
       
       {/* Edge Fade Effect */}
-      <div 
-        className="absolute inset-0 pointer-events-none" 
-        style={{
-          background: 'radial-gradient(ellipse 75% 70% at 50% 40%, transparent 0%, transparent 40%, hsl(var(--background) / 0.3) 65%, hsl(var(--background)) 100%)'
-        }} 
-      />
+      <div className="absolute inset-0 pointer-events-none" style={{
+      background: 'radial-gradient(ellipse 75% 70% at 50% 40%, transparent 0%, transparent 40%, hsl(var(--background) / 0.3) 65%, hsl(var(--background)) 100%)'
+    }} />
       
       {/* Text Overlay */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 z-10">
@@ -46,10 +37,9 @@ export const Hero = () => {
             30+ Years of Quality Craftsmanship
           </h2>
           <p className="text-base sm:text-lg md:text-xl font-inter font-light text-white max-w-3xl mx-auto leading-relaxed drop-shadow-md [text-shadow:0_2px_8px_rgba(0,0,0,0.8)] px-2">
-            Architectural design, landscape restoration, and construction excellence
+            Architectural Design | Landscape Restoration | Construction Excellence
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
