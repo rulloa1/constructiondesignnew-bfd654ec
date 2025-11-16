@@ -150,7 +150,6 @@ export const UploadSyracuseImages = () => {
       const blob = await response.blob();
       return new File([blob], filename, { type: blob.type });
     } catch (error) {
-      console.error(`Failed to convert ${filename}:`, error);
       return null;
     }
   };
@@ -189,7 +188,6 @@ export const UploadSyracuseImages = () => {
         // Check if this image already exists
         const imageUrl = image as string;
         if (existingUrls.has(imageUrl)) {
-          console.log(`Skipping ${filename} - already exists`);
           continue;
         }
 
@@ -205,7 +203,6 @@ export const UploadSyracuseImages = () => {
           });
 
         if (uploadError) {
-          console.error(`Failed to upload ${filename}:`, uploadError);
           failCount++;
           continue;
         }
@@ -229,13 +226,11 @@ export const UploadSyracuseImages = () => {
           });
 
         if (dbError) {
-          console.error(`Failed to save ${filename} to database:`, dbError);
           failCount++;
         } else {
           successCount++;
         }
       } catch (error) {
-        console.error(`Error uploading ${filename}:`, error);
         failCount++;
       }
     }
@@ -278,8 +273,6 @@ export const UploadSyracuseImages = () => {
         return;
       }
 
-      console.log(`Found ${images.length} images to delete`);
-
       // Delete from Supabase storage - improved path extraction
       const filesToDelete: string[] = [];
       
@@ -314,8 +307,6 @@ export const UploadSyracuseImages = () => {
         });
       }
 
-      console.log(`Files to delete: ${filesToDelete.length}`);
-
       if (filesToDelete.length > 0) {
         // Delete in batches of 100
         const batchSize = 100;
@@ -324,12 +315,6 @@ export const UploadSyracuseImages = () => {
           const { error: storageError } = await supabase.storage
             .from('project-images')
             .remove(batch);
-
-          if (storageError) {
-            console.error(`Error deleting batch ${Math.floor(i / batchSize) + 1}:`, storageError);
-          } else {
-            console.log(`Deleted batch ${Math.floor(i / batchSize) + 1} (${batch.length} files)`);
-          }
         }
       }
 
@@ -346,7 +331,6 @@ export const UploadSyracuseImages = () => {
       toast.success(`Successfully cleared ${images.length} database images and ${filesToDelete.length} storage files!`);
       setTimeout(() => window.location.reload(), 1500);
     } catch (error: unknown) {
-      console.error("Error clearing images:", error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       toast.error(`Failed to clear images: ${errorMessage}`);
     } finally {

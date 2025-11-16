@@ -71,7 +71,6 @@ export const ImageGalleryManager = () => {
     setUploading(false);
 
     if (error) {
-      console.error('Database insert error:', error);
       toast.error(`Failed to add image: ${error.message}`);
     } else {
       toast.success("Image added successfully");

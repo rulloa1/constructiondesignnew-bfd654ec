@@ -99,27 +99,6 @@ const ProjectDetail = () => {
     (img.image_url.startsWith('http') || img.image_url.startsWith('https://'))
   );
 
-  // Debug logging to help identify issues
-  useEffect(() => {
-    if (project) {
-      const hasValidDbImages = validDbImages.length > 0;
-      console.log(`Project: ${project.title} (${id})`, {
-        hasStaticImages,
-        staticImageCount: project.images?.length || 0,
-        hasValidDbImages,
-        validDbImageCount: validDbImages.length,
-        allImagesCount: allImages.length,
-        firstImage: allImages[0],
-        projectImagesType: typeof project.images,
-        isArray: Array.isArray(project.images)
-      });
-      
-      if (allImages.length === 0 && project.images && project.images.length > 0) {
-        console.warn(`⚠️ Project ${project.title} has ${project.images.length} static images but allImages is empty!`);
-        console.warn('Sample images:', project.images.slice(0, 3));
-      }
-    }
-  }, [id, project, allImages.length, hasStaticImages, validDbImages.length]);
 
   // Helper function to get image label
   const getImageLabel = (imageUrl: string, index: number): string | null => {
@@ -222,13 +201,10 @@ const ProjectDetail = () => {
                           onClick={() => setSelectedImageIndex(index)} 
                           className="relative aspect-square overflow-hidden rounded-lg bg-white border border-charcoal/10 group cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-charcoal/30 w-full"
                         >
-                          <img 
-                            src={image} 
-                            alt={`${project.title} - Image ${index + 1}`} 
+                          <img
+                            src={image}
+                            alt={`${project.title} - Image ${index + 1}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            onError={(e) => {
-                              console.error('Image failed to load:', image, e);
-                            }}
                           />
                           {label && (
                             <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>

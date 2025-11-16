@@ -47,7 +47,6 @@ export default function AdminUsers() {
       const data = await response.json();
       setUsers(data.users);
     } catch (error) {
-      console.error('Error fetching users:', error);
       toast.error("Failed to load users");
     } finally {
       setLoading(false);
@@ -103,10 +102,9 @@ export default function AdminUsers() {
         if (error) throw error;
         toast.success("Admin role granted");
       }
-      
+
       await fetchUsers();
     } catch (error) {
-      console.error('Error toggling admin role:', error);
       toast.error("Failed to update user role");
     } finally {
       setProcessingUserId(null);

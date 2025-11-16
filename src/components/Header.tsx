@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -13,8 +14,8 @@ interface HeaderProps {
   onPortfolioClick?: () => void;
 }
 
-export const Header = ({ onPortfolioClick }: HeaderProps) => {
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string, itemName: string) => {
+export const Header = React.memo(({ onPortfolioClick }: HeaderProps) => {
+  const handleSmoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string, itemName: string) => {
     if (itemName === "Portfolio" && onPortfolioClick) {
       e.preventDefault();
       onPortfolioClick();
@@ -32,7 +33,7 @@ export const Header = ({ onPortfolioClick }: HeaderProps) => {
         behavior: 'smooth'
       });
     }
-  };
+  }, [onPortfolioClick]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-charcoal/80 shadow-lg transition-all duration-300 border-b border-white/5">
@@ -82,4 +83,6 @@ export const Header = ({ onPortfolioClick }: HeaderProps) => {
       </nav>
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';

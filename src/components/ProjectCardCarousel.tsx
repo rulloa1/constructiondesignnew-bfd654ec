@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
@@ -20,7 +20,7 @@ interface ProjectCardCarouselProps {
   index: number;
 }
 
-export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
+export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = React.memo(({
   project,
   categoryColor,
   index,
@@ -48,9 +48,21 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
     };
   }, [api]);
 
-  const handleImageLoad = (imgIndex: number) => {
+  // Memoize image load handler
+  const handleImageLoad = useCallback((imgIndex: number) => {
     setImagesLoaded(prev => new Set(prev).add(imgIndex));
-  };
+  }, []);
+
+  // Memoize navigation handlers
+  const handlePrevClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    api?.scrollPrev();
+  }, [api]);
+
+  const handleNextClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    api?.scrollNext();
+  }, [api]);
 
   return (
     <Link
@@ -99,20 +111,14 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
           {project.images.length > 1 && (
             <>
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  api?.scrollPrev();
-                }}
+                onClick={handlePrevClick}
                 className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 h-9 w-9 md:h-10 md:w-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 text-charcoal flex items-center justify-center z-10 shadow-md backdrop-blur-sm"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
               </button>
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  api?.scrollNext();
-                }}
+                onClick={handleNextClick}
                 className="absolute right-2.5 md:right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 h-9 w-9 md:h-10 md:w-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 text-charcoal flex items-center justify-center z-10 shadow-md backdrop-blur-sm"
                 aria-label="Next image"
               >
@@ -149,4 +155,6 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
       </div>
     </Link>
   );
-};
+});
+
+ProjectCardCarousel.displayName = 'ProjectCardCarousel';

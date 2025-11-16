@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
@@ -22,7 +22,7 @@ interface PortfolioGridProps {
   initialCategory?: string;
 }
 
-export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCategory = "All" }) => {
+export const PortfolioGrid: React.FC<PortfolioGridProps> = React.memo(({ onClose, initialCategory = "All" }) => {
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory as Category);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -33,19 +33,24 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
     threshold: 0.3
   });
 
-  const filteredProjects = getProjectsByCategory(selectedCategory);
+  // Memoize filtered projects to prevent recalculation on every render
+  const filteredProjects = useMemo(() => {
+    return getProjectsByCategory(selectedCategory);
+  }, [selectedCategory]);
 
-  const handleClose = () => {
+  // Memoize handleClose to prevent recreation
+  const handleClose = useCallback(() => {
     setIsClosing(true);
     setTimeout(() => {
       onClose();
     }, 600);
-  };
+  }, [onClose]);
 
-  const getCategoryCount = (category: Category) => {
+  // Memoize getCategoryCount to prevent recreation
+  const getCategoryCount = useCallback((category: Category) => {
     if (category === "All") return projects.length;
     return getProjectsByCategory(category).length;
-  };
+  }, []);
 
   return (
     <div 
@@ -157,4 +162,6 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onClose, initialCa
       </div>
     </div>
   );
-};
+});
+
+PortfolioGrid.displayName = 'PortfolioGrid';

@@ -1,5 +1,5 @@
 // Deployment test - changes automatically deploy to mcdesign.bio
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,14 +7,23 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
-import Index from "./pages/Index";
-import ProjectDetail from "./pages/ProjectDetail";
-import Auth from "./pages/Auth";
-import Admin from "./pages/Admin";
-import AdminUsers from "./pages/AdminUsers";
-import Login from "./pages/Login";
-import Portfolio from "./pages/Portfolio";
-import NotFound from "./pages/NotFound";
+
+// Lazy load all route components for better code splitting
+const Index = lazy(() => import("./pages/Index"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Admin = lazy(() => import("./pages/Admin"));
+const AdminUsers = lazy(() => import("./pages/AdminUsers"));
+const Login = lazy(() => import("./pages/Login"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-cream/30">
+    <div className="text-charcoal font-light">Loading...</div>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -85,7 +94,9 @@ const App: React.FC = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <RouterProvider router={router} future={{ v7_startTransition: true }} />
+        <Suspense fallback={<PageLoader />}>
+          <RouterProvider router={router} future={{ v7_startTransition: true }} />
+        </Suspense>
       </TooltipProvider>
     </QueryClientProvider>
   );

@@ -1,16 +1,18 @@
+import React, { useMemo, useCallback } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import logo from "@/assets/mc-logo-new.png";
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const scrollToSection = (sectionId: string) => {
+
+export const Footer = React.memo(() => {
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
+
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth'
       });
     }
-  };
+  }, []);
   return <footer id="contact" className="bg-[#1a1f2e] text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 md:py-20">
@@ -133,4 +135,6 @@ export const Footer = () => {
         </div>
       </div>
     </footer>;
-};
+});
+
+Footer.displayName = 'Footer';
