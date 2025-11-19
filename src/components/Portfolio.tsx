@@ -6,20 +6,27 @@ import { Link } from "react-router-dom";
 interface PortfolioProps {
   onClose: () => void;
 }
-const categories = ["All", "Residential Construction", "Residential Development", "Civil", "Hospitality", "Design Build"];
-const categoryColors: Record<string, string> = {
+const categories: (ProjectCategory | "All")[] = [
+  "All",
+  "Residential Construction",
+  "Residential Development",
+  "Civil",
+  "Hospitality",
+  "Design/Build"
+];
+const categoryColors: Record<ProjectCategory, string> = {
   "Residential Construction": "bg-gold text-charcoal",
   "Residential Development": "bg-steelBlue text-cream",
   Civil: "bg-steelBlue text-cream",
   Hospitality: "bg-burgundy text-cream",
-  "Design Build": "bg-accent text-charcoal"
+  "Design/Build": "bg-accent text-charcoal"
 };
 export const Portfolio: React.FC<PortfolioProps> = ({
   onClose
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | "All">("All");
   const filteredProjects = selectedCategory === "All" ? projects : projects.filter(p => p.category === selectedCategory);
-  const getCategoryCount = (category: string) => {
+  const getCategoryCount = (category: ProjectCategory | "All") => {
     if (category === "All") return projects.length;
     return projects.filter(p => p.category === category).length;
   };
