@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Link } from "lucide-react";
+import { Link, Upload } from "lucide-react";
+import { Label } from "@/components/ui/label";
 
 interface VideoUploadProps {
   projectId: string;
@@ -16,6 +17,7 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
   const [videoUrl, setVideoUrl] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const validateUrl = (url: string): boolean => {
     try {
@@ -23,6 +25,80 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
       return true;
     } catch {
       return false;
+    }
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Check file size (max 100MB)
+    const maxSize = 100 * 1024 * 1024;
+    if (file.size > maxSize) {
+      toast.error("Video file must be less than 100MB");
+      return;
+    }
+
+    setUploading(true);
+    setUploadProgress(0);
+
+    try {
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      
+      if (!session) {
+        throw new Error('Not authenticated. Please log in again.');
+      }
+
+      // Check admin role
+      const { data: roleCheck, error: roleError } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session.user.id)
+        .eq('role', 'admin');
+
+      if (roleError || !roleCheck || roleCheck.length === 0) {
+        throw new Error('Admin privileges required to upload videos');
+      }
+
+      // Upload to storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${projectId}/${Date.now()}-${file.name}`;
+
+      const { error: uploadError, data } = await supabase.storage
+        .from('project-images')
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('project-images')
+        .getPublicUrl(fileName);
+
+      // Save to database
+      const { error: dbError } = await supabase
+        .from('project_videos')
+        .insert({
+          project_id: projectId,
+          video_url: publicUrl,
+          title: title.trim() || file.name,
+          description: description.trim() || null,
+        });
+
+      if (dbError) throw dbError;
+
+      toast.success("Video uploaded successfully!");
+      setTitle("");
+      setDescription("");
+      onUploadComplete();
+    } catch (error: any) {
+      toast.error(`Failed to upload: ${error.message}`);
+    } finally {
+      setUploading(false);
+      setUploadProgress(0);
+      if (event.target) event.target.value = '';
     }
   };
 
@@ -94,9 +170,56 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
       
       <div className="space-y-3">
         <div>
-          <label htmlFor="video-url" className="text-sm font-medium text-foreground">
-            Video URL *
-          </label>
+          <Label htmlFor="video-title">Title (optional)</Label>
+          <Input
+            id="video-title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Video title"
+            className="mt-1"
+            disabled={uploading}
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="video-description">Description (optional)</Label>
+          <Textarea
+            id="video-description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Video description"
+            className="mt-1"
+            rows={3}
+            disabled={uploading}
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="video-file">Upload from Device</Label>
+          <Input
+            id="video-file"
+            type="file"
+            accept="video/*"
+            onChange={handleFileUpload}
+            disabled={uploading}
+            className="mt-1"
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Upload video files (MP4, MOV, etc.) - Max 100MB
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-card px-2 text-muted-foreground">Or add by URL</span>
+          </div>
+        </div>
+
+        <div>
+          <Label htmlFor="video-url">Video URL</Label>
           <Input
             id="video-url"
             value={videoUrl}
@@ -110,42 +233,13 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
           </p>
         </div>
 
-        <div>
-          <label htmlFor="video-title" className="text-sm font-medium text-foreground">
-            Title (optional)
-          </label>
-          <Input
-            id="video-title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Video title"
-            className="mt-1"
-            disabled={uploading}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="video-description" className="text-sm font-medium text-foreground">
-            Description (optional)
-          </label>
-          <Textarea
-            id="video-description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Video description"
-            className="mt-1"
-            rows={3}
-            disabled={uploading}
-          />
-        </div>
-
         <Button
           onClick={handleUrlSubmit}
           disabled={uploading || !videoUrl.trim()}
           className="w-full"
         >
           <Link className="mr-2 h-4 w-4" />
-          {uploading ? "Adding..." : "Add Video"}
+          {uploading ? "Adding..." : "Add Video by URL"}
         </Button>
       </div>
     </div>
