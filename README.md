@@ -60,6 +60,13 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Security Features
+
+This project includes Node.js security hardening:
+
+- **Prototype Pollution Protection**: All npm scripts run with `--disable-proto=delete` flag, which removes the `Object.prototype.__proto__` property to prevent prototype pollution attacks.
+- The flag is configured using `cross-env` for cross-platform compatibility (Windows, macOS, Linux).
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/8d70aad7-b565-42e6-bddf-8ea85bfd9f37) and click on Share -> Publish.
