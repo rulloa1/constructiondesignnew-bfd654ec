@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { Trash2, GripVertical } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Checkbox } from "@/components/ui/checkbox";
-import { UploadSyracuseImages } from "@/components/admin/UploadSyracuseImages";
 
 interface ProjectImage {
   id: string;
@@ -203,8 +202,6 @@ export const ImageGalleryManager = () => {
 
   return (
     <div className="space-y-6">
-      <UploadSyracuseImages />
-      
       <div className="bg-white p-6 rounded-lg shadow-md border border-charcoal/10">
         <Label htmlFor="project">Select Project</Label>
         <Select value={selectedProject} onValueChange={setSelectedProject}>
