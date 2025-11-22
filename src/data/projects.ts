@@ -717,15 +717,15 @@ export const projects: Project[] = [
     additionalInfo: "SE Texas",
     category: "Residential Development",
     description: "45-acre master-planned residential development completed in phases over 36 months. This comprehensive project includes infrastructure for 120+ home sites, 3.2 miles of roads, complete utility installation (water, sewer, electric, gas), 2 miles of walking trails, community amenities, and extensive drainage systems. The development required coordination with multiple municipal agencies and environmental compliance measures.",
-    image: developmentPlan,
+    image: developmentTrail,
     images: [
+      developmentTrail,
       developmentPlan,
       developmentSite,
       developmentAerialBefore,
       developmentAerialAfter,
       developmentConstruction1,
       developmentConstruction2,
-      developmentTrail,
     ],
   },
   // DESIGN/BUILD
