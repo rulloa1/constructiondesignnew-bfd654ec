@@ -280,6 +280,11 @@ export const Portfolio: React.FC<PortfolioProps> = ({
                     {project.additionalInfo}
                   </p>
                 )}
+                {project.description && (
+                  <p className="text-xs sm:text-sm font-inter text-muted-foreground/80 font-light leading-relaxed line-clamp-2 mt-1.5">
+                    {project.description}
+                  </p>
+                )}
               </div>
             </Link>)}
         </div>
