@@ -25,6 +25,7 @@ export const ImageGalleryManager = () => {
   const [images, setImages] = useState<ProjectImage[]>([]);
   const [uploading, setUploading] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
 
   const fetchImages = useCallback(async () => {
     const { data, error } = await supabase
@@ -157,6 +158,7 @@ export const ImageGalleryManager = () => {
 
   const handleDragOver = (e: React.DragEvent, index: number) => {
     e.preventDefault();
+    setDragOverIndex(index);
     if (draggedIndex === null || draggedIndex === index) return;
 
     const newImages = [...images];
@@ -184,6 +186,7 @@ export const ImageGalleryManager = () => {
     }
 
     setDraggedIndex(null);
+    setDragOverIndex(null);
     toast.success("Order updated");
   };
 
@@ -291,18 +294,29 @@ export const ImageGalleryManager = () => {
             Project Images ({images.length})
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {images.map((image, index) => (
-              <div
-                key={image.id}
-                draggable
-                onDragStart={() => handleDragStart(index)}
-                onDragOver={(e) => handleDragOver(e, index)}
-                onDragEnd={handleDragEnd}
-                className="relative group bg-cream/20 rounded-lg hover:bg-cream/30 transition-colors cursor-move overflow-hidden"
-              >
-                <div className="absolute top-2 left-2 z-10">
-                  <GripVertical className="h-5 w-5 text-white drop-shadow-lg" />
-                </div>
+            {images.map((image, index) => {
+              const isDragging = draggedIndex === index;
+              const isDropTarget = dragOverIndex === index && draggedIndex !== index;
+              
+              return (
+                <div
+                  key={image.id}
+                  draggable
+                  onDragStart={() => handleDragStart(index)}
+                  onDragOver={(e) => handleDragOver(e, index)}
+                  onDragEnd={handleDragEnd}
+                  onDragLeave={() => setDragOverIndex(null)}
+                  className={`relative group rounded-lg transition-all duration-200 cursor-move overflow-hidden ${
+                    isDragging 
+                      ? 'opacity-40 scale-95 ring-2 ring-primary' 
+                      : isDropTarget
+                      ? 'ring-4 ring-accent scale-105 shadow-lg'
+                      : 'bg-cream/20 hover:bg-cream/30 hover:scale-102'
+                  }`}
+                >
+                  <div className="absolute top-2 left-2 z-10 bg-primary/80 rounded-full p-1">
+                    <GripVertical className="h-5 w-5 text-white" />
+                  </div>
                 <img
                   src={image.image_url}
                   alt={image.title || "Project image"}
@@ -338,7 +352,8 @@ export const ImageGalleryManager = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
       )}

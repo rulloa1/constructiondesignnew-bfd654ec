@@ -17,6 +17,8 @@ const LeadSchema = z.object({
   message: z.string().trim().max(5000, "Message too long").optional().nullable()
 });
 
+type LeadData = z.infer<typeof LeadSchema> & { id?: string };
+
 // Limit conversation history to last 50 messages to prevent unbounded growth
 const MAX_CONVERSATION_MESSAGES = 50;
 
@@ -284,7 +286,7 @@ Only include the LEAD_DATA when you have at least name and email.`;
           if (updateError) {
             console.error("Error updating lead:", updateError);
           }
-          leadData = { ...validatedData, id: leadId };
+          leadData = { ...validatedData, id: leadId } as LeadData;
         } else {
           const { data: newLead, error: insertError } = await supabase
             .from("client_leads")
@@ -295,7 +297,7 @@ Only include the LEAD_DATA when you have at least name and email.`;
           if (insertError) {
             console.error("Error inserting lead:", insertError);
           } else if (newLead) {
-            leadData = { ...validatedData, id: newLead.id };
+            leadData = { ...validatedData, id: newLead.id } as LeadData;
           }
         }
       } catch (e) {
