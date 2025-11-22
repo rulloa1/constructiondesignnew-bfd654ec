@@ -309,6 +309,8 @@ import developmentAerialAfter from "@/assets/projects/development-aerial-after.j
 import developmentConstruction1 from "@/assets/projects/development-construction-1.jpg";
 import developmentConstruction2 from "@/assets/projects/development-construction-2.jpg";
 import developmentTrail from "@/assets/projects/development-trail.jpg";
+import developmentEntrance1 from "@/assets/projects/development-entrance-1.jpg";
+import developmentEntrance2 from "@/assets/projects/development-entrance-2.jpg";
 import linksCover from "@/assets/projects/links-cover.jpg";
 import links1 from "@/assets/projects/links-1.jpg";
 import links2 from "@/assets/projects/links-2.jpg";
@@ -726,6 +728,8 @@ export const projects: Project[] = [
       developmentAerialAfter,
       developmentConstruction1,
       developmentConstruction2,
+      developmentEntrance1,
+      developmentEntrance2,
     ],
   },
   // DESIGN/BUILD
