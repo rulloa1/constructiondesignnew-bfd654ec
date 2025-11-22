@@ -302,19 +302,13 @@ import abacoLuxeBoathouseCover from "@/assets/projects/abaco-luxe-boathouse-cove
 import abacoLuxeBoathouse1 from "@/assets/projects/abaco-luxe-boathouse-1.jpg";
 
 // Development
-import development1 from "@/assets/projects/development-1.jpg";
-import development2 from "@/assets/projects/development-2.jpg";
-import development3 from "@/assets/projects/development-3.jpg";
-import development4 from "@/assets/projects/development-4.jpg";
-import development5 from "@/assets/projects/development-5.jpg";
-import development6 from "@/assets/projects/development-6.jpg";
-import development7 from "@/assets/projects/development-7.jpg";
-import development8 from "@/assets/projects/development-8.jpg";
-import development9 from "@/assets/projects/development-9.jpg";
-import development10 from "@/assets/projects/development-10.jpg";
-import development11 from "@/assets/projects/development-11.jpg";
-import development12 from "@/assets/projects/development-12.jpg";
-import development13 from "@/assets/projects/development-13.jpg";
+import developmentPlan from "@/assets/projects/development-plan.jpg";
+import developmentSite from "@/assets/projects/development-site.jpg";
+import developmentAerialBefore from "@/assets/projects/development-aerial-before.jpg";
+import developmentAerialAfter from "@/assets/projects/development-aerial-after.jpg";
+import developmentConstruction1 from "@/assets/projects/development-construction-1.jpg";
+import developmentConstruction2 from "@/assets/projects/development-construction-2.jpg";
+import developmentTrail from "@/assets/projects/development-trail.jpg";
 import linksCover from "@/assets/projects/links-cover.jpg";
 import links1 from "@/assets/projects/links-1.jpg";
 import links2 from "@/assets/projects/links-2.jpg";
@@ -723,34 +717,15 @@ export const projects: Project[] = [
     additionalInfo: "SE Texas",
     category: "Residential Development",
     description: "45-acre master-planned residential development completed in phases over 36 months. This comprehensive project includes infrastructure for 120+ home sites, 3.2 miles of roads, complete utility installation (water, sewer, electric, gas), 2 miles of walking trails, community amenities, and extensive drainage systems. The development required coordination with multiple municipal agencies and environmental compliance measures.",
-    image: development1,
+    image: developmentPlan,
     images: [
-      development1,
-      development2,
-      development3,
-      development4,
-      development5,
-      development6,
-      development7,
-      development8,
-      development9,
-      development10,
-      development11,
-      development12,
-      development13,
-      linksCover,
-      links1,
-      links2,
-      links3,
-      links4,
-      links5,
-      links6,
-      links7,
-      links8,
-      linksEstate,
-      linksEstate2,
-      linksEstate3,
-      siteMap,
+      developmentPlan,
+      developmentSite,
+      developmentAerialBefore,
+      developmentAerialAfter,
+      developmentConstruction1,
+      developmentConstruction2,
+      developmentTrail,
     ],
   },
   // DESIGN/BUILD
