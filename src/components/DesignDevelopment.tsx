@@ -1,9 +1,9 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import developmentImg1 from "@/assets/projects/1_Before.jpg";
-import developmentImg2 from "@/assets/projects/2_After.jpg";
-import developmentImg3 from "@/assets/projects/3_Before.jpg";
-import developmentImg4 from "@/assets/projects/4_After.jpg";
+import developmentImg1 from "@/assets/projects/development-aerial-before.jpg";
+import developmentImg2 from "@/assets/projects/development-construction-2.jpg";
+import developmentImg3 from "@/assets/projects/development-aerial-after.jpg";
+import developmentImg4 from "@/assets/projects/development-trail.jpg";
 const processSteps = [{
   number: "01",
   title: "Concept & Planning",
