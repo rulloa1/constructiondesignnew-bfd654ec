@@ -135,6 +135,23 @@ export const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = React.mem
           </div>
         )}
 
+        {/* Enhanced Gradient Overlay - Darker at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/35 to-transparent pointer-events-none" />
+
+        {/* Overlay Content */}
+        <div className="absolute inset-0 p-5 md:p-6 flex flex-col justify-end transition-all duration-400 pointer-events-none">
+          <span
+            className={`inline-block w-fit px-3.5 py-1.5 rounded-full text-[10px] md:text-xs uppercase tracking-widest font-bold mb-3 transition-all duration-300 shadow-md ${categoryColor}`}
+          >
+            {project.category}
+          </span>
+          <h3 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1.5 transition-all duration-300 leading-tight">
+            {project.title}
+          </h3>
+          <p className="font-inter text-xs md:text-sm text-white/85 font-light tracking-wide">
+            Residential • {project.category.includes('Construction') ? 'Construction' : project.category.includes('Design') ? 'Design' : 'Development'}
+          </p>
+        </div>
       </div>
     </Link>
   );
