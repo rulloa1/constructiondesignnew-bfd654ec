@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Trash2, GripVertical } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ImageEditor } from "@/components/ImageEditor";
 
 interface ProjectImage {
   id: string;
@@ -26,6 +27,7 @@ export const ImageGalleryManager = () => {
   const [uploading, setUploading] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [editingImage, setEditingImage] = useState<{ url: string; fileName: string } | null>(null);
 
   const fetchImages = useCallback(async () => {
     const { data, error } = await supabase
@@ -57,15 +59,23 @@ export const ImageGalleryManager = () => {
       return;
     }
 
+    const imageUrl = URL.createObjectURL(file);
+    setEditingImage({ url: imageUrl, fileName: file.name });
+    if (event.target) event.target.value = '';
+  };
+
+  const handleSaveCroppedImage = async (croppedBlob: Blob, fileName: string) => {
+    if (!selectedProject) return;
+
     setUploading(true);
+    setEditingImage(null);
 
     try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${selectedProject}/${Date.now()}-${file.name}`;
+      const uploadFileName = `${selectedProject}/${Date.now()}-${fileName}`;
 
-      const { error: uploadError, data } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('project-images')
-        .upload(fileName, file, {
+        .upload(uploadFileName, croppedBlob, {
           cacheControl: '3600',
           upsert: false
         });
@@ -74,14 +84,14 @@ export const ImageGalleryManager = () => {
 
       const { data: { publicUrl } } = supabase.storage
         .from('project-images')
-        .getPublicUrl(fileName);
+        .getPublicUrl(uploadFileName);
 
       const { error: dbError } = await supabase
         .from('project_images')
         .insert({
           project_id: selectedProject,
           image_url: publicUrl,
-          title: imageTitle.trim() || file.name,
+          title: imageTitle.trim() || fileName,
           display_order: images.length,
           is_before: false,
           is_after: false,
@@ -96,7 +106,6 @@ export const ImageGalleryManager = () => {
       toast.error(`Failed to upload: ${error.message}`);
     } finally {
       setUploading(false);
-      if (event.target) event.target.value = '';
     }
   };
 
@@ -205,6 +214,14 @@ export const ImageGalleryManager = () => {
 
   return (
     <div className="space-y-6">
+      {editingImage && (
+        <ImageEditor
+          imageUrl={editingImage.url}
+          fileName={editingImage.fileName}
+          onSave={handleSaveCroppedImage}
+          onCancel={() => setEditingImage(null)}
+        />
+      )}
       <div className="bg-white p-6 rounded-lg shadow-md border border-charcoal/10">
         <Label htmlFor="project">Select Project</Label>
         <Select value={selectedProject} onValueChange={setSelectedProject}>
