@@ -283,6 +283,16 @@ import developmentConstruction1 from "@/assets/projects/development-construction
 import developmentConstruction2 from "@/assets/projects/development-construction-2.jpg";
 import developmentEntrance1 from "@/assets/projects/development-entrance-1.jpg";
 import developmentEntrance2 from "@/assets/projects/development-entrance-2.jpg";
+import developmentCivil1 from "@/assets/projects/development-civil-1.jpg";
+import developmentCivil2 from "@/assets/projects/development-civil-2.jpg";
+import developmentCivil3 from "@/assets/projects/development-civil-3.jpg";
+import developmentCivil4 from "@/assets/projects/development-civil-4.jpg";
+import developmentCivil5 from "@/assets/projects/development-civil-5.jpg";
+import developmentCivil6 from "@/assets/projects/development-civil-6.jpg";
+import developmentCivil7 from "@/assets/projects/development-civil-7.jpg";
+import developmentCivil8 from "@/assets/projects/development-civil-8.jpg";
+import developmentCivil9 from "@/assets/projects/development-civil-9.jpg";
+import developmentCivil10 from "@/assets/projects/development-civil-10.jpg";
 
 import pgCover from "@/assets/projects/pg-cover.jpg";
 import pg1 from "@/assets/projects/pg-1.jpg";
@@ -676,6 +686,16 @@ export const projects: Project[] = [
       developmentConstruction2,
       developmentEntrance1,
       developmentEntrance2,
+      developmentCivil1,
+      developmentCivil2,
+      developmentCivil3,
+      developmentCivil4,
+      developmentCivil5,
+      developmentCivil6,
+      developmentCivil7,
+      developmentCivil8,
+      developmentCivil9,
+      developmentCivil10,
     ],
   },
   // DESIGN/BUILD
