@@ -5,9 +5,7 @@ import { InteriorDesignShowcase } from "@/components/InteriorDesignShowcase";
 import { ArchitecturalRenderings } from "@/components/ArchitecturalRenderings";
 import { ExteriorSpacesLandscape } from "@/components/ExteriorSpacesLandscape";
 import { DevelopAndConcepts } from "@/components/DevelopAndConcepts";
-import { Sketches } from "@/components/Sketches";
 import { CustomFurniture } from "@/components/CustomFurniture";
-import { BrandIdentity } from "@/components/BrandIdentity";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -48,14 +46,10 @@ const Design = () => {
               {[
                 "Interiors",
                 "Architecture",
-                "Exterior Spaces",
-                "Landscape",
-                "Pools",
                 "Development",
                 "Concepts",
-                "Sketches",
+                "Pools",
                 "Custom Furniture",
-                "Brand Identity",
               ].map((category) => (
                 <span
                   key={category}
@@ -72,11 +66,9 @@ const Design = () => {
       {/* Design Album Sections */}
       <InteriorDesignShowcase />
       <ArchitecturalRenderings />
-      <ExteriorSpacesLandscape />
       <DevelopAndConcepts />
-      <Sketches />
+      <ExteriorSpacesLandscape />
       <CustomFurniture />
-      <BrandIdentity />
 
       <Footer />
     </div>

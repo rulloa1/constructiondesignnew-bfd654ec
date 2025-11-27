@@ -6,7 +6,6 @@ import { About } from "@/components/About";
 import { BookCoverHero } from "@/components/BookCoverHero";
 import { Portfolio } from "@/components/Portfolio";
 import { Services } from "@/components/Services";
-import { BrandIdentity } from "@/components/BrandIdentity";
 import { DesignConcepts } from "@/components/DesignConcepts";
 import { ArchitecturalRenderings } from "@/components/ArchitecturalRenderings";
 import { CustomFurniture } from "@/components/CustomFurniture";
@@ -105,7 +104,6 @@ const Index: React.FC = () => {
           <Header onPortfolioClick={handleOpenBook} />
           <Hero />
           <About onPortfolioClick={handleOpenBook} />
-          <BrandIdentity />
           <DesignConcepts />
           <ArchitecturalRenderings />
           <CustomFurniture />
