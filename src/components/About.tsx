@@ -1,11 +1,9 @@
 import { Lightbulb, Star, ArrowDown } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Card, CardContent } from "@/components/ui/card";
-
 interface AboutProps {
   onPortfolioClick?: () => void;
 }
-
 export const About = ({
   onPortfolioClick
 }: AboutProps) => {
@@ -15,29 +13,17 @@ export const About = ({
   } = useScrollAnimation({
     threshold: 0.15
   });
-
   const {
     elementRef: headingRef,
     isVisible: headingVisible
   } = useScrollAnimation({
     threshold: 0.3
   });
-
-  return (
-    <section 
-      id="about" 
-      ref={elementRef as React.RefObject<HTMLElement>} 
-      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-background"
-    >
+  return <section id="about" ref={elementRef as React.RefObject<HTMLElement>} className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Heading */}
-          <h2 
-            ref={headingRef as React.RefObject<HTMLHeadingElement>}
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-semibold text-center mb-10 sm:mb-12 md:mb-16 text-foreground leading-tight transition-all duration-1000 ${
-              headingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
+          <h2 ref={headingRef as React.RefObject<HTMLHeadingElement>} className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-semibold text-center mb-10 sm:mb-12 md:mb-16 text-foreground leading-tight transition-all duration-1000 ${headingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             About Me
           </h2>
           
@@ -49,9 +35,10 @@ export const About = ({
                 <p className="leading-relaxed">
                   Through my experience of <span className="font-semibold text-foreground">37 years</span> as a Business, Design, and Construction professional, I have found that exceptional results come from exceptional teams.
                 </p>
-                <p className="leading-relaxed">
-                  My approach is simple: bring together the right people, create an environment built on mutual respect, and stay closely attuned to client feedback throughout every phase of a project. I've built my career on the universal business principle that quality construction isn't just about meeting standards—it's about exceeding them by combining rigorous processes with forward-thinking design and fostering a collaborative team culture. Excellence is no longer simply a goal, but an inevitable result.
-                </p>
+                <p className="leading-relaxed">My approach is simple: bring together the right people, create an environment built on mutual respect, and stay closely attuned to client feedback throughout every phase of a project. 
+
+
+I've built my career on the universal business principle that quality construction isn't just about meeting standards—it's about exceeding them by combining rigorous processes with forward-thinking design and fostering a collaborative team culture. Excellence is no longer simply a goal, but an inevitable result.</p>
                 <p className="italic text-foreground/70 font-inter leading-relaxed">
                   -Michael Chandler
                 </p>
@@ -105,22 +92,15 @@ export const About = ({
           </div>
 
           {/* Arrow pointing to Portfolio */}
-          {onPortfolioClick && (
-            <div className="flex justify-center mt-8 sm:mt-10 md:mt-12">
-              <button 
-                onClick={onPortfolioClick} 
-                className="flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer group" 
-                aria-label="View Portfolio"
-              >
+          {onPortfolioClick && <div className="flex justify-center mt-8 sm:mt-10 md:mt-12">
+              <button onClick={onPortfolioClick} className="flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer group" aria-label="View Portfolio">
                 <span className="text-lg sm:text-xl font-playfair font-semibold text-accent leading-relaxed">
                   View My Work
                 </span>
                 <ArrowDown size={48} className="text-accent animate-bounce group-hover:animate-none" strokeWidth={2.5} />
               </button>
-            </div>
-          )}
+            </div>}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
