@@ -58,18 +58,12 @@ export const DevelopAndConcepts = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background via-muted/10 to-background">
+    <section className="py-16 sm:py-20 md:py-24 bg-muted/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 sm:mb-6 text-foreground tracking-tight">
-              Development & Concepts
-            </h2>
-            <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From initial concepts to full development, bringing visionary projects to life
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-semibold mb-8 sm:mb-12 text-foreground tracking-tight">
+            Development & Concepts
+          </h2>
 
           {loading ? (
             <div className="flex justify-center py-12">
@@ -84,25 +78,20 @@ export const DevelopAndConcepts = () => {
               {projects.map((project) => (
                 <Card
                   key={project.id}
-                  className="group overflow-hidden bg-card border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="overflow-hidden bg-card border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                 >
                   {project.image_url && (
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <img
                         src={project.image_url}
                         alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                         style={{ transform: `rotate(${project.rotation_angle || 0}deg)` }}
                       />
-                      <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1 bg-accent/90 text-accent-foreground text-xs font-medium rounded-full">
-                          {project.category}
-                        </span>
-                      </div>
                     </div>
                   )}
                   <CardContent className="p-6">
-                    <h3 className="text-xl sm:text-2xl font-playfair font-semibold mb-3 text-foreground group-hover:text-accent transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-playfair font-semibold mb-3 text-foreground">
                       {project.title}
                     </h3>
                     {project.description && (
