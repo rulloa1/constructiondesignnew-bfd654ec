@@ -10,19 +10,29 @@ interface Project {
   rotation_angle?: number;
 }
 export const InteriorDesignShowcase = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [architectureProjects, setArchitectureProjects] = useState<Project[]>([]);
+  const [interiorProjects, setInteriorProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchProjects();
   }, []);
   const fetchProjects = async () => {
     try {
+      // Fetch Architecture projects
       const {
-        data: projectsData,
-        error: projectsError
+        data: archData,
+        error: archError
+      } = await supabase.from("projects").select("*").eq("category", "Architecture").order("display_order");
+      if (archError) throw archError;
+
+      // Fetch Interior projects
+      const {
+        data: intData,
+        error: intError
       } = await supabase.from("projects").select("*").eq("category", "Interiors").order("display_order");
-      if (projectsError) throw projectsError;
-      const projectsWithImages = await Promise.all((projectsData || []).map(async project => {
+      if (intError) throw intError;
+
+      const archWithImages = await Promise.all((archData || []).map(async project => {
         const {
           data: images
         } = await supabase.from("project_images").select("image_url, rotation_angle").eq("project_id", project.id).order("display_order").limit(1).maybeSingle();
@@ -32,7 +42,20 @@ export const InteriorDesignShowcase = () => {
           rotation_angle: images?.rotation_angle || 0
         };
       }));
-      setProjects(projectsWithImages);
+
+      const intWithImages = await Promise.all((intData || []).map(async project => {
+        const {
+          data: images
+        } = await supabase.from("project_images").select("image_url, rotation_angle").eq("project_id", project.id).order("display_order").limit(1).maybeSingle();
+        return {
+          ...project,
+          image_url: images?.image_url,
+          rotation_angle: images?.rotation_angle || 0
+        };
+      }));
+
+      setArchitectureProjects(archWithImages);
+      setInteriorProjects(intWithImages);
     } catch (error) {
       console.error("Error fetching projects:", error);
     } finally {
@@ -42,32 +65,58 @@ export const InteriorDesignShowcase = () => {
   return <section id="interior-design" className="relative py-16 sm:py-20 md:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12 sm:mb-16 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-semibold mb-4 sm:mb-5 md:mb-6 text-foreground tracking-tight leading-tight">
-              Architecture
-            </h2>
-          </div>
-
           {loading ? <div className="flex justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div> : projects.length === 0 ? <div className="text-center py-12 text-muted-foreground">
-              No interior design projects available yet.
-            </div> : <div className="max-w-4xl mx-auto">
-              {projects.slice(0, 1).map(project => <Card key={project.id} className="overflow-hidden bg-card border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                  {project.image_url && <div className="relative aspect-[16/9] overflow-hidden">
-                      <img src={project.image_url} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" style={{
-                transform: `rotate(${project.rotation_angle || 0}deg)`
-              }} />
-                    </div>}
-                  <CardContent className="p-6">
-                    <h3 className="text-xl sm:text-2xl font-playfair font-semibold mb-3 text-foreground">
-                      {project.title}
-                    </h3>
-                    {project.description && <p className="text-sm sm:text-base font-inter font-light text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>}
-                  </CardContent>
-                </Card>)}
+            </div> : <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Architecture Section - Left */}
+              <div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-semibold mb-6 sm:mb-8 text-foreground tracking-tight">
+                  Architecture
+                </h2>
+                {architectureProjects.length === 0 ? <div className="text-center py-12 text-muted-foreground">
+                    No architecture projects available yet.
+                  </div> : architectureProjects.slice(0, 1).map(project => <Card key={project.id} className="overflow-hidden bg-card border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    {project.image_url && <div className="relative aspect-[16/9] overflow-hidden">
+                        <img src={project.image_url} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" style={{
+                  transform: `rotate(${project.rotation_angle || 0}deg)`
+                }} />
+                      </div>}
+                    <CardContent className="p-6">
+                      <h3 className="text-xl sm:text-2xl font-playfair font-semibold mb-3 text-foreground">
+                        {project.title}
+                      </h3>
+                      {project.description && <p className="text-sm sm:text-base font-inter font-light text-muted-foreground leading-relaxed">
+                          {project.description}
+                        </p>}
+                    </CardContent>
+                  </Card>)}
+              </div>
+
+              {/* Interiors Section - Right */}
+              <div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-semibold mb-6 sm:mb-8 text-foreground tracking-tight">
+                  Interiors
+                </h2>
+                {interiorProjects.length === 0 ? <div className="text-center py-12 text-muted-foreground">
+                    No interior projects available yet.
+                  </div> : <div className="flex flex-col gap-6">
+                    {interiorProjects.slice(0, 3).map(project => <Card key={project.id} className="overflow-hidden bg-card border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                        {project.image_url && <div className="relative aspect-[3/4] overflow-hidden">
+                            <img src={project.image_url} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" style={{
+                      transform: `rotate(${project.rotation_angle || 0}deg)`
+                    }} />
+                          </div>}
+                        <CardContent className="p-6">
+                          <h3 className="text-xl sm:text-2xl font-playfair font-semibold mb-3 text-foreground">
+                            {project.title}
+                          </h3>
+                          {project.description && <p className="text-sm sm:text-base font-inter font-light text-muted-foreground leading-relaxed">
+                              {project.description}
+                            </p>}
+                        </CardContent>
+                      </Card>)}
+                  </div>}
+              </div>
             </div>}
         </div>
       </div>
