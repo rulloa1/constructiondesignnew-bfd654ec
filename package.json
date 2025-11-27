@@ -9,7 +9,8 @@
     "build:dev": "cross-env NODE_OPTIONS='--disable-proto=delete' vite build --mode development",
     "lint": "cross-env NODE_OPTIONS='--disable-proto=delete' eslint .",
     "preview": "cross-env NODE_OPTIONS='--disable-proto=delete' vite preview",
-    "generate-favicons": "cross-env NODE_OPTIONS='--disable-proto=delete' node scripts/generate-favicons.js"
+    "generate-favicons": "cross-env NODE_OPTIONS='--disable-proto=delete' node scripts/generate-favicons.js",
+    "fix-cover-rotation": "node scripts/fix-cover-photo-rotation.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

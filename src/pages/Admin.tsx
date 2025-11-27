@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { LogOut, Loader2 } from "lucide-react";
+import { LogOut, Loader2, RotateCw } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -17,6 +17,7 @@ export default function Admin() {
   const { user, loading, isAdmin } = useAuth();
   const [selectedProjectId, setSelectedProjectId] = useState<string>("");
   const [projects, setProjects] = useState<any[]>([]);
+  const [fixingCovers, setFixingCovers] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -46,6 +47,71 @@ export default function Admin() {
     await supabase.auth.signOut();
     toast.success("Logged out successfully");
     navigate("/");
+  };
+
+  const handleFixAllCoverPhotos = async () => {
+    if (!confirm("This will set all cover photo rotations to 0° (upright). Continue?")) {
+      return;
+    }
+
+    setFixingCovers(true);
+    try {
+      // Get all projects
+      const { data: projectsData, error: projectsError } = await supabase
+        .from("projects")
+        .select("id, title");
+
+      if (projectsError) throw projectsError;
+
+      let fixedCount = 0;
+      let errorCount = 0;
+
+      // For each project, get the first image (cover) and set rotation to 0
+      for (const project of projectsData || []) {
+        // Get the first image (lowest display_order)
+        const { data: coverImage, error: imageError } = await supabase
+          .from("project_images")
+          .select("id, rotation_angle")
+          .eq("project_id", project.id)
+          .order("display_order", { ascending: true })
+          .limit(1)
+          .maybeSingle();
+
+        if (imageError) {
+          console.error(`Error fetching cover for ${project.title}:`, imageError);
+          errorCount++;
+          continue;
+        }
+
+        if (!coverImage) continue;
+
+        // If rotation is not 0, fix it
+        if (coverImage.rotation_angle !== 0 && coverImage.rotation_angle !== null) {
+          const { error: updateError } = await supabase
+            .from("project_images")
+            .update({ rotation_angle: 0 })
+            .eq("id", coverImage.id);
+
+          if (updateError) {
+            console.error(`Error updating ${project.title}:`, updateError);
+            errorCount++;
+          } else {
+            fixedCount++;
+          }
+        }
+      }
+
+      if (errorCount > 0) {
+        toast.error(`Fixed ${fixedCount} cover photos, ${errorCount} errors`);
+      } else {
+        toast.success(`Fixed ${fixedCount} cover photos!`);
+      }
+    } catch (error) {
+      console.error("Error fixing cover photos:", error);
+      toast.error("Failed to fix cover photos. Check console for details.");
+    } finally {
+      setFixingCovers(false);
+    }
   };
 
   if (loading) {
@@ -91,20 +157,40 @@ export default function Admin() {
 
           <TabsContent value="images">
             <div className="space-y-6">
-              <div className="max-w-xs">
-                <Label className="mb-2 block">Select Project</Label>
-                <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose a project" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {projects.map((project) => (
-                      <SelectItem key={project.id} value={project.id}>
-                        {project.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="flex items-end gap-4">
+                <div className="max-w-xs flex-1">
+                  <Label className="mb-2 block">Select Project</Label>
+                  <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose a project" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {projects.map((project) => (
+                        <SelectItem key={project.id} value={project.id}>
+                          {project.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Button
+                  variant="outline"
+                  onClick={handleFixAllCoverPhotos}
+                  disabled={fixingCovers}
+                  className="mb-0"
+                >
+                  {fixingCovers ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Fixing...
+                    </>
+                  ) : (
+                    <>
+                      <RotateCw className="mr-2 h-4 w-4" />
+                      Fix All Cover Photos
+                    </>
+                  )}
+                </Button>
               </div>
 
               {selectedProjectId && <ImageManager projectId={selectedProjectId} />}
