@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { BookCoverHero } from "@/components/BookCoverHero";
-import { Portfolio } from "@/components/Portfolio";
+import { PortfolioGrid } from "@/components/PortfolioGrid";
 import { Services } from "@/components/Services";
 import { DesignConcepts } from "@/components/DesignConcepts";
 import { ArchitecturalRenderings } from "@/components/ArchitecturalRenderings";
@@ -122,7 +122,7 @@ const Index: React.FC = () => {
             </div>
           </div>
 
-          <Portfolio onClose={handleCloseBook} />
+          <PortfolioGrid onClose={handleCloseBook} />
         </>}
     </div>;
 };
