@@ -108,10 +108,10 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = React.memo(({ onClose
             <div className="h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-8" />
           </div>
           <h2 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-5 tracking-tight">
-            Portfolio
+            My Portfolio
           </h2>
           <p className="font-inter text-charcoal/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-            A curated collection of exceptional spaces crafted with precision and artistry
+            Explore my portfolio of {projects.length} completed projects across residential, commercial, and civil sectors
           </p>
           <div className="h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-8" />
         </div>
