@@ -2,60 +2,39 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-type DesignSection = {
-  id: string;
-  label: string;
-  category: string;
-  span: string;
-  tone: string;
-};
-const designSections: DesignSection[] = [
-// Left column
-{
-  id: "architecture-left",
-  label: "Architecture",
-  category: "Architecture",
-  span: "md:col-span-6 md:row-span-4",
-  tone: "bg-gradient-to-br from-cream via-white to-gold/20 text-charcoal border-gold/30"
-}, {
-  id: "interiors-left",
-  label: "Interiors",
-  category: "Interiors",
-  span: "md:col-span-6 md:row-span-3",
-  tone: "bg-white/95 text-charcoal border-charcoal/10"
-}, {
-  id: "concepts",
-  label: "Concepts",
-  category: "Design/Build",
-  span: "md:col-span-6 md:row-span-3",
-  tone: "bg-white/90 text-charcoal border-gold/20"
-},
-// Right column
-{
-  id: "interiors-right",
-  label: "Interiors",
-  category: "Interiors",
-  span: "md:col-span-6 md:row-span-2",
-  tone: "bg-white/95 text-charcoal border-charcoal/10"
-}, {
-  id: "architecture-right",
-  label: "Architecture",
-  category: "Architecture",
-  span: "md:col-span-6 md:row-span-3",
-  tone: "bg-gradient-to-br from-cream via-white to-gold/20 text-charcoal border-gold/30"
-}, {
-  id: "exterior-spaces",
-  label: "Exterior Spaces",
-  category: "Civil",
-  span: "md:col-span-6 md:row-span-3",
-  tone: "bg-gradient-to-br from-emerald-50 to-emerald-200/70 text-emerald-900 border-emerald-200"
-}, {
-  id: "development",
-  label: "Development & Concepts",
-  category: "Residential Development",
-  span: "md:col-span-6 md:row-span-2",
-  tone: "bg-gradient-to-br from-steelBlue/90 via-steelBlue/80 to-charcoal text-cream border-white/10"
-}];
+
+const designSections = [
+  {
+    id: "architecture",
+    label: "ARCHITECTURE",
+    category: "Architecture",
+    className: "bg-muted/50 hover:bg-muted/70"
+  },
+  {
+    id: "interiors",
+    label: "INTERIORS",
+    category: "Interiors",
+    className: "bg-muted/30 hover:bg-muted/50"
+  },
+  {
+    id: "development",
+    label: "DEVELOPMENT & CONCEPTS",
+    category: "Design/Build",
+    className: "bg-muted/40 hover:bg-muted/60"
+  },
+  {
+    id: "pools",
+    label: "POOLS",
+    category: "Civil",
+    className: "bg-muted/50 hover:bg-muted/70"
+  },
+  {
+    id: "furniture",
+    label: "CUSTOM FURNITURE",
+    category: "Custom Furniture",
+    className: "bg-muted/30 hover:bg-muted/50"
+  }
+];
 const Design = () => {
   const navigate = useNavigate();
   const handleSectionClick = (category: string) => {
@@ -90,20 +69,73 @@ const Design = () => {
         </section>
 
         <section className="pb-20 px-4 sm:px-6 lg:px-12">
-          <div className="container mx-auto max-w-7xl">
-            <div className="grid gap-4 sm:gap-5 md:gap-6 auto-rows-[180px] md:auto-rows-[220px] grid-cols-1 md:grid-cols-12">
-              {designSections.map(section => <button key={section.id} onClick={() => handleSectionClick(section.category)} className={`rounded-3xl border p-8 flex flex-col items-start justify-end ${section.tone} ${section.span} 
-                    transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer group relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative z-10">
-                    <h3 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-2">
-                      {section.label}
-                    </h3>
-                    <p className="text-sm uppercase tracking-[0.3em] opacity-70 group-hover:opacity-100 transition-opacity">
-                      View Gallery →
-                    </p>
-                  </div>
-                </button>)}
+          <div className="container mx-auto max-w-7xl space-y-6">
+            {/* Row 1: Architecture (large left) + Interiors (3 tall images right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 min-h-[500px]">
+              {/* Architecture - Large left section */}
+              <button
+                onClick={() => handleSectionClick("Architecture")}
+                className="lg:col-span-3 rounded-2xl border border-border bg-muted/50 hover:bg-muted/70 transition-all duration-300 hover:shadow-xl flex items-end p-8 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <h2 className="font-playfair text-4xl md:text-5xl font-semibold relative z-10">
+                  ARCHITECTURE
+                </h2>
+              </button>
+
+              {/* Interiors - Right column with header and 3 vertical sections */}
+              <div className="lg:col-span-2 flex flex-col gap-6">
+                <h2 className="font-playfair text-4xl md:text-5xl font-semibold text-right">
+                  INTERIORS
+                </h2>
+                <div className="grid grid-cols-3 gap-4 flex-1">
+                  {[1, 2, 3].map((i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleSectionClick("Interiors")}
+                      className="rounded-2xl border border-border bg-muted/30 hover:bg-muted/50 transition-all duration-300 hover:shadow-lg flex items-center justify-center group relative overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Row 2: Development & Concepts - Full width */}
+            <button
+              onClick={() => handleSectionClick("Design/Build")}
+              className="w-full rounded-2xl border border-border bg-muted/40 hover:bg-muted/60 transition-all duration-300 hover:shadow-xl min-h-[400px] flex items-center justify-center p-8 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <h2 className="font-playfair text-4xl md:text-5xl font-semibold relative z-10">
+                DEVELOPMENT & CONCEPTS
+              </h2>
+            </button>
+
+            {/* Row 3: Pools (left) + Custom Furniture (right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[350px]">
+              {/* Pools */}
+              <button
+                onClick={() => handleSectionClick("Civil")}
+                className="rounded-2xl border border-border bg-muted/50 hover:bg-muted/70 transition-all duration-300 hover:shadow-xl flex items-center justify-center p-8 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <h2 className="font-playfair text-4xl md:text-5xl font-semibold relative z-10">
+                  POOLS
+                </h2>
+              </button>
+
+              {/* Custom Furniture */}
+              <button
+                onClick={() => handleSectionClick("Custom Furniture")}
+                className="rounded-2xl border border-border bg-muted/30 hover:bg-muted/50 transition-all duration-300 hover:shadow-xl flex items-center justify-center p-8 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <h2 className="font-playfair text-4xl md:text-5xl font-semibold relative z-10">
+                  CUSTOM FURNITURE
+                </h2>
+              </button>
             </div>
           </div>
         </section>
