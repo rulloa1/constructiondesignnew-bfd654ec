@@ -5,8 +5,6 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { BookCoverHero } from "@/components/BookCoverHero";
 import { Portfolio } from "@/components/Portfolio";
-import { MusicPlayer } from "@/components/MusicPlayer";
-import { Chatbot } from "@/components/Chatbot";
 import { Services } from "@/components/Services";
 import { BrandIdentity } from "@/components/BrandIdentity";
 import { DesignConcepts } from "@/components/DesignConcepts";
@@ -135,8 +133,6 @@ const Index: React.FC = () => {
 
           <Portfolio onClose={handleCloseBook} />
         </>}
-
-      <Chatbot />
     </div>;
 };
 export default Index;

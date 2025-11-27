@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { BrandIdentity } from "@/components/BrandIdentity";
-import { DesignConcepts } from "@/components/DesignConcepts";
-import { ArchitecturalRenderings } from "@/components/ArchitecturalRenderings";
-import { CustomFurniture } from "@/components/CustomFurniture";
 import { InteriorDesignShowcase } from "@/components/InteriorDesignShowcase";
-import { DesignDevelopment } from "@/components/DesignDevelopment";
+import { ArchitecturalRenderings } from "@/components/ArchitecturalRenderings";
+import { ExteriorSpacesLandscape } from "@/components/ExteriorSpacesLandscape";
+import { DevelopAndConcepts } from "@/components/DevelopAndConcepts";
+import { Sketches } from "@/components/Sketches";
+import { CustomFurniture } from "@/components/CustomFurniture";
+import { BrandIdentity } from "@/components/BrandIdentity";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -49,8 +50,12 @@ const Design = () => {
                 "Architecture",
                 "Exterior Spaces",
                 "Landscape",
+                "Pools",
+                "Development",
+                "Concepts",
+                "Sketches",
                 "Custom Furniture",
-                "Design Concepts",
+                "Brand Identity",
               ].map((category) => (
                 <span
                   key={category}
@@ -65,12 +70,13 @@ const Design = () => {
       </section>
 
       {/* Design Album Sections */}
-      <BrandIdentity />
       <InteriorDesignShowcase />
       <ArchitecturalRenderings />
-      <DesignConcepts />
+      <ExteriorSpacesLandscape />
+      <DevelopAndConcepts />
+      <Sketches />
       <CustomFurniture />
-      <DesignDevelopment />
+      <BrandIdentity />
 
       <Footer />
     </div>
