@@ -25,13 +25,15 @@ export const Hero = () => {
           <source srcSet={heroImageWebP} type="image/webp" />
           <img 
             src={heroImagePng} 
-            alt="Michael Chandler Portfolio - Construction site leader" 
+            alt="Michael Chandler leading construction project - 37 years of quality craftsmanship in architectural design, landscape restoration, and construction excellence" 
             width={1920}
             height={1080}
             className="w-full h-full object-cover object-[center_40%] transition-transform duration-100 ease-out" 
             style={{
               transform: `translateY(${scrollY * 0.3}px)`
-            }} 
+            }}
+            loading="eager"
+            fetchPriority="high"
           />
         </picture>
       </div>

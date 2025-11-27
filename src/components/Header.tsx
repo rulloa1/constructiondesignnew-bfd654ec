@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/mc-logo.png";
 
 const navigation = [
@@ -15,10 +16,20 @@ interface HeaderProps {
 }
 
 export const Header = React.memo(({ onPortfolioClick }: HeaderProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleSmoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string, itemName: string) => {
     if (itemName === "Portfolio" && onPortfolioClick) {
       e.preventDefault();
       onPortfolioClick();
+      return;
+    }
+
+    // If clicking Contact, navigate to contact page
+    if (itemName === "Contact" && !location.pathname.includes('contact')) {
+      e.preventDefault();
+      navigate('/contact');
       return;
     }
 
@@ -33,7 +44,7 @@ export const Header = React.memo(({ onPortfolioClick }: HeaderProps) => {
         behavior: 'smooth'
       });
     }
-  }, [onPortfolioClick]);
+  }, [onPortfolioClick, navigate, location]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-charcoal/80 shadow-lg transition-all duration-300 border-b border-white/5">

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { ArrowLeft, HardHat, Hammer, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects, ProjectCategory } from "@/data/projects";
 import { Link } from "react-router-dom";
+import { SearchBar } from "@/components/SearchBar";
 interface PortfolioProps {
   onClose: () => void;
 }
@@ -25,7 +26,24 @@ export const Portfolio: React.FC<PortfolioProps> = ({
   onClose
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | "All">("All");
-  const filteredProjects = selectedCategory === "All" ? projects : projects.filter(p => p.category === selectedCategory);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProjects = useMemo(() => {
+    let filtered = selectedCategory === "All" ? projects : projects.filter(p => p.category === selectedCategory);
+    
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(p => 
+        p.title.toLowerCase().includes(query) ||
+        p.subtitle?.toLowerCase().includes(query) ||
+        p.location.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+    }
+    
+    return filtered;
+  }, [selectedCategory, searchQuery]);
   const getCategoryCount = (category: ProjectCategory | "All") => {
     if (category === "All") return projects.length;
     return projects.filter(p => p.category === category).length;
@@ -230,16 +248,23 @@ export const Portfolio: React.FC<PortfolioProps> = ({
         
       </div>
 
-      {/* Category tabs */}
+      {/* Search Bar */}
       <div className="sticky top-[73px] z-30 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-12 py-4 sm:py-6">
+          <SearchBar value={searchQuery} onChange={setSearchQuery} />
+        </div>
+      </div>
+
+      {/* Category tabs */}
+      <div className="sticky top-[137px] z-30 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-3 sm:px-6 lg:px-12 py-3 sm:py-4">
           <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center">
-            {categories.map(category => <button key={category} onClick={() => setSelectedCategory(category)} className={`px-3 sm:px-4 md:px-6 py-2 text-xs sm:text-sm font-inter uppercase tracking-wider transition-all duration-300 relative touch-manipulation ${selectedCategory === category ? "text-accent font-medium" : "text-muted-foreground hover:text-foreground"}`}>
+            {categories.map(category => <button key={category} onClick={() => setSelectedCategory(category)} aria-label={`Filter projects by ${category} category - ${getCategoryCount(category)} projects`} aria-pressed={selectedCategory === category} className={`px-3 sm:px-4 md:px-6 py-2 text-xs sm:text-sm font-inter uppercase tracking-wider transition-all duration-300 relative touch-manipulation ${selectedCategory === category ? "text-accent font-medium" : "text-muted-foreground hover:text-foreground"}`}>
                 <span className="block sm:inline">{category}</span>
-                <span className="ml-1 sm:ml-2 text-[10px] sm:text-xs opacity-60">
+                <span className="ml-1 sm:ml-2 text-[10px] sm:text-xs opacity-60" aria-hidden="true">
                   ({getCategoryCount(category)})
                 </span>
-                {selectedCategory === category && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold" />}
+                {selectedCategory === category && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold" aria-hidden="true" />}
               </button>)}
           </div>
         </div>
@@ -248,12 +273,12 @@ export const Portfolio: React.FC<PortfolioProps> = ({
       {/* Project grid */}
       <div className="container mx-auto px-3 sm:px-6 lg:px-12 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
-          {filteredProjects.map((project, index) => <Link key={project.id} to={`/project/${project.id}`} className="group opacity-0 animate-fade-in-up" style={{
+          {filteredProjects.map((project, index) => <Link key={project.id} to={`/project/${project.id}`} aria-label={`View ${project.title} project in ${project.location}`} className="group opacity-0 animate-fade-in-up" style={{
           animationDelay: `${index * 50}ms`
         }}>
               {/* Project image */}
               <div className="aspect-[3/4] overflow-hidden bg-muted rounded-sm mb-3 sm:mb-4 relative">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-75" loading="lazy" />
+                <img src={project.image} alt={`${project.title} - ${project.category} project in ${project.location}`} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-75" loading="lazy" />
                 {/* Subtle overlay on hover */}
                 <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-all duration-500">
                   <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-[10px] sm:text-xs font-inter text-white tracking-wider whitespace-nowrap" style={{
@@ -291,8 +316,16 @@ export const Portfolio: React.FC<PortfolioProps> = ({
 
         {filteredProjects.length === 0 && <div className="text-center py-20">
             <p className="text-muted-foreground text-lg">
-              No projects found in this category.
+              {searchQuery ? `No projects found matching "${searchQuery}".` : "No projects found in this category."}
             </p>
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery("")} 
+                className="mt-4 text-amber-600 hover:text-amber-700 font-inter underline"
+              >
+                Clear search
+              </button>
+            )}
           </div>}
       </div>
 
