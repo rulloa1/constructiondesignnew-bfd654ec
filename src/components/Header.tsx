@@ -7,6 +7,7 @@ import logo from "@/assets/mc-logo.png";
 
 const navigation = [
   { name: "Portfolio", href: "#portfolio" },
+  { name: "Design", href: "/design" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
@@ -26,6 +27,13 @@ export const Header = React.memo(({ onPortfolioClick }: HeaderProps) => {
       return;
     }
 
+    // If clicking Design, navigate to design page
+    if (itemName === "Design") {
+      e.preventDefault();
+      navigate('/design');
+      return;
+    }
+
     // If clicking Contact, navigate to contact page
     if (itemName === "Contact" && !location.pathname.includes('contact')) {
       e.preventDefault();
@@ -36,7 +44,7 @@ export const Header = React.memo(({ onPortfolioClick }: HeaderProps) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       const offsetTop = element.offsetTop - 80; // Account for fixed header
       window.scrollTo({
