@@ -26,11 +26,11 @@ All colors MUST be HSL.
     --muted: 42 10% 90%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 42 50% 58%;
-    --accent-foreground: 0 0% 17%;
+    --accent: 25 75% 47%;
+    --accent-foreground: 0 0% 100%;
 
-    --gold: 42 50% 58%;
-    --gold-foreground: 0 0% 17%;
+    --gold: 25 75% 47%;
+    --gold-foreground: 0 0% 100%;
 
     --charcoal: 0 0% 17%;
     --charcoal-foreground: 42 15% 96%;
@@ -48,7 +48,7 @@ All colors MUST be HSL.
 
     --border: 42 10% 88%;
     --input: 42 10% 88%;
-    --ring: 42 50% 58%;
+    --ring: 25 75% 47%;
 
     --radius: 0.25rem;
     
@@ -91,11 +91,11 @@ All colors MUST be HSL.
     --muted: 0 0% 22%;
     --muted-foreground: 42 10% 65%;
 
-    --accent: 42 50% 58%;
-    --accent-foreground: 0 0% 17%;
+    --accent: 25 75% 47%;
+    --accent-foreground: 0 0% 100%;
 
-    --gold: 42 50% 58%;
-    --gold-foreground: 0 0% 17%;
+    --gold: 25 75% 47%;
+    --gold-foreground: 0 0% 100%;
 
     --charcoal: 0 0% 17%;
     --charcoal-foreground: 42 15% 96%;
@@ -113,7 +113,7 @@ All colors MUST be HSL.
 
     --border: 0 0% 22%;
     --input: 0 0% 22%;
-    --ring: 42 50% 58%;
+    --ring: 25 75% 47%;
     
     --header-bg: 0 0% 8%;
     --footer-bg: 0 0% 10%;
@@ -139,7 +139,7 @@ All colors MUST be HSL.
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-light tracking-tight;
+    @apply font-playfair tracking-tight;
   }
 }
 
