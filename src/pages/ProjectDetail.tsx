@@ -205,7 +205,6 @@ const ProjectDetail = () => {
                             src={image}
                             alt={`${project.title} - Image ${index + 1}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            style={project.rotation ? { transform: `rotate(${project.rotation}deg)` } : undefined}
                           />
                           {label && (
                             <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
@@ -265,7 +264,6 @@ const ProjectDetail = () => {
                   src={allImages[selectedImageIndex]} 
                   alt={`${project.title} - Image ${selectedImageIndex + 1}`} 
                   className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10"
-                  style={project.rotation ? { transform: `rotate(${project.rotation}deg)` } : undefined}
                 />
                 {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
                     {getImageLabel(allImages[selectedImageIndex], selectedImageIndex)}

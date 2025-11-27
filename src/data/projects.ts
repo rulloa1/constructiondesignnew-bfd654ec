@@ -467,7 +467,7 @@ export interface Project {
   images: string[];
   testimonial?: string;
   testimonialImage?: string;
-  rotation?: number;
+  coverRotation?: number;
 }
 
 // Projects are organized in the exact order they appear on the portfolio page
@@ -485,7 +485,7 @@ export const projects: Project[] = [
     description: "Over 14 months, we transformed a 4,200 sq ft condominium into a beachfront sanctuary of modern design. This complete renovation introduces a new standard of coastal living, where breathtaking ocean views are framed by floor-to-ceiling hurricane-rated windows. We infused the space with custom Italian marble, integrated smart home technology, and crafted bespoke millwork, culminating in a chef's kitchen equipped with professional-grade appliances. The result is a seamless blend of clean aesthetics and sophisticated comfort.",
     image: miamiBeachCover,
     images: [miamiBeachCover, miamiBeach1, miamiBeach2, miamiBeach3, miamiBeach4, miamiBeach5, miamiBeach6, miamiBeach7, miamiBeach8, miamiBeach9, miamiBeach10, miamiBeach11, miamiBeach12, miamiBeach13, miamiBeach14, miamiBeach15, miamiBeach16, miamiBeach17, miamiBeach18, miamiBeach19, miamiBeach20, miamiBeach21, miamiBeach22, miamiBeach23, miamiBeach24, miamiBeach25, miamiBeach26, miamiBeach27, miamiBeach28, miamiBeach29, miamiBeach30, miamiBeach31, miamiBeach32, miamiBeach33, miamiBeach34, miamiBeach35, miamiBeach36, miamiBeach37, miamiBeach38, miamiBeach39, miamiBeach40, miamiBeach41, miamiBeach42, miamiBeach43, miamiBeach44, miamiBeach45, miamiBeach46, miamiBeach47],
-    rotation: 180,
+    coverRotation: 180,
   },
   {
     id: "high-alpine-ranch",
@@ -530,7 +530,7 @@ export const projects: Project[] = [
     description: "In just eight months, we reimagined this 2,800 sq ft condo as a sophisticated mountain retreat. The renovation focused on creating a sanctuary of modern comfort, featuring spa-inspired bathrooms with heated floors and contemporary finishes throughout. We selected a palette of Calacatta marble, warm walnut, and refined brass fixtures to evoke a sense of understated luxury. The result is a space that perfectly balances modern living with the tranquility of a mountain setting.",
     image: montanaCover,
     images: [montanaCover, montana1, montana2, montana3, montana4, montana5, montana6, montana7, montana8, montana9, montana10, montana11],
-    rotation: 90,
+    coverRotation: 90,
   },
   // HOSPITALITY
   {
