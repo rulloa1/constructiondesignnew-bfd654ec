@@ -1,0 +1,205 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { LucideIcon, Droplets, PenTool, Compass, Layers, Ruler, Sofa, PenSquare, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+type ColumnGroup = {
+  heading: string;
+  items: string[];
+};
+
+type DesignBlock = {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  tags?: string[];
+  span: string;
+  tone: string;
+  icon: LucideIcon;
+  feature?: string;
+  columnGroups?: ColumnGroup[];
+};
+
+const designBlocks: DesignBlock[] = [
+  {
+    id: "identity",
+    label: "Studio Identity",
+    title: "Michael Chandler Design Album",
+    description: "A tactile index of sketches, studies, and curated finishes that guide every commission.",
+    feature: "Logo, wordmark, and presentation system",
+    tags: ["Brand System", "Client Narratives"],
+    span: "md:col-span-3 md:row-span-2",
+    tone: "bg-charcoal text-cream border-charcoal/60",
+    icon: Sparkles,
+  },
+  {
+    id: "concepts",
+    label: "Concepts",
+    title: "Concept Boards & Mood Narratives",
+    description: "Layered boards blending site photography with charcoal renders for fast approvals.",
+    tags: ["Storyboard", "Palette Drafts"],
+    span: "md:col-span-3 md:row-span-2",
+    tone: "bg-white/90 text-charcoal border-gold/20",
+    icon: PenSquare,
+  },
+  {
+    id: "architecture",
+    label: "Architecture",
+    title: "Architectural Design Grids",
+    description: "Massings, axial studies, and proportion rules for bespoke residences and hospitality.",
+    tags: ["Axonometric", "Elevation Sets"],
+    span: "md:col-span-4 md:row-span-3",
+    tone: "bg-gradient-to-br from-cream via-white to-gold/20 text-charcoal border-gold/30",
+    icon: Compass,
+  },
+  {
+    id: "pools",
+    label: "Pools",
+    title: "Pools & Water Features",
+    description: "Hydro-thermic details, perimeter overflow sections, and lighting sequences.",
+    tags: ["LED Ribbons", "Thermal Decks"],
+    span: "md:col-span-2 md:row-span-2",
+    tone: "bg-gradient-to-br from-sky-100 via-sky-200/70 to-sky-300/50 text-steelBlue border-sky-200",
+    icon: Droplets,
+  },
+  {
+    id: "development",
+    label: "Development & Concepts",
+    title: "Pre-Development Sketches",
+    description: "Site flow diagrams, entry sequences, and density studies for early capital reviews.",
+    tags: ["Entitlements", "Site Logistics"],
+    span: "md:col-span-3 md:row-span-2",
+    tone: "bg-gradient-to-br from-steelBlue/90 via-steelBlue/80 to-charcoal text-cream border-white/10",
+    icon: Layers,
+  },
+  {
+    id: "exterior",
+    label: "Exterior Spaces",
+    title: "Exterior Spaces & Landscape",
+    description: "Desert xeriscape palettes, olive groves, and soft-path lighting concepts.",
+    tags: ["Planting Plans", "Night Studies"],
+    span: "md:col-span-3 md:row-span-2",
+    tone: "bg-gradient-to-br from-emerald-50 to-emerald-200/70 text-emerald-900 border-emerald-200",
+    icon: Ruler,
+  },
+  {
+    id: "furniture",
+    label: "Custom Furniture",
+    title: "Custom Furniture Atelier",
+    description: "Dining tables, wine walls, and gallery consoles carved in charred oak, bronze, and limestone.",
+    tags: ["Millwork", "Material Specs"],
+    span: "md:col-span-4 md:row-span-2",
+    tone: "bg-gradient-to-br from-burgundy/90 to-charcoal text-cream border-white/10",
+    icon: PenTool,
+  },
+  {
+    id: "interiors",
+    label: "Interiors",
+    title: "Interior Studios",
+    description: "Layered interior architecture packages with lighting, casework, and styling schedules.",
+    tags: ["FF&E", "Lighting Scripts"],
+    span: "md:col-span-3 md:row-span-3",
+    tone: "bg-white/95 text-charcoal border-charcoal/10",
+    icon: Sofa,
+    columnGroups: [
+      {
+        heading: "Private Suites",
+        items: ["Ensuite layouts", "Material matrices", "Tailored storage"],
+      },
+      {
+        heading: "Social Spaces",
+        items: ["Great room vignettes", "Bar elevations", "Art placement"],
+      },
+      {
+        heading: "Galleries",
+        items: ["Sightline curation", "Lighting fades", "Curatorial notes"],
+      },
+    ],
+  },
+];
+
+const designFilters = ["Architecture", "Interior Design", "Exterior Spaces", "Landscape", "Custom Furniture", "Pools", "Pre-Development", "Sketches", "Lighting", "Styling"];
+
+const processColumns: ColumnGroup[] = [
+  {
+    heading: "Development & Concepts",
+    items: ["Project briefing workshops", "Live sketch charrettes", "Capital partner decks"],
+  },
+  {
+    heading: "Exterior Spaces",
+    items: ["Pools + hydrology", "Outdoor kitchens", "Fire + water courtyards"],
+  },
+  {
+    heading: "Interiors",
+    items: ["Spatial sequencing", "Material storyboards", "Custom furnishing directives"],
+  },
+];
+
+const Design = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-cream via-white to-gold/10" />
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23888888' stroke-width='0.5'%3E%3Cpath d='M0 0h140v140H0z'/%3E%3Cpath d='M20 0v140M40 0v140M60 0v140M80 0v140M100 0v140M120 0v140M0 20h140M0 40h140M0 60h140M0 80h140M0 100h140M0 120h140'/%3E%3C/g%3E%3C/svg%3E\")",
+        }}
+      />
+
+      <main className="relative z-10">
+        <section className="pt-24 pb-14 px-4 sm:px-6 lg:px-12">
+          <div className="container mx-auto max-w-6xl">
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <Button
+                variant="ghost"
+                className="text-charcoal hover:text-gold hover:bg-white/70 border border-transparent hover:border-gold/30"
+                onClick={() => navigate(-1)}
+              >
+                Back
+              </Button>
+              <Badge variant="secondary" className="tracking-[0.2em] uppercase bg-gold/10 text-charcoal">
+                Design Album
+              </Badge>
+            </div>
+
+            <div className="space-y-6">
+              <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">
+                Interior & Architectural Design Album
+              </h1>
+              <p className="font-inter text-lg text-charcoal/80 max-w-3xl leading-relaxed">
+                A dedicated archive for sketches, elevations, and tactile studies across architecture, interiors, landscape, and custom furniture.
+                Each tile mirrors the studio walls—charcoal strokes, vellum overlays, and digital renders living together.
+              </p>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+                {designFilters.map((filter) => (
+                  <span key={filter} className="px-4 py-2 text-xs uppercase tracking-[0.2em] font-medium bg-white/80 border border-gold/20 rounded-full text-charcoal/80">
+                    {filter}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-20 px-4 sm:px-6 lg:px-12">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid gap-4 sm:gap-5 md:gap-6 auto-rows-[160px] md:auto-rows-[200px] grid-cols-1 md:grid-cols-12">
+              {designBlocks.map((block) => {
+                const Icon = block.icon;
+
+                if (block.columnGroups) {
+                  return (
+                    <div key={block.id} className={`rounded-3xl border p-6 flex flex-col ${block.tone} ${block.span}`}>
+                      <div className="flex items-center justify-between mb-4">
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.3em] font-semibold text-charcoal/60">{block.label}</p>
+                          <h3 className="font-playfair text-2xl mt-2">{block.title}</h3>
+                        </div>
+                        <Icon className="h-8 w-8 text-gold" />
+  
