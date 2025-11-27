@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Trash2, GripVertical } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ImageEditor } from "@/components/ImageEditor";
 
 interface ProjectImage {
   id: string;
@@ -26,6 +27,7 @@ export const ImageGalleryManager = () => {
   const [uploading, setUploading] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [editingImage, setEditingImage] = useState<{ url: string; fileName: string } | null>(null);
 
   const fetchImages = useCallback(async () => {
     const { data, error } = await supabase
@@ -57,15 +59,23 @@ export const ImageGalleryManager = () => {
       return;
     }
 
+    const imageUrl = URL.createObjectURL(file);
+    setEditingImage({ url: imageUrl, fileName: file.name });
+    if (event.target) event.target.value = '';
+  };
+
+  const handleSaveCroppedImage = async (croppedBlob: Blob, fileName: string) => {
+    if (!selectedProject) return;
+
     setUploading(true);
+    setEditingImage(null);
 
     try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${selectedProject}/${Date.now()}-${file.name}`;
+      const uploadFileName = `${selectedProject}/${Date.now()}-${fileName}`;
 
-      const { error: uploadError, data } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('project-images')
-        .upload(fileName, file, {
+        .upload(uploadFileName, croppedBlob, {
           cacheControl: '3600',
           upsert: false
         });
@@ -74,14 +84,14 @@ export const ImageGalleryManager = () => {
 
       const { data: { publicUrl } } = supabase.storage
         .from('project-images')
-        .getPublicUrl(fileName);
+        .getPublicUrl(uploadFileName);
 
       const { error: dbError } = await supabase
         .from('project_images')
         .insert({
           project_id: selectedProject,
           image_url: publicUrl,
-          title: imageTitle.trim() || file.name,
+          title: imageTitle.trim() || fileName,
           display_order: images.length,
           is_before: false,
           is_after: false,
@@ -96,7 +106,6 @@ export const ImageGalleryManager = () => {
       toast.error(`Failed to upload: ${error.message}`);
     } finally {
       setUploading(false);
-      if (event.target) event.target.value = '';
     }
   };
 
@@ -205,6 +214,14 @@ export const ImageGalleryManager = () => {
 
   return (
     <div className="space-y-6">
+      {editingImage && (
+        <ImageEditor
+          imageUrl={editingImage.url}
+          fileName={editingImage.fileName}
+          onSave={handleSaveCroppedImage}
+          onCancel={() => setEditingImage(null)}
+        />
+      )}
       <div className="bg-white p-6 rounded-lg shadow-md border border-charcoal/10">
         <Label htmlFor="project">Select Project</Label>
         <Select value={selectedProject} onValueChange={setSelectedProject}>
@@ -290,9 +307,15 @@ export const ImageGalleryManager = () => {
 
       {images.length > 0 && (
         <div className="bg-white p-6 rounded-lg shadow-md border border-charcoal/10">
-          <h2 className="text-xl font-playfair font-semibold mb-4">
-            Project Images ({images.length})
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-playfair font-semibold">
+              Project Images ({images.length})
+            </h2>
+            <p className="text-sm text-charcoal/60 flex items-center gap-2">
+              <GripVertical className="h-4 w-4" />
+              Drag to reorder
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {images.map((image, index) => {
               const isDragging = draggedIndex === index;
@@ -306,17 +329,18 @@ export const ImageGalleryManager = () => {
                   onDragOver={(e) => handleDragOver(e, index)}
                   onDragEnd={handleDragEnd}
                   onDragLeave={() => setDragOverIndex(null)}
-                  className={`relative group rounded-lg transition-all duration-200 cursor-move overflow-hidden ${
+                  className={`relative group rounded-lg transition-all duration-200 cursor-move overflow-hidden border-2 ${
                     isDragging 
-                      ? 'opacity-40 scale-95 ring-2 ring-primary' 
+                      ? 'opacity-40 scale-95 ring-2 ring-primary border-primary' 
                       : isDropTarget
-                      ? 'ring-4 ring-accent scale-105 shadow-lg'
-                      : 'bg-cream/20 hover:bg-cream/30 hover:scale-102'
+                      ? 'ring-4 ring-accent scale-105 shadow-lg border-accent'
+                      : 'bg-cream/20 hover:bg-cream/40 hover:shadow-md border-transparent hover:border-primary/30'
                   }`}
                 >
-                  <div className="absolute top-2 left-2 z-10 bg-primary/80 rounded-full p-1">
+                  <div className="absolute top-2 left-2 z-10 bg-primary/90 rounded-full p-1.5 shadow-md group-hover:bg-primary transition-colors">
                     <GripVertical className="h-5 w-5 text-white" />
                   </div>
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors pointer-events-none" />
                 <img
                   src={image.image_url}
                   alt={image.title || "Project image"}
