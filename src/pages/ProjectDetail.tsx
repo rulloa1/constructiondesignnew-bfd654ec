@@ -260,7 +260,7 @@ const ProjectDetail = () => {
           <div className="flex items-center justify-center h-full p-16" onClick={e => e.stopPropagation()}>
             <ImageWithWatermark>
               <div className="relative">
-                <img src={allImages[selectedImageIndex]} alt={`${project.title} - Image ${selectedImageIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10 rotate-180" />
+                <img src={allImages[selectedImageIndex]} alt={`${project.title} - Image ${selectedImageIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-scale-in border border-charcoal/10" />
                 {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
                     {getImageLabel(allImages[selectedImageIndex], selectedImageIndex)}
                   </span>}
