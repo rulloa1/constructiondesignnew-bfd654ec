@@ -3,9 +3,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { InteriorDesignShowcase } from "@/components/InteriorDesignShowcase";
 import { ArchitecturalRenderings } from "@/components/ArchitecturalRenderings";
-import { ExteriorSpacesLandscape } from "@/components/ExteriorSpacesLandscape";
 import { DevelopAndConcepts } from "@/components/DevelopAndConcepts";
-import { CustomFurniture } from "@/components/CustomFurniture";
+import { PoolsAndFurniture } from "@/components/PoolsAndFurniture";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const Design = () => {
@@ -44,10 +43,8 @@ const Design = () => {
 
       {/* Design Album Sections */}
       <InteriorDesignShowcase />
-      <ArchitecturalRenderings />
       <DevelopAndConcepts />
-      <ExteriorSpacesLandscape />
-      <CustomFurniture />
+      <PoolsAndFurniture />
 
       <Footer />
     </div>;
