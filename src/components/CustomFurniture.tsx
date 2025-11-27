@@ -8,6 +8,7 @@ interface Project {
   title: string;
   description: string | null;
   image_url?: string;
+  rotation_angle?: number;
 }
 
 export const CustomFurniture = () => {
@@ -32,7 +33,7 @@ export const CustomFurniture = () => {
         (projectsData || []).map(async (project) => {
           const { data: images } = await supabase
             .from("project_images")
-            .select("image_url")
+            .select("image_url, rotation_angle")
             .eq("project_id", project.id)
             .order("display_order")
             .limit(1)
@@ -41,6 +42,7 @@ export const CustomFurniture = () => {
           return {
             ...project,
             image_url: images?.image_url,
+            rotation_angle: images?.rotation_angle || 0,
           };
         })
       );
@@ -87,6 +89,7 @@ export const CustomFurniture = () => {
                         src={project.image_url}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        style={{ transform: `rotate(${project.rotation_angle || 0}deg)` }}
                       />
                     </div>
                   )}

@@ -8,6 +8,7 @@ interface Project {
   title: string;
   description: string | null;
   image_url?: string;
+  rotation_angle?: number;
 }
 
 export const ExteriorSpacesLandscape = () => {
@@ -32,7 +33,7 @@ export const ExteriorSpacesLandscape = () => {
         (projectsData || []).map(async (project) => {
           const { data: images } = await supabase
             .from("project_images")
-            .select("image_url")
+            .select("image_url, rotation_angle")
             .eq("project_id", project.id)
             .order("display_order")
             .limit(1)
@@ -41,6 +42,7 @@ export const ExteriorSpacesLandscape = () => {
           return {
             ...project,
             image_url: images?.image_url,
+            rotation_angle: images?.rotation_angle || 0,
           };
         })
       );
@@ -88,6 +90,7 @@ export const ExteriorSpacesLandscape = () => {
                         src={project.image_url}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        style={{ transform: `rotate(${project.rotation_angle || 0}deg)` }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>

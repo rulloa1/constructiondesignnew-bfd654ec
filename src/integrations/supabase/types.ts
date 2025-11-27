@@ -176,6 +176,7 @@ export type Database = {
           is_after: boolean | null
           is_before: boolean | null
           project_id: string
+          rotation_angle: number | null
           title: string | null
           updated_at: string
         }
@@ -188,6 +189,7 @@ export type Database = {
           is_after?: boolean | null
           is_before?: boolean | null
           project_id: string
+          rotation_angle?: number | null
           title?: string | null
           updated_at?: string
         }
@@ -200,6 +202,7 @@ export type Database = {
           is_after?: boolean | null
           is_before?: boolean | null
           project_id?: string
+          rotation_angle?: number | null
           title?: string | null
           updated_at?: string
         }

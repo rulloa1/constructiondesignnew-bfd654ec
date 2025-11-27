@@ -9,6 +9,7 @@ interface Project {
   description: string | null;
   category: string;
   image_url?: string;
+  rotation_angle?: number;
 }
 
 export const DevelopAndConcepts = () => {
@@ -34,7 +35,7 @@ export const DevelopAndConcepts = () => {
         (projectsData || []).map(async (project) => {
           const { data: images } = await supabase
             .from("project_images")
-            .select("image_url")
+            .select("image_url, rotation_angle")
             .eq("project_id", project.id)
             .order("display_order")
             .limit(1)
@@ -43,6 +44,7 @@ export const DevelopAndConcepts = () => {
           return {
             ...project,
             image_url: images?.image_url,
+            rotation_angle: images?.rotation_angle || 0,
           };
         })
       );
@@ -90,6 +92,7 @@ export const DevelopAndConcepts = () => {
                         src={project.image_url}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        style={{ transform: `rotate(${project.rotation_angle || 0}deg)` }}
                       />
                       <div className="absolute top-4 right-4">
                         <span className="px-3 py-1 bg-accent/90 text-accent-foreground text-xs font-medium rounded-full">

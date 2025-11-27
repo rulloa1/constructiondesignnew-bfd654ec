@@ -1,21 +1,46 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { ProjectsManager } from "@/components/admin/ProjectsManager";
+import { ImageManager } from "@/components/admin/ImageManager";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LogOut, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Admin() {
   const navigate = useNavigate();
   const { user, loading, isAdmin } = useAuth();
+  const [selectedProjectId, setSelectedProjectId] = useState<string>("");
+  const [projects, setProjects] = useState<any[]>([]);
 
   useEffect(() => {
     if (!loading && !user) {
       navigate("/auth");
     }
   }, [user, loading, navigate]);
+
+  useEffect(() => {
+    if (user && isAdmin) {
+      fetchProjects();
+    }
+  }, [user, isAdmin]);
+
+  const fetchProjects = async () => {
+    const { data } = await supabase
+      .from("projects")
+      .select("id, title")
+      .order("title");
+    
+    if (data && data.length > 0) {
+      setProjects(data);
+      setSelectedProjectId(data[0].id);
+    }
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -53,7 +78,39 @@ export default function Admin() {
             Logout
           </Button>
         </div>
-        <ProjectsManager />
+        
+        <Tabs defaultValue="projects" className="w-full">
+          <TabsList>
+            <TabsTrigger value="projects">Projects</TabsTrigger>
+            <TabsTrigger value="images">Images</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="projects">
+            <ProjectsManager />
+          </TabsContent>
+
+          <TabsContent value="images">
+            <div className="space-y-6">
+              <div className="max-w-xs">
+                <Label className="mb-2 block">Select Project</Label>
+                <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choose a project" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {projects.map((project) => (
+                      <SelectItem key={project.id} value={project.id}>
+                        {project.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {selectedProjectId && <ImageManager projectId={selectedProjectId} />}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
