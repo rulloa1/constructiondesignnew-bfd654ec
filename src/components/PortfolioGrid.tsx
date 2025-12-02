@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from "react";
 import { X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
-import { ProjectCardCarousel } from "@/components/ProjectCardCarousel";
+import { ProjectCard } from "@/components/ProjectCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type Category = "All" | ProjectCategory;
@@ -146,7 +146,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = React.memo(({ onClose
         {/* Projects grid with enhanced spacing */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 lg:gap-7 xl:gap-8">
           {filteredProjects.map((project, index) => (
-            <ProjectCardCarousel
+            <ProjectCard
               key={project.id}
               project={project}
               categoryColor={categoryColors[project.category]}
