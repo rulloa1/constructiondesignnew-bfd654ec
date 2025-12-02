@@ -3,7 +3,7 @@ import { X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 
 type Category = "All" | ProjectCategory;
 
@@ -26,12 +26,6 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = React.memo(({ onClose
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory as Category);
   const [isClosing, setIsClosing] = useState(false);
 
-  const {
-    elementRef: headingRef,
-    isVisible: headingVisible
-  } = useScrollAnimation({
-    threshold: 0.3
-  });
 
   // Memoize filtered projects to prevent recalculation on every render
   const filteredProjects = useMemo(() => {
@@ -97,50 +91,35 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = React.memo(({ onClose
           </div>
         )}
 
-        {/* Header with enhanced styling */}
-        <div 
-          ref={headingRef as React.RefObject<HTMLDivElement>}
-          className={`mb-20 text-center transition-all duration-1000 ${
-            headingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="inline-block mb-6">
-            <div className="h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-8" />
-          </div>
-          <h2 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-5 tracking-tight">
-            My Portfolio
-          </h2>
-          <p className="font-inter text-charcoal/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-            Explore my portfolio of {projects.length} completed projects across residential, commercial, and civil sectors
-          </p>
-          <div className="h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-8" />
-        </div>
+        {/* Hidden heading for accessibility and SEO */}
+        <h1 className="sr-only">Portfolio Projects</h1>
 
-        {/* Enhanced category filters */}
-        <div className="flex flex-wrap justify-center gap-2.5 mb-24 opacity-0 animate-fade-in delay-200">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`group relative font-inter px-6 md:px-8 py-3 md:py-3.5 rounded-full text-xs md:text-sm uppercase tracking-wider font-semibold transition-all duration-300 overflow-hidden ${
-                selectedCategory === category
-                  ? 'bg-gold text-charcoal shadow-lg scale-105'
-                  : 'bg-white/90 backdrop-blur-sm text-charcoal/80 hover:bg-white hover:text-charcoal hover:shadow-md hover:scale-102 border border-gold/15 hover:border-gold/30'
-              }`}
-            >
-              <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
-                <span className="font-semibold">{category}</span>
-                <span className={`text-[10px] md:text-xs font-normal transition-opacity duration-300 ${
-                  selectedCategory === category ? 'opacity-80' : 'opacity-60 group-hover:opacity-80'
-                }`}>
-                  ({getCategoryCount(category)})
-                </span>
-              </span>
-
-              {/* Hover effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/15 to-gold/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-            </button>
-          ))}
+        {/* Category filters - tab-style navigation matching original design */}
+        <div className="mb-10 md:mb-12 border-b border-charcoal/10">
+          <nav className="flex flex-wrap justify-center gap-6 md:gap-10 font-inter text-[10px] md:text-xs tracking-[0.18em] uppercase">
+            {categories.map((category) => {
+              const isActive = selectedCategory === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`relative pb-3 transition-colors duration-200 ${
+                    isActive
+                      ? "text-gold"
+                      : "text-charcoal/40 hover:text-charcoal/70"
+                  }`}
+                >
+                  <span className="whitespace-nowrap font-medium">
+                    {category}{" "}
+                    <span className="opacity-70">({getCategoryCount(category)})</span>
+                  </span>
+                  {isActive && (
+                    <span className="pointer-events-none absolute inset-x-0 -bottom-[1px] mx-auto h-[2px] w-full max-w-[80px] bg-gold" />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
         </div>
 
         {/* Projects grid with enhanced spacing */}
