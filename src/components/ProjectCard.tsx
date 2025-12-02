@@ -27,6 +27,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
   });
 
   const coverImage = project.images[0];
+  
+  // Format category with bullet separator
+  const formattedCategory = project.category
+    .replace(" ", " • ")
+    .replace("/", " • ");
 
   return (
     <div 
@@ -58,7 +63,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
           {/* Category Badge */}
           <div className="absolute top-4 left-4 z-10">
             <span className={`${categoryColor} px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider shadow-lg backdrop-blur-sm`}>
-              {project.category}
+              {formattedCategory}
             </span>
           </div>
         </div>
