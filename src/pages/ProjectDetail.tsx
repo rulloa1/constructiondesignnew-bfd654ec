@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, X, ChevronLeft, ChevronRight, FileDown, Ruler, BedDouble, Bath, Check } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { getProjectById } from "@/data/projects";
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -174,107 +174,11 @@ const ProjectDetail = () => {
         </div>
 
         {/* Content */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Info Cards */}
-          <div className="space-y-0">
-            {/* Location */}
-            <div className="bg-muted/30 border-l-4 border-accent p-4">
-              <h3 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Location</h3>
-              <p className="text-accent font-medium mt-1">{project.location}</p>
-            </div>
-
-            {/* Category/Designer */}
-            <div className="bg-muted/30 border-l-4 border-muted p-4">
-              <h3 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Category</h3>
-              <p className="text-accent font-medium mt-1">{project.category}</p>
-            </div>
-
-            {/* Design Style / Subtitle */}
-            {project.subtitle && (
-              <div className="bg-muted/30 border-l-4 border-muted p-4">
-                <h3 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Design Style</h3>
-                <p className="text-foreground mt-1">{project.subtitle}</p>
-              </div>
-            )}
-          </div>
-
-          {/* Property Stats */}
-          {(project.sqft || project.bedrooms || project.baths) && (
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {project.sqft && (
-                <div className="flex items-center gap-3">
-                  <Ruler className="w-6 h-6 text-accent" />
-                  <div>
-                    <span className="font-semibold text-charcoal">{project.sqft.toLocaleString()}</span>
-                    <span className="text-muted-foreground ml-1">sqft</span>
-                  </div>
-                </div>
-              )}
-              {project.bedrooms && (
-                <div className="flex items-center gap-3">
-                  <BedDouble className="w-6 h-6 text-accent" />
-                  <div>
-                    <span className="font-semibold text-charcoal">{project.bedrooms}</span>
-                    <span className="text-muted-foreground ml-1">Bedrooms</span>
-                  </div>
-                </div>
-              )}
-              {project.baths && (
-                <div className="flex items-center gap-3">
-                  <Bath className="w-6 h-6 text-accent" />
-                  <div>
-                    <span className="font-semibold text-charcoal">{project.baths}</span>
-                    <span className="text-muted-foreground ml-1">Baths</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Feature Highlights */}
-          {project.features && project.features.length > 0 && (
-            <div className="mt-6">
-              <h3 className="font-semibold text-charcoal mb-3">Feature Highlights</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {project.features.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Description */}
-          <div className="mt-8">
-            <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-charcoal mb-4">
-              {project.title}
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              {project.description}
-            </p>
-          </div>
-
-          {/* Download Brochure Button */}
-          {documents.length > 0 && (
-            <div className="mt-6">
-              <Button
-                asChild
-                className="bg-accent hover:bg-accent/90 text-white"
-              >
-                <a
-                  href={documents[0].document_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                >
-                  <FileDown className="mr-2 h-4 w-4" />
-                  Download Brochure
-                </a>
-              </Button>
-            </div>
-          )}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Project Title */}
+          <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-charcoal mb-6 text-center">
+            {project.title}
+          </h2>
 
           {/* Videos Section */}
           {videos.length > 0 && (
