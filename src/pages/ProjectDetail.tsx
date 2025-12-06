@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, X, ChevronLeft, ChevronRight, MapPin, Palette, FileDown } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, FileDown, Ruler, BedDouble, Bath, Check } from "lucide-react";
 import { getProjectById } from "@/data/projects";
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -197,6 +197,54 @@ const ProjectDetail = () => {
               </div>
             )}
           </div>
+
+          {/* Property Stats */}
+          {(project.sqft || project.bedrooms || project.baths) && (
+            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {project.sqft && (
+                <div className="flex items-center gap-3">
+                  <Ruler className="w-6 h-6 text-accent" />
+                  <div>
+                    <span className="font-semibold text-charcoal">{project.sqft.toLocaleString()}</span>
+                    <span className="text-muted-foreground ml-1">sqft</span>
+                  </div>
+                </div>
+              )}
+              {project.bedrooms && (
+                <div className="flex items-center gap-3">
+                  <BedDouble className="w-6 h-6 text-accent" />
+                  <div>
+                    <span className="font-semibold text-charcoal">{project.bedrooms}</span>
+                    <span className="text-muted-foreground ml-1">Bedrooms</span>
+                  </div>
+                </div>
+              )}
+              {project.baths && (
+                <div className="flex items-center gap-3">
+                  <Bath className="w-6 h-6 text-accent" />
+                  <div>
+                    <span className="font-semibold text-charcoal">{project.baths}</span>
+                    <span className="text-muted-foreground ml-1">Baths</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Feature Highlights */}
+          {project.features && project.features.length > 0 && (
+            <div className="mt-6">
+              <h3 className="font-semibold text-charcoal mb-3">Feature Highlights</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {project.features.map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-accent flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Description */}
           <div className="mt-8">

@@ -468,6 +468,11 @@ export interface Project {
   testimonial?: string;
   testimonialImage?: string;
   coverRotation?: number;
+  // Property stats
+  sqft?: number;
+  bedrooms?: number;
+  baths?: number;
+  features?: string[];
 }
 
 // Projects are organized in the exact order they appear on the portfolio page
@@ -486,6 +491,10 @@ export const projects: Project[] = [
     image: miamiBeachCover,
     images: [miamiBeachCover, miamiBeach1, miamiBeach2, miamiBeach3, miamiBeach4, miamiBeach5, miamiBeach6, miamiBeach7, miamiBeach8, miamiBeach9, miamiBeach10, miamiBeach11, miamiBeach12, miamiBeach13, miamiBeach14, miamiBeach15, miamiBeach16, miamiBeach17, miamiBeach18, miamiBeach19, miamiBeach20, miamiBeach21, miamiBeach22, miamiBeach23, miamiBeach24, miamiBeach25, miamiBeach26, miamiBeach27, miamiBeach28, miamiBeach29, miamiBeach30, miamiBeach31, miamiBeach32, miamiBeach33, miamiBeach34, miamiBeach35, miamiBeach36, miamiBeach37, miamiBeach38, miamiBeach39, miamiBeach40, miamiBeach41, miamiBeach42, miamiBeach43, miamiBeach44, miamiBeach45, miamiBeach46, miamiBeach47],
     coverRotation: 180,
+    sqft: 4200,
+    bedrooms: 4,
+    baths: 4,
+    features: ["Ocean Views", "Smart Home", "Chef's Kitchen", "Custom Millwork", "Italian Marble"],
   },
   {
     id: "high-alpine-ranch",
@@ -497,6 +506,10 @@ export const projects: Project[] = [
     description: "Nestled in the high-alpine region of Montana, this 8,500 sq ft luxury ranch was brought to life over 24 months. We merged modern mountain architecture with rustic charm, using exposed timber and custom stone masonry to complement the panoramic landscape. The residence features 22-foot vaulted ceilings and floor-to-ceiling windows that dissolve the boundary between the interior and the breathtaking mountain views. Radiant floor heating, a gourmet kitchen with natural stone countertops, and custom millwork throughout ensure that comfort and elegance are felt in every corner.",
     image: alpineRanchCover,
     images: [alpineRanchCover, alpineRanch1, alpineRanch2, alpineRanch3, alpineRanch4, alpineRanch5, alpineRanch6, alpineRanch7, alpineRanch8, alpineRanch9, alpineRanch10, alpineRanch11, alpineRanch12],
+    sqft: 8500,
+    bedrooms: 5,
+    baths: 6,
+    features: ["Mountain Views", "Vaulted Ceilings", "Radiant Heating", "Stone Masonry", "Gourmet Kitchen"],
   },
   // DESIGN/BUILD
   {
