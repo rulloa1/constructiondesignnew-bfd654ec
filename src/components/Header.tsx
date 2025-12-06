@@ -3,7 +3,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useNavigate, useLocation } from "react-router-dom";
-import logo from "@/assets/mc-logo.png";
+import logo from "@/assets/mc-logo-new.png";
 
 const navigation = [
   { name: "Portfolio", href: "#portfolio" },
