@@ -87,7 +87,9 @@ export const ImageEditor = ({ imageUrl, onSave, onCancel, fileName }: ImageEdito
       const croppedImage = await getCroppedImg(imageUrl, croppedAreaPixels, rotation);
       onSave(croppedImage, fileName);
     } catch (e) {
-      console.error("Error cropping image:", e);
+      if (import.meta.env.DEV) {
+        console.error("Error cropping image:", e);
+      }
     }
   };
 

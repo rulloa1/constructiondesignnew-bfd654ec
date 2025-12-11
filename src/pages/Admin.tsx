@@ -78,7 +78,9 @@ export default function Admin() {
           .maybeSingle();
 
         if (imageError) {
-          console.error(`Error fetching cover for ${project.title}:`, imageError);
+          if (import.meta.env.DEV) {
+            console.error(`Error fetching cover for ${project.title}:`, imageError);
+          }
           errorCount++;
           continue;
         }
@@ -93,7 +95,9 @@ export default function Admin() {
             .eq("id", coverImage.id);
 
           if (updateError) {
-            console.error(`Error updating ${project.title}:`, updateError);
+            if (import.meta.env.DEV) {
+              console.error(`Error updating ${project.title}:`, updateError);
+            }
             errorCount++;
           } else {
             fixedCount++;
@@ -107,8 +111,10 @@ export default function Admin() {
         toast.success(`Fixed ${fixedCount} cover photos!`);
       }
     } catch (error) {
-      console.error("Error fixing cover photos:", error);
-      toast.error("Failed to fix cover photos. Check console for details.");
+      if (import.meta.env.DEV) {
+        console.error("Error fixing cover photos:", error);
+      }
+      toast.error("Failed to fix cover photos");
     } finally {
       setFixingCovers(false);
     }

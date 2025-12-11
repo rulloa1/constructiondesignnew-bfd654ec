@@ -52,7 +52,7 @@ const Contact: React.FC = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       // Here you would integrate with your email service (e.g., EmailJS, SendGrid, Supabase)
-      console.log("Form submitted:", values);
+      // Form submission - avoid logging PII in production
       
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
