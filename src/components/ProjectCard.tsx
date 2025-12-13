@@ -8,6 +8,7 @@ interface ProjectCardProps {
   project: {
     id: string;
     title: string;
+    subtitle?: string;
     category: string;
     location?: string;
     images: string[];
@@ -68,16 +69,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
           </div>
         </div>
 
-        {/* Project Info - Two-line title format */}
+        {/* Project Info - Title, Subtitle, Location */}
         <div className="space-y-0.5">
-          {project.location && (
-            <p className="font-inter text-base text-charcoal">
-              {project.location}
-            </p>
-          )}
           <h3 className="font-inter text-base text-charcoal group-hover:text-gold transition-colors duration-300">
             {project.title}
           </h3>
+          {project.subtitle && (
+            <p className="font-inter text-base text-charcoal">
+              {project.subtitle}
+            </p>
+          )}
           {project.location && (
             <p className="font-inter text-sm text-charcoal/50 mt-1">
               {project.location}
