@@ -33,17 +33,6 @@ export const Hero = () => {
       </div>
       
       {/* Hero Text Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-        <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-wide mb-6">
-          Michael Chandler
-        </h1>
-        <div className="flex items-center gap-4 md:gap-6 text-white/90">
-          <span className="font-inter text-sm md:text-base tracking-widest uppercase">Design</span>
-          <div className="w-px h-4 bg-white/60" />
-          <span className="font-inter text-sm md:text-base tracking-widest uppercase">Build</span>
-          <div className="w-px h-4 bg-white/60" />
-          <span className="font-inter text-sm md:text-base tracking-widest uppercase">Develop</span>
-        </div>
-      </div>
+      
     </section>;
 };
