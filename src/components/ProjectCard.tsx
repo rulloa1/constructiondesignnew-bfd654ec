@@ -45,7 +45,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
         className="block"
       >
         {/* Image Container */}
-        <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4 bg-muted">
+        <div className="relative aspect-[4/3] overflow-hidden mb-4 bg-muted">
           <ImageWithWatermark>
             {!imageLoaded && (
               <Skeleton className="absolute inset-0" />
@@ -60,21 +60,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
             />
           </ImageWithWatermark>
           
-          {/* Category Badge */}
-          <div className="absolute top-4 left-4 z-10">
-            <span className={`${categoryColor} px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider shadow-lg backdrop-blur-sm`}>
+          {/* Category Badge - Bottom Left */}
+          <div className="absolute bottom-3 left-3 z-10">
+            <span className="bg-charcoal/70 text-white px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider backdrop-blur-sm">
               {formattedCategory}
             </span>
           </div>
         </div>
 
-        {/* Project Info */}
-        <div className="space-y-1">
-          <h3 className="font-playfair text-xl font-bold text-charcoal group-hover:text-gold transition-colors duration-300">
+        {/* Project Info - Two-line title format */}
+        <div className="space-y-0.5">
+          {project.location && (
+            <p className="font-inter text-base text-charcoal">
+              {project.location}
+            </p>
+          )}
+          <h3 className="font-inter text-base text-charcoal group-hover:text-gold transition-colors duration-300">
             {project.title}
           </h3>
           {project.location && (
-            <p className="font-inter text-sm text-charcoal/60">
+            <p className="font-inter text-sm text-charcoal/50 mt-1">
               {project.location}
             </p>
           )}
