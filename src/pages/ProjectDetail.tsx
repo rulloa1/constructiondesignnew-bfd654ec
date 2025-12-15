@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, X, ChevronLeft, ChevronRight, Ruler, BedDouble, Bath, Check } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, Ruler, BedDouble, Bath, Check, Clock, Briefcase } from "lucide-react";
 import { getProjectById } from "@/data/projects";
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -148,8 +148,9 @@ const ProjectDetail = () => {
   }
 
   const heroImage = allImages.length > 0 ? allImages[0] : project.image;
-  const hasStats = project.sqft || project.bedrooms || project.baths;
+  const hasStats = project.sqft || project.bedrooms || project.baths || project.duration;
   const hasFeatures = project.features && project.features.length > 0;
+  const hasRole = project.roles && project.roles.trim().length > 0;
 
   return (
     <>
@@ -208,6 +209,14 @@ const ProjectDetail = () => {
             {/* Stats Row */}
             {hasStats && (
               <div className="flex flex-wrap gap-8 mb-6 py-4 border-t border-border">
+                {project.duration && (
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-accent" />
+                    <span className="text-foreground">
+                      <strong>{project.duration}</strong>
+                    </span>
+                  </div>
+                )}
                 {project.sqft && (
                   <div className="flex items-center gap-2">
                     <Ruler className="h-5 w-5 text-accent" />
@@ -232,6 +241,21 @@ const ProjectDetail = () => {
                     </span>
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* My Role Section */}
+            {hasRole && (
+              <div className="bg-gradient-to-r from-secondary to-secondary/50 border-l-4 border-accent p-4 mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <Briefcase className="h-4 w-4 text-accent" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    My Role
+                  </p>
+                </div>
+                <p className="text-accent font-medium">
+                  {project.roles}
+                </p>
               </div>
             )}
 
