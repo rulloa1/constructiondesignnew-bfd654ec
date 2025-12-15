@@ -54,7 +54,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
             <img
               src={coverImage}
               alt={project.title}
-              className={`w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105 ${
+              className={`w-full h-full object-contain object-center transition-all duration-500 group-hover:scale-105 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               onLoad={() => setImageLoaded(true)}
