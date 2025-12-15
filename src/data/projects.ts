@@ -620,7 +620,6 @@ export const projects: Project[] = [
     sqft: 3600,
     duration: "10 months",
     features: ["1,200 sq ft Addition", "New Roof", "Impact Windows", "Estate Management"],
-    roles: "ALL HOME PROJECT, ESTATE BARN + STORAGE ROUNDED OUT",
   },
   {
     id: "bahamas-abaco-development",
