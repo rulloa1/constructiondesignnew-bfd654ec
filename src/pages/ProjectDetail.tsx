@@ -156,12 +156,15 @@ const ProjectDetail = () => {
     <>
       <div className="min-h-screen bg-background">
         {/* Hero Image */}
-        <div className="relative h-[40vh] sm:h-[50vh] w-full">
+        <div className="relative h-[50vh] sm:h-[60vh] w-full">
           <img
             src={heroImage}
             alt={project.title}
             className="w-full h-full object-cover hero-image"
           />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          
           {/* Back button overlay */}
           <div className="absolute top-4 left-4 z-10">
             <Button
@@ -173,6 +176,18 @@ const ProjectDetail = () => {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
+          </div>
+
+          {/* Project Title Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 z-10">
+            <div className="max-w-5xl mx-auto">
+              <h1 className="font-playfair text-3xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight mb-2 animate-fade-in">
+                {project.title}
+              </h1>
+              <p className="text-white/80 text-sm sm:text-base uppercase tracking-[0.2em] animate-fade-in delay-100">
+                {project.location}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -288,17 +303,14 @@ const ProjectDetail = () => {
             )}
           </div>
 
-          {/* Project Title & Description */}
-          <div className="mb-10">
-            <h1 className="font-playfair text-2xl sm:text-3xl font-semibold text-foreground mb-4">
-              {project.title}
-            </h1>
-            {project.description && (
+          {/* Project Description */}
+          {project.description && (
+            <div className="mb-10">
               <p className="text-muted-foreground leading-relaxed">
                 {project.description}
               </p>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Videos Section */}
           {videos.length > 0 && (
