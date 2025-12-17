@@ -396,6 +396,7 @@ import miamiBeach44 from "@/assets/projects/miami-beach-44.webp";
 import miamiBeach45 from "@/assets/projects/miami-beach-45.webp";
 import miamiBeach46 from "@/assets/projects/miami-beach-46.webp";
 import miamiBeach47 from "@/assets/projects/miami-beach-47.webp";
+import syracuseCover from "@/assets/projects/syracuse-cover.jpg";
 import syracuse1 from "@/assets/projects/syracuse-1.webp";
 import syracuse2 from "@/assets/projects/syracuse-2.webp";
 import syracuse3 from "@/assets/projects/syracuse-3.webp";
@@ -529,7 +530,7 @@ export const projects: Project[] = [
     additionalInfo: "N. Utah",
     category: "Design/Build",
     description: "This 6,200 sq ft craftsman-style estate is a testament to our integrated design-build approach. Over 18 months, we were integral in the creation of not just a home, but a complete two-acre landscape. The project's exterior is defined by over 400 tons of decorative stone, professional hardscaping, and dramatic low-voltage evening lighting. The design embraced drought-tolerant native plantings and elegant water features, creating a seamless transition between the built and natural environments. The separate 6 car garage/workshop was for antique restoration, and the two horse stall horse barn + storage rounded out the perfect home/estate/equestrian property.",
-    image: syracuse1,
+    image: syracuseCover,
     images: [
       syracuse1, syracuse2, syracuse3, syracuse4, syracuse5, syracuse6,
       syracuse7, syracuse8, syracuse9, syracuse10, syracuse11, syracuse12,
