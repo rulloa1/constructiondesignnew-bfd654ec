@@ -23,32 +23,20 @@ export const Hero = () => {
   return <section ref={elementRef as React.RefObject<HTMLElement>} className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Michael Chandler - 37 years of quality craftsmanship" width={1920} height={1080} className="w-full h-full object-cover object-center transition-transform duration-100 ease-out" style={{
-          transform: `translateY(${scrollY * 0.3}px)`
+        <img src={heroImage} alt="Michael Chandler - 37 years of quality craftsmanship" width={1920} height={1080} className="w-full h-full object-contain md:object-cover object-center transition-transform duration-100 ease-out bg-[#2a2a2a]" style={{
+          transform: `translateY(${scrollY * 0.15}px)`
         }} loading="eager" fetchPriority="high" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </div>
       
-      {/* Hero Content */}
-      <div className="relative h-screen flex items-center">
+      {/* Hero Content - Positioned at bottom */}
+      <div className="relative h-screen flex items-end pb-24">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            {/* Large decorative number */}
-            <span className={`font-playfair text-[8rem] lg:text-[12rem] text-white/10 font-light leading-none block -mb-16 lg:-mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              01
-            </span>
-
-            {/* Main heading */}
+          <div className="max-w-xl">
+            {/* Tagline and CTA */}
             <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <p className="font-inter text-xs tracking-[0.3em] text-white/60 uppercase mb-4">
-                Design • Build • Develop
-              </p>
-              <h1 className="font-playfair text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-                Michael Chandler
-              </h1>
-              <div className="w-16 h-[2px] bg-gold mb-6" />
-              <p className="font-inter text-lg text-white/80 leading-relaxed max-w-lg mb-8">
-                37 years of creating exceptional residential environments through thoughtful design and meticulous craftsmanship.
+              <p className="font-inter text-sm tracking-[0.2em] text-white/70 uppercase mb-6">
+                37 Years of Excellence in Design, Build & Development
               </p>
             </div>
 
