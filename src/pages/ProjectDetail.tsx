@@ -160,7 +160,7 @@ const ProjectDetail = () => {
           <img
             src={heroImage}
             alt={project.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hero-image"
           />
           {/* Back button overlay */}
           <div className="absolute top-4 left-4 z-10">
@@ -336,7 +336,7 @@ const ProjectDetail = () => {
                         <img
                           src={image}
                           alt={`${project.title} - Image ${index + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 gallery-image"
                         />
                         {label && (
                           <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
@@ -404,7 +404,7 @@ const ProjectDetail = () => {
                 <img
                   src={allImages[selectedImageIndex]}
                   alt={`${project.title} - Image ${selectedImageIndex + 1}`}
-                  className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl animate-scale-in"
+                  className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl animate-scale-in gallery-image"
                 />
                 {getImageLabel(allImages[selectedImageIndex], selectedImageIndex) && (
                   <span className={`absolute top-4 right-4 px-3 py-2 text-sm font-semibold text-white rounded-lg ${getImageLabel(allImages[selectedImageIndex], selectedImageIndex) === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>

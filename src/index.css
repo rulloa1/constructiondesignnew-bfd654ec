@@ -312,4 +312,40 @@ All colors MUST be HSL.
   .animate-book-open-right {
     animation: bookOpenRight 1.5s ease-in-out forwards;
   }
+
+  /* High-quality image rendering */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Smooth scaling for larger images */
+  img.smooth-render {
+    image-rendering: auto;
+    image-rendering: smooth;
+    image-rendering: high-quality;
+  }
+
+  /* Gallery and hero images - prioritize quality */
+  .gallery-image,
+  .hero-image,
+  .project-image {
+    image-rendering: auto;
+    image-rendering: high-quality;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    will-change: transform;
+  }
+
+  /* Fix blurry scaled images */
+  .sharp-image {
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 }
