@@ -267,7 +267,7 @@ const ProjectDetail = () => {
 
           {/* Project Description */}
           {project.description && <div className="mb-16">
-              <p className="font-inter text-muted-foreground leading-relaxed max-w-3xl text-justify">
+              <p className="font-inter text-muted-foreground leading-relaxed max-w-3xl text-left">
                 {project.description}
               </p>
             </div>}
@@ -301,54 +301,25 @@ const ProjectDetail = () => {
               <div className="w-12 h-[1px] bg-accent mb-8" />
               
               {/* Cover Photo - First Image */}
-              {allImages.length > 0 && (
-                <ImageWithWatermark key={`${allImages[0]}-cover`}>
-                  <button 
-                    onClick={() => setSelectedImageIndex(0)} 
-                    className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-card border border-border group cursor-pointer transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent/50 mb-4"
-                  >
-                    <img 
-                      src={allImages[0]} 
-                      alt={`${project.title} - Cover`} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 gallery-image" 
-                    />
-                    {getImageLabel(allImages[0], 0) && (
-                      <span className={`absolute top-3 right-3 px-3 py-1.5 text-sm font-semibold text-white rounded ${getImageLabel(allImages[0], 0) === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
-                        {getImageLabel(allImages[0], 0)}
-                      </span>
-                    )}
-                  </button>
-                </ImageWithWatermark>
-              )}
+              {allImages.length > 0 && <ImageWithWatermark key={`${allImages[0]}-cover`}>
+                  
+                </ImageWithWatermark>}
 
               {/* Remaining Gallery Images */}
-              {allImages.length > 1 && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              {allImages.length > 1 && <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                   {allImages.slice(1).map((image, index) => {
-                    const actualIndex = index + 1;
-                    const label = getImageLabel(image, actualIndex);
-                    return (
-                      <ImageWithWatermark key={`${image}-${actualIndex}`}>
-                        <button 
-                          onClick={() => setSelectedImageIndex(actualIndex)} 
-                          className="relative aspect-square overflow-hidden rounded-lg bg-card border border-border group cursor-pointer transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent/50 w-full"
-                        >
-                          <img 
-                            src={image} 
-                            alt={`${project.title} - Image ${actualIndex + 1}`} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 gallery-image" 
-                          />
-                          {label && (
-                            <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
+              const actualIndex = index + 1;
+              const label = getImageLabel(image, actualIndex);
+              return <ImageWithWatermark key={`${image}-${actualIndex}`}>
+                        <button onClick={() => setSelectedImageIndex(actualIndex)} className="relative aspect-square overflow-hidden rounded-lg bg-card border border-border group cursor-pointer transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent/50 w-full">
+                          <img src={image} alt={`${project.title} - Image ${actualIndex + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 gallery-image" />
+                          {label && <span className={`absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white rounded ${label === "Before" ? "bg-amber-500/90" : "bg-emerald-500/90"}`}>
                               {label}
-                            </span>
-                          )}
+                            </span>}
                         </button>
-                      </ImageWithWatermark>
-                    );
-                  })}
-                </div>
-              )}
+                      </ImageWithWatermark>;
+            })}
+                </div>}
             </div>}
         </div>
       </div>
