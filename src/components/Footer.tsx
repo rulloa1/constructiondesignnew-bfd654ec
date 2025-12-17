@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { AtSign, Smartphone, Navigation } from "lucide-react";
 import logo from "@/assets/mc-logo-new.png";
 
 export const Footer = React.memo(() => {
@@ -97,13 +97,13 @@ export const Footer = React.memo(() => {
             </h3>
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <Navigation className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <span className="text-cream/70 text-sm sm:text-base font-inter leading-relaxed">
                   Spring, Texas
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <Smartphone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <a
                   href="tel:+14352377373"
                   className="text-cream/70 hover:text-gold transition-colors text-sm sm:text-base font-inter leading-relaxed"
@@ -112,7 +112,7 @@ export const Footer = React.memo(() => {
                 </a>
               </div>
               <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <AtSign className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <a
                   href="mailto:mike.rcccon@yahoo.com"
                   className="text-cream/70 hover:text-gold transition-colors text-sm sm:text-base font-inter leading-relaxed break-all"

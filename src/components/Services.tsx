@@ -1,41 +1,41 @@
-import { Lightbulb, Ruler, Hammer, ClipboardList, ShieldCheck, Leaf, Check } from "lucide-react";
+import { Compass, PenLine, HardHat, ListChecks, BadgeCheck, Sprout, CircleCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface Service {
-  icon: typeof Lightbulb;
+  icon: typeof Compass;
   title: string;
   description: string;
   items: string[];
 }
 
 const services: Service[] = [{
-  icon: Lightbulb,
+  icon: Compass,
   title: "Planning & Feasibility",
   description: "Strategic planning to ensure project viability",
   items: ["Feasibility Studies", "Site Analysis", "Permitting & Entitlements", "Financial Planning"]
 }, {
-  icon: Ruler,
+  icon: PenLine,
   title: "Design",
   description: "Comprehensive design solutions",
   items: ["Architectural Design", "Interior Design", "Landscape Design", "3D Visualization"]
 }, {
-  icon: Hammer,
+  icon: HardHat,
   title: "Construction",
   description: "Expert execution and quality craftsmanship",
   items: ["Ground-Up Construction", "Renovations & Remodels", "Structural Work", "Finish Carpentry"]
 }, {
-  icon: ClipboardList,
+  icon: ListChecks,
   title: "Project Management",
   description: "Seamless coordination from start to finish",
   items: ["Schedule Management", "Budget Control", "Vendor Coordination", "Progress Reporting"]
 }, {
-  icon: ShieldCheck,
+  icon: BadgeCheck,
   title: "Quality Assurance",
   description: "Rigorous standards and inspections",
   items: ["Quality Control", "Safety Compliance", "Code Compliance", "Final Inspections"]
 }, {
-  icon: Leaf,
+  icon: Sprout,
   title: "Sustainability",
   description: "Environmentally responsible practices",
   items: ["Green Building", "Energy Efficiency", "Sustainable Materials", "LEED Consulting"]
@@ -112,7 +112,7 @@ export const Services = () => {
                     <ul className="space-y-2 sm:space-y-2.5">
                       {service.items.map(item => (
                         <li key={item} className="flex items-start gap-2 sm:gap-3 text-foreground/80 text-sm font-inter leading-relaxed">
-                          <Check className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                          <CircleCheck className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}

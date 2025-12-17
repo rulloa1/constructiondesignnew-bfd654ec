@@ -1,4 +1,4 @@
-import { Lightbulb, Star, ArrowDown } from "lucide-react";
+import { Sparkles, Medal, ChevronDown } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Card, CardContent } from "@/components/ui/card";
 interface AboutProps {
@@ -53,7 +53,7 @@ I've built my career on the universal business principle that quality constructi
                   <div className="flex items-start gap-4 sm:gap-5">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500/10 flex items-center justify-center">
-                        <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
+                        <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
                       </div>
                     </div>
                     <div>
@@ -74,7 +74,7 @@ I've built my career on the universal business principle that quality constructi
                   <div className="flex items-start gap-4 sm:gap-5">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500/10 flex items-center justify-center">
-                        <Star className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
+                        <Medal className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
                       </div>
                     </div>
                     <div>
@@ -97,7 +97,7 @@ I've built my career on the universal business principle that quality constructi
                 <span className="text-lg sm:text-xl font-playfair font-semibold text-accent leading-relaxed">
                   View My Work
                 </span>
-                <ArrowDown size={48} className="text-accent animate-bounce group-hover:animate-none" strokeWidth={2.5} />
+                <ChevronDown size={48} className="text-accent animate-bounce group-hover:animate-none" strokeWidth={2.5} />
               </button>
             </div>}
         </div>
