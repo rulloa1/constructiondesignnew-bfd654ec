@@ -302,7 +302,16 @@ const ProjectDetail = () => {
               
               {/* Cover Photo - First Image */}
               {allImages.length > 0 && <ImageWithWatermark key={`${allImages[0]}-cover`}>
-                  
+                  <button 
+                    onClick={() => setSelectedImageIndex(0)} 
+                    className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-card border border-border group cursor-pointer transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent/50 mb-6"
+                  >
+                    <img 
+                      src={allImages[0]} 
+                      alt={`${project.title} - Cover`} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 gallery-image" 
+                    />
+                  </button>
                 </ImageWithWatermark>}
 
               {/* Remaining Gallery Images */}
