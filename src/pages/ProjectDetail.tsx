@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X, ChevronLeft, ChevronRight, Square, Bed, Droplets, Check, CalendarDays, Award, Wallet } from "lucide-react";
 import { getProjectById } from "@/data/projects";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ImageWithWatermark } from "@/components/ImageWithWatermark";
@@ -41,7 +41,22 @@ const ProjectDetail = () => {
   const [videos, setVideos] = useState<ProjectVideo[]>([]);
   const [dbImages, setDbImages] = useState<ProjectImage[]>([]);
   const [documents, setDocuments] = useState<ProjectDocument[]>([]);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLDivElement>(null);
 
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        if (rect.bottom > 0) {
+          setScrollY(window.scrollY);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   // Fetch videos, images, and documents for this project
   useEffect(() => {
     if (!id) return;
@@ -155,12 +170,16 @@ const ProjectDetail = () => {
   return (
     <>
       <div className="min-h-screen bg-background">
-        {/* Hero Image */}
-        <div className="relative h-[50vh] sm:h-[60vh] w-full">
+        {/* Hero Image with Parallax */}
+        <div ref={heroRef} className="relative h-[50vh] sm:h-[60vh] w-full overflow-hidden">
           <img
             src={heroImage}
             alt={project.title}
-            className="w-full h-full object-cover hero-image"
+            className="w-full h-full object-cover hero-image scale-110"
+            style={{
+              transform: `translateY(${scrollY * 0.3}px)`,
+              transition: 'transform 0.1s ease-out'
+            }}
           />
           {/* Dark gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
