@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, X, ChevronLeft, ChevronRight, Ruler, BedDouble, Bath, Check, Clock, Briefcase, DollarSign } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, Square, Bed, Droplets, Check, CalendarDays, Award, Wallet } from "lucide-react";
 import { getProjectById } from "@/data/projects";
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -211,7 +211,7 @@ const ProjectDetail = () => {
               <div className="flex flex-wrap gap-8 mb-6 py-4 border-t border-border">
                 {project.duration && (
                   <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-accent" />
+                    <CalendarDays className="h-5 w-5 text-accent" />
                     <span className="text-foreground">
                       <strong>{project.duration}</strong>
                     </span>
@@ -219,7 +219,7 @@ const ProjectDetail = () => {
                 )}
                 {project.sqft && (
                   <div className="flex items-center gap-2">
-                    <Ruler className="h-5 w-5 text-accent" />
+                    <Square className="h-5 w-5 text-accent" />
                     <span className="text-foreground">
                       <strong>{project.sqft.toLocaleString()}</strong> sqft
                     </span>
@@ -227,7 +227,7 @@ const ProjectDetail = () => {
                 )}
                 {project.bedrooms && (
                   <div className="flex items-center gap-2">
-                    <BedDouble className="h-5 w-5 text-accent" />
+                    <Bed className="h-5 w-5 text-accent" />
                     <span className="text-foreground">
                       <strong>{project.bedrooms}</strong> Bedrooms
                     </span>
@@ -235,7 +235,7 @@ const ProjectDetail = () => {
                 )}
                 {project.baths && (
                   <div className="flex items-center gap-2">
-                    <Bath className="h-5 w-5 text-accent" />
+                    <Droplets className="h-5 w-5 text-accent" />
                     <span className="text-foreground">
                       <strong>{project.baths}</strong> Baths
                     </span>
@@ -243,7 +243,7 @@ const ProjectDetail = () => {
                 )}
                 {project.budget && (
                   <div className="flex items-center gap-2">
-                    <DollarSign className="h-5 w-5 text-accent" />
+                    <Wallet className="h-5 w-5 text-accent" />
                     <span className="text-foreground">
                       <strong>{project.budget}</strong>
                     </span>
@@ -256,7 +256,7 @@ const ProjectDetail = () => {
             {hasRole && (
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <Briefcase className="h-4 w-4 text-accent" />
+                  <Award className="h-4 w-4 text-accent" />
                   <p className="text-sm font-semibold text-foreground">My Role</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
