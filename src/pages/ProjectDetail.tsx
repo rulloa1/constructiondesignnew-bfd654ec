@@ -254,16 +254,21 @@ const ProjectDetail = () => {
 
             {/* My Role Section */}
             {hasRole && (
-              <div className="bg-gradient-to-r from-secondary to-secondary/50 border-l-4 border-accent p-4 mb-6">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-3">
                   <Briefcase className="h-4 w-4 text-accent" />
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    My Role
-                  </p>
+                  <p className="text-sm font-semibold text-foreground">My Role</p>
                 </div>
-                <p className="text-accent font-medium">
-                  {project.roles}
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.roles!.split(',').map((role, index) => (
+                    <span
+                      key={index}
+                      className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-accent/10 text-accent border border-accent/20"
+                    >
+                      {role.trim()}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
 
