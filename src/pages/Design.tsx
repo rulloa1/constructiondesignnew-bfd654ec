@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Building2, Palette, Trees, Armchair, Building } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
-// Detail images for concept cards
+// Detail images
 import detailBronzeBase from "@/assets/details/detail-bronze-base.jpg";
 import detailBronzeHardware from "@/assets/details/detail-bronze-hardware.jpg";
 import detailFloatingVanity from "@/assets/details/detail-floating-vanity.jpg";
@@ -21,238 +21,142 @@ import detailTimberBeams from "@/assets/details/detail-timber-beams.jpg";
 import detailVanityNiche from "@/assets/details/detail-vanity-niche.jpg";
 import detailWallFaucet from "@/assets/details/detail-wall-faucet.jpg";
 
-type CategoryKey = "architecture" | "interiors" | "exterior" | "furniture" | "development";
-
-interface ConceptBoard {
-  title: string;
-  subtitle: string;
-  mainImage: string;
-  gridImages: string[];
-  details: string[];
-}
-
-const conceptBoards: Record<CategoryKey, ConceptBoard> = {
-  architecture: {
-    title: "ARCHITECTURE",
-    subtitle: "Form Meets Function",
-    mainImage: detailOceanviewFraming,
-    gridImages: [detailLimestoneFireplace, detailTimberBeams, detailSculpturalChandelier],
-    details: ["Site-responsive design", "Structural engineering", "Energy efficiency", "Smart home integration"],
-  },
-  interiors: {
-    title: "INTERIORS",
-    subtitle: "Curated Living Spaces",
-    mainImage: detailSpaVanity,
-    gridImages: [detailPendantLighting, detailProRange, detailLeatherCabinetry],
-    details: ["Custom millwork", "Lighting design", "Premium flooring", "Art display systems"],
-  },
-  exterior: {
-    title: "EXTERIOR",
-    subtitle: "Landscape Integration",
-    mainImage: detailLimestoneFireplace,
-    gridImages: [detailOceanviewFraming, detailBronzeBase, detailPendantLighting],
-    details: ["Hardscape design", "Pool construction", "Outdoor kitchens", "Exterior lighting"],
-  },
-  furniture: {
-    title: "CUSTOM FURNITURE",
-    subtitle: "Bespoke Craftsmanship",
-    mainImage: detailBronzeBase,
-    gridImages: [detailSkiStorage, detailVanityNiche, detailWallFaucet],
-    details: ["Master craftsman partnerships", "Exotic material sourcing", "Custom finishes", "White-glove installation"],
-  },
-  development: {
-    title: "DEVELOPMENT",
-    subtitle: "Vision to Reality",
-    mainImage: detailMarbleBath,
-    gridImages: [detailBronzeHardware, detailFloatingVanity, detailMarbleCounter],
-    details: ["Feasibility analysis", "Entitlement processing", "Budget development", "Construction management"],
-  },
-};
-
-const categories: { key: CategoryKey; label: string; icon: React.ElementType }[] = [
-  { key: "architecture", label: "Architecture", icon: Building2 },
-  { key: "interiors", label: "Interiors", icon: Palette },
-  { key: "exterior", label: "Exterior Spaces", icon: Trees },
-  { key: "furniture", label: "Custom Furniture", icon: Armchair },
-  { key: "development", label: "Development", icon: Building },
+const moodBoardImages = [
+  { num: "01", image: detailSpaVanity, caption: "Spa-inspired primary suites" },
+  { num: "02", image: detailBronzeBase, caption: "Custom bronze details" },
+  { num: "03", image: detailMarbleBath, caption: "Natural stone selection" },
+  { num: "04", image: detailPendantLighting, caption: "Sculptural lighting" },
 ];
 
-const materialSwatches = [
-  { name: "Calacatta Marble", color: "bg-gradient-to-br from-stone-100 via-stone-50 to-stone-200" },
-  { name: "Bronze Hardware", color: "bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800" },
-  { name: "Natural Oak", color: "bg-gradient-to-br from-amber-100 via-amber-50 to-amber-200" },
-  { name: "Limestone", color: "bg-gradient-to-br from-stone-200 via-stone-100 to-stone-300" },
-  { name: "Travertine", color: "bg-gradient-to-br from-orange-50 via-amber-50 to-stone-100" },
-  { name: "Walnut", color: "bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950" },
+const projectShowcase = [
+  { num: "01", image: detailOceanviewFraming, title: "Coastal Modern", subtitle: "Oceanfront living" },
+  { num: "02", image: detailLimestoneFireplace, title: "Hill Country", subtitle: "Native limestone" },
+  { num: "03", image: detailTimberBeams, title: "Mountain Lodge", subtitle: "Heavy timber" },
+  { num: "04", image: detailSculpturalChandelier, title: "Resort Living", subtitle: "Hospitality-inspired" },
+];
+
+const services = [
+  { title: "ARCHITECTURE", description: "Site-responsive design, structural coordination, and smart home integration." },
+  { title: "INTERIORS", description: "Custom millwork, lighting design, and curated material selections." },
+  { title: "DEVELOPMENT", description: "Feasibility analysis, entitlement processing, and construction management." },
 ];
 
 const processSteps = [
-  { number: "01", title: "Discovery", description: "Understanding vision, site conditions, and unique requirements." },
-  { number: "02", title: "Design", description: "Collaborative development with architects and interior designers." },
-  { number: "03", title: "Development", description: "Detailed planning, budgeting, and construction scheduling." },
-  { number: "04", title: "Delivery", description: "Meticulous construction execution and quality assurance." },
+  { num: "01", title: "Discovery", description: "Understanding vision, site conditions, and project requirements." },
+  { num: "02", title: "Design", description: "Collaborative development with architects and interior designers." },
+  { num: "03", title: "Development", description: "Detailed planning, budgeting, and construction scheduling." },
+  { num: "04", title: "Delivery", description: "Meticulous construction execution and quality assurance." },
 ];
-
-const ConceptBoardSection: React.FC<{ board: ConceptBoard; isReversed?: boolean }> = ({ board, isReversed }) => (
-  <section className="py-12 md:py-20">
-    <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      {/* Header */}
-      <div className="mb-8 md:mb-12">
-        <p className="font-inter text-xs tracking-[0.25em] text-muted-foreground uppercase mb-2">{board.title}</p>
-        <h2 className="font-playfair text-3xl md:text-4xl text-foreground">{board.subtitle}</h2>
-      </div>
-
-      {/* Magazine Layout Grid */}
-      <div className={`grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 ${isReversed ? 'lg:[direction:rtl]' : ''}`}>
-        {/* Main Large Image */}
-        <div className={`lg:col-span-7 ${isReversed ? 'lg:[direction:ltr]' : ''}`}>
-          <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-            <img 
-              src={board.mainImage} 
-              alt={board.title}
-              className="w-full h-full object-cover project-image"
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
-              <p className="font-playfair text-white text-xl md:text-2xl">{board.subtitle}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Side Grid */}
-        <div className={`lg:col-span-5 ${isReversed ? 'lg:[direction:ltr]' : ''}`}>
-          <div className="grid grid-cols-2 gap-4 h-full">
-            {/* Top Two Images */}
-            {board.gridImages.slice(0, 2).map((img, idx) => (
-              <div key={idx} className="aspect-square overflow-hidden bg-muted">
-                <img src={img} alt="" className="w-full h-full object-cover project-image hover:scale-105 transition-transform duration-500" />
-              </div>
-            ))}
-            {/* Bottom Large Image */}
-            <div className="col-span-2 aspect-[2/1] overflow-hidden bg-muted">
-              <img src={board.gridImages[2]} alt="" className="w-full h-full object-cover project-image hover:scale-105 transition-transform duration-500" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Capabilities Strip */}
-      <div className="mt-6 md:mt-8 flex flex-wrap gap-x-6 gap-y-2">
-        {board.details.map((detail, idx) => (
-          <span key={idx} className="font-inter text-sm text-muted-foreground">
-            {detail}
-          </span>
-        ))}
-      </div>
-    </div>
-  </section>
-);
 
 const Design = () => {
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState<CategoryKey | "all">("all");
-
-  const displayedBoards = activeCategory === "all" 
-    ? Object.entries(conceptBoards) 
-    : Object.entries(conceptBoards).filter(([key]) => key === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
+    <div className="min-h-screen bg-[#FAF9F7]">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 md:pt-32 md:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#E8E4DE] to-transparent opacity-50" />
-        <div className="container mx-auto max-w-7xl relative">
+      <section className="relative min-h-[70vh] grid grid-cols-1 lg:grid-cols-2">
+        {/* Left Side - Hero Image */}
+        <div className="relative h-[50vh] lg:h-auto">
+          <img 
+            src={detailLeatherCabinetry} 
+            alt="Portfolio" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+          
+          {/* Vertical Portfolio Text */}
+          <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:block">
+            <h1 className="font-playfair text-6xl text-white tracking-[0.5em] [writing-mode:vertical-lr] rotate-180">
+              PORTFOLIO
+            </h1>
+          </div>
+        </div>
+
+        {/* Right Side - Content */}
+        <div className="bg-[#FAF9F7] p-8 lg:p-16 flex flex-col justify-center">
           <Button
             variant="ghost"
-            className="mb-8 text-muted-foreground hover:text-gold hover:bg-transparent -ml-2"
+            className="self-start mb-8 text-muted-foreground hover:text-gold hover:bg-transparent -ml-4"
             onClick={() => navigate("/")}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
 
-          <div className="max-w-3xl">
-            <p className="font-inter text-xs tracking-[0.25em] text-gold uppercase mb-4">Design Portfolio</p>
-            <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl text-foreground mb-6">
-              Design Concepts
-            </h1>
-            <p className="font-inter text-lg text-muted-foreground leading-relaxed max-w-xl">
-              Luxury Residential • Hospitality • Commercial Development
+          <h1 className="font-playfair text-4xl lg:text-5xl text-foreground mb-6 lg:hidden">
+            PORTFOLIO
+          </h1>
+
+          <div className="space-y-4 text-sm text-muted-foreground">
+            <p className="font-inter">Michael Chandler</p>
+            <p className="font-inter">Design • Build • Develop</p>
+            <div className="w-12 h-[1px] bg-gold my-6" />
+            <p className="font-inter leading-relaxed max-w-sm">
+              37 years of creating exceptional residential environments through thoughtful design and meticulous craftsmanship.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Category Navigation */}
-      <section className="sticky top-16 z-30 bg-[#F5F3EF]/95 backdrop-blur-sm border-b border-border/30">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <button
-              onClick={() => setActiveCategory("all")}
-              className={`px-4 py-2 rounded-full font-inter text-sm transition-all whitespace-nowrap ${
-                activeCategory === "all"
-                  ? "bg-foreground text-background"
-                  : "bg-transparent text-muted-foreground hover:text-foreground border border-border"
-              }`}
-            >
-              All Concepts
-            </button>
-            {categories.map(({ key, label, icon: Icon }) => (
-              <button
-                key={key}
-                onClick={() => setActiveCategory(key)}
-                className={`px-4 py-2 rounded-full font-inter text-sm transition-all flex items-center gap-2 whitespace-nowrap ${
-                  activeCategory === key
-                    ? "bg-foreground text-background"
-                    : "bg-transparent text-muted-foreground hover:text-foreground border border-border"
-                }`}
-              >
-                <Icon className="w-3.5 h-3.5" />
-                {label}
-              </button>
-            ))}
+      {/* Mood Board Section */}
+      <section className="py-16 lg:py-24 px-4 lg:px-8 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-12">
+            <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-3">Design Concepts</p>
+            <h2 className="font-playfair text-3xl lg:text-4xl text-foreground">MOOD BOARD</h2>
           </div>
-        </div>
-      </section>
 
-      {/* Concept Board Sections */}
-      {displayedBoards.map(([key, board], idx) => (
-        <ConceptBoardSection key={key} board={board} isReversed={idx % 2 === 1} />
-      ))}
-
-      {/* Material Board Section */}
-      <section className="py-16 md:py-24 bg-[#E8E4DE]">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <p className="font-inter text-xs tracking-[0.25em] text-muted-foreground uppercase mb-2">Material Palette</p>
-            <h2 className="font-playfair text-3xl md:text-4xl text-foreground">Curated Materials</h2>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {materialSwatches.map((swatch) => (
-              <div key={swatch.name} className="group">
-                <div className={`aspect-square ${swatch.color} rounded-sm shadow-sm group-hover:shadow-md transition-shadow`} />
-                <p className="font-inter text-xs text-muted-foreground mt-3 text-center">{swatch.name}</p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {moodBoardImages.map((item) => (
+              <div key={item.num} className="group relative">
+                <div className="aspect-[3/4] overflow-hidden bg-muted">
+                  <img 
+                    src={item.image} 
+                    alt={item.caption} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <span className="absolute top-4 right-4 font-playfair text-4xl lg:text-5xl text-white/80 font-light">
+                  {item.num}
+                </span>
+                <p className="font-inter text-xs text-muted-foreground mt-3 text-center">{item.caption}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-16 md:py-24 bg-[#F5F3EF]">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <p className="font-inter text-xs tracking-[0.25em] text-muted-foreground uppercase mb-2">Our Process</p>
-            <h2 className="font-playfair text-3xl md:text-4xl text-foreground">From Vision to Reality</h2>
+      {/* Project Showcase - Full Width */}
+      <section className="relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Large Feature Image */}
+          <div className="relative h-[60vh] lg:h-[80vh]">
+            <img 
+              src={detailProRange} 
+              alt="Featured Project" 
+              className="w-full h-full object-cover"
+            />
+            <span className="absolute bottom-8 right-8 font-playfair text-8xl lg:text-[12rem] text-white/20 font-light leading-none">
+              01
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step) => (
-              <div key={step.number} className="relative">
-                <span className="font-playfair text-6xl md:text-7xl text-gold/20 absolute -top-4 -left-2">{step.number}</span>
-                <div className="pt-12">
-                  <h3 className="font-playfair text-xl text-foreground mb-2">{step.title}</h3>
-                  <p className="font-inter text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+          {/* Right Side Grid */}
+          <div className="grid grid-cols-2 grid-rows-2">
+            {projectShowcase.slice(0, 4).map((item, idx) => (
+              <div key={item.num} className="relative h-[30vh] lg:h-[40vh] group overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <span className="absolute top-4 right-4 font-playfair text-3xl lg:text-4xl text-white/60 font-light">
+                  0{idx + 1}
+                </span>
+                <div className="absolute bottom-4 left-4">
+                  <p className="font-playfair text-white text-lg">{item.title}</p>
+                  <p className="font-inter text-white/70 text-xs">{item.subtitle}</p>
                 </div>
               </div>
             ))}
@@ -260,21 +164,105 @@ const Design = () => {
         </div>
       </section>
 
-      {/* Philosophy Quote */}
-      <section className="py-20 md:py-28 bg-foreground text-background">
-        <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <blockquote className="font-playfair text-2xl md:text-3xl lg:text-4xl leading-relaxed italic">
-            "We don't simply build structures—we craft environments that enhance how people live, work, and experience their world."
-          </blockquote>
-          <div className="mt-8 w-16 h-[2px] bg-gold mx-auto" />
+      {/* Skills & Services */}
+      <section className="py-16 lg:py-24 px-4 lg:px-8 bg-[#FAF9F7]">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+            {/* Left Image */}
+            <div className="lg:col-span-5 relative">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={detailSkiStorage} 
+                  alt="Skills" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="absolute -bottom-4 -right-4 lg:-bottom-8 lg:-right-8 font-playfair text-8xl lg:text-[10rem] text-gold/10 font-light leading-none">
+                02
+              </span>
+            </div>
+
+            {/* Right Content */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-3">Capabilities</p>
+              <h2 className="font-playfair text-3xl lg:text-4xl text-foreground mb-10">SKILLS & SERVICES</h2>
+
+              <div className="space-y-8">
+                {services.map((service) => (
+                  <div key={service.title} className="border-l-2 border-gold/30 pl-6">
+                    <h3 className="font-inter text-sm font-medium text-foreground tracking-wide mb-2">{service.title}</h3>
+                    <p className="font-inter text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-[#F5F3EF]">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-playfair text-3xl md:text-4xl text-foreground mb-4">Ready to Begin?</h2>
-          <p className="font-inter text-muted-foreground mb-8 max-w-lg mx-auto">
+      {/* Design Philosophy */}
+      <section className="py-16 lg:py-24 bg-foreground text-background">
+        <div className="container mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Content */}
+            <div className="order-2 lg:order-1">
+              <span className="font-playfair text-8xl lg:text-[10rem] text-gold/20 font-light leading-none block mb-4">03</span>
+              <p className="font-inter text-xs tracking-[0.3em] text-background/60 uppercase mb-3">Philosophy</p>
+              <h2 className="font-playfair text-3xl lg:text-4xl text-background mb-6">DESIGN PHILOSOPHY</h2>
+              <blockquote className="font-playfair text-xl lg:text-2xl text-background/90 italic leading-relaxed">
+                "We don't simply build structures—we craft environments that enhance how people live, work, and experience their world."
+              </blockquote>
+            </div>
+
+            {/* Image */}
+            <div className="order-1 lg:order-2">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={detailVanityNiche} 
+                  alt="Design Philosophy" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 lg:py-24 px-4 lg:px-8 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <span className="font-playfair text-8xl lg:text-[10rem] text-gold/10 font-light leading-none block">04</span>
+            <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-3 -mt-8 lg:-mt-16">Our Approach</p>
+            <h2 className="font-playfair text-3xl lg:text-4xl text-foreground">DESIGN PROCESS</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step) => (
+              <div key={step.num} className="text-center">
+                <span className="font-playfair text-5xl lg:text-6xl text-gold/30 font-light block mb-4">{step.num}</span>
+                <h3 className="font-playfair text-xl text-foreground mb-2">{step.title}</h3>
+                <p className="font-inter text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA with Image */}
+      <section className="relative min-h-[60vh] flex items-center">
+        <div className="absolute inset-0">
+          <img 
+            src={detailWallFaucet} 
+            alt="Contact" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        
+        <div className="relative container mx-auto max-w-7xl px-4 lg:px-8 text-center">
+          <h2 className="font-playfair text-3xl lg:text-5xl text-white mb-4">Ready to Begin?</h2>
+          <p className="font-inter text-white/80 mb-8 max-w-lg mx-auto">
             Every exceptional project starts with a conversation. Let's discuss your vision.
           </p>
           <Button
