@@ -215,13 +215,6 @@ const ProjectDetail = () => {
           
           {/* Project Info Card */}
           <div className="bg-secondary/50 rounded-lg p-6 mb-8">
-            {/* Location with accent border */}
-            <div className="border-l-4 border-accent pl-4 mb-6">
-              <h2 className="font-playfair text-xl sm:text-2xl font-semibold text-accent">
-                {project.location}
-              </h2>
-            </div>
-
             {/* Category & Design Style */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div>
