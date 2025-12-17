@@ -3,12 +3,43 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Building2, Palette, Trees, Armchair, Building, Sparkles, Compass, PenLine, Truck } from "lucide-react";
 
+// Architecture images
+import beachfrontCover from "@/assets/projects/beachfront-1.webp";
+import alpineRanchCover from "@/assets/projects/alpine-ranch-cover.webp";
+import bigsurCover from "@/assets/projects/bigsur-cover.webp";
+import bakersBay from "@/assets/projects/bakers-bay-1.webp";
+
+// Interiors images
+import miamiBeach1 from "@/assets/projects/miami-beach-1.webp";
+import miamiBeach5 from "@/assets/projects/miami-beach-5.webp";
+import miamiBeach10 from "@/assets/projects/miami-beach-10.webp";
+import carmelKnolls5 from "@/assets/projects/carmel-knolls-5.webp";
+
+// Exterior images
+import syracuse1 from "@/assets/projects/syracuse-1.webp";
+import syracuse20 from "@/assets/projects/syracuse-20.webp";
+import syracuse30 from "@/assets/projects/syracuse-30.webp";
+import carmelValley1 from "@/assets/projects/carmel-valley-1.webp";
+
+// Furniture images
+import miamiBeach15 from "@/assets/projects/miami-beach-15.webp";
+import miamiBeach20 from "@/assets/projects/miami-beach-20.webp";
+import carmelKnolls10 from "@/assets/projects/carmel-knolls-10.webp";
+import beachfront5 from "@/assets/projects/beachfront-5.webp";
+
+// Development images
+import developmentCover from "@/assets/projects/development-cover.webp";
+import developmentPlan from "@/assets/projects/development-plan.webp";
+import abacoBoathouse from "@/assets/projects/abaco-luxe-boathouse-cover.webp";
+import coastalRestoration from "@/assets/projects/coastal-restoration-cover.webp";
+
 type CategoryKey = "all" | "architecture" | "interiors" | "exterior" | "furniture" | "development";
 
 interface ConceptCard {
   title: string;
   description: string;
   tags: string[];
+  image: string;
 }
 
 interface CategoryData {
@@ -35,21 +66,25 @@ const categoryData: Record<Exclude<CategoryKey, "all">, CategoryData> = {
         title: "Coastal Modern Residence",
         description: "Cantilevered volumes maximize oceanfront views while hurricane-rated construction ensures lasting protection.",
         tags: ["Oceanfront", "Concrete", "Glass"],
+        image: beachfrontCover,
       },
       {
         title: "Hill Country Contemporary",
         description: "Native Texas limestone anchors this home to the landscape, with passive cooling strategies reducing energy demands.",
         tags: ["Limestone", "Sustainable", "Texas"],
+        image: alpineRanchCover,
       },
       {
         title: "Mountain Lodge Retreat",
         description: "Heavy timber construction and expansive glazing create intimate connection with alpine vistas.",
         tags: ["Timber Frame", "Mountain", "Rustic Modern"],
+        image: bigsurCover,
       },
       {
         title: "Resort Residential Compound",
         description: "Multiple pavilions connected by covered walkways, blending hospitality-inspired design with private residence.",
         tags: ["Pavilion", "Compound", "Hospitality"],
+        image: bakersBay,
       },
     ],
     capabilities: [
@@ -69,21 +104,25 @@ const categoryData: Record<Exclude<CategoryKey, "all">, CategoryData> = {
         title: "Great Room Collection",
         description: "Double-height volumes with custom millwork, integrated lighting, and carefully considered sight lines.",
         tags: ["Millwork", "Lighting", "Volume"],
+        image: miamiBeach1,
       },
       {
         title: "Primary Suite Sanctuary",
         description: "Spa-inspired bathrooms, custom closeting systems, and bedroom environments designed for restoration.",
         tags: ["Spa", "Custom Closets", "Luxury"],
+        image: miamiBeach5,
       },
       {
         title: "Chef's Kitchen",
         description: "Professional-grade equipment, custom cabinetry, butler's pantries, and workflow-optimized layouts.",
         tags: ["Professional", "Cabinetry", "Workflow"],
+        image: miamiBeach10,
       },
       {
         title: "Wine & Spirits Gallery",
         description: "Climate-controlled cellars with custom racking, tasting rooms, and display-worthy bottle presentation.",
         tags: ["Wine Cellar", "Climate Control", "Display"],
+        image: carmelKnolls5,
       },
     ],
     capabilities: [
@@ -103,21 +142,25 @@ const categoryData: Record<Exclude<CategoryKey, "all">, CategoryData> = {
         title: "Outdoor Living Pavilion",
         description: "Full outdoor kitchens, retractable screens, climate control, and seamless indoor-outdoor transitions.",
         tags: ["Outdoor Kitchen", "Pavilion", "Entertainment"],
+        image: syracuse1,
       },
       {
         title: "Pool & Water Features",
         description: "Infinity edges, natural stone surrounds, integrated spas, and water features as sculptural elements.",
         tags: ["Infinity Pool", "Natural Stone", "Spa"],
+        image: syracuse20,
       },
       {
         title: "Motor Court & Entry Sequence",
         description: "Arrival experiences that set expectations, with specimen plantings and architectural lighting.",
         tags: ["Entry", "Hardscape", "Lighting"],
+        image: syracuse30,
       },
       {
         title: "Native Landscape Design",
         description: "Site-appropriate plantings that reduce maintenance while honoring regional character and ecology.",
         tags: ["Native Plants", "Sustainable", "Low Maintenance"],
+        image: carmelValley1,
       },
     ],
     capabilities: [
@@ -137,21 +180,25 @@ const categoryData: Record<Exclude<CategoryKey, "all">, CategoryData> = {
         title: "Statement Dining Tables",
         description: "Live-edge slabs, metal bases, expandable systems—each table designed for the specific space and client.",
         tags: ["Live Edge", "Custom", "Dining"],
+        image: miamiBeach15,
       },
       {
         title: "Built-In Cabinetry Systems",
         description: "Library walls, entertainment centers, and storage solutions with furniture-grade finishes and precision joinery.",
         tags: ["Built-In", "Library", "Millwork"],
+        image: miamiBeach20,
       },
       {
         title: "Bedroom Collections",
         description: "Coordinated beds, nightstands, and dressers with integrated technology and upholstered headboards.",
         tags: ["Bedroom", "Upholstered", "Integrated Tech"],
+        image: carmelKnolls10,
       },
       {
         title: "Outdoor Furniture Collections",
         description: "Teak, ipe, and marine-grade fabrics designed to weather beautifully in harsh coastal environments.",
         tags: ["Teak", "Marine Grade", "Outdoor"],
+        image: beachfront5,
       },
     ],
     capabilities: [
@@ -171,21 +218,25 @@ const categoryData: Record<Exclude<CategoryKey, "all">, CategoryData> = {
         title: "Land Development",
         description: "Entitlements, infrastructure, and phasing strategies that maximize land value while respecting site character.",
         tags: ["Entitlements", "Infrastructure", "Planning"],
+        image: developmentCover,
       },
       {
         title: "Residential Communities",
         description: "Master-planned neighborhoods with cohesive design standards, shared amenities, and lasting value.",
         tags: ["Master Plan", "Community", "Amenities"],
+        image: developmentPlan,
       },
       {
         title: "Resort & Hospitality",
         description: "Mixed-use developments, golf communities, and hospitality venues requiring specialized construction expertise.",
         tags: ["Resort", "Golf", "Mixed-Use"],
+        image: abacoBoathouse,
       },
       {
         title: "Renovation & Repositioning",
         description: "Historic preservation, adaptive reuse, and strategic renovations that honor original character while meeting modern needs.",
         tags: ["Historic", "Adaptive Reuse", "Renovation"],
+        image: coastalRestoration,
       },
     ],
     capabilities: [
@@ -222,24 +273,17 @@ const processSteps = [
   },
 ];
 
-const ConceptCardComponent: React.FC<{ concept: ConceptCard; index: number }> = ({ concept, index }) => {
-  const gradients = [
-    "from-charcoal via-charcoal/80 to-gold/30",
-    "from-gold/40 via-charcoal/60 to-charcoal",
-    "from-charcoal/70 via-gold/20 to-cream/30",
-    "from-gold/30 via-charcoal/90 to-charcoal",
-  ];
-  
+const ConceptCardComponent: React.FC<{ concept: ConceptCard; index: number }> = ({ concept }) => {
   return (
     <div className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50">
-      {/* Image Placeholder */}
-      <div className={`aspect-square bg-gradient-to-br ${gradients[index % 4]} relative overflow-hidden`}>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-white/20 font-playfair text-2xl tracking-[0.3em] uppercase">
-            Concept
-          </span>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Image */}
+      <div className="aspect-square relative overflow-hidden bg-muted">
+        <img
+          src={concept.image}
+          alt={concept.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 project-image"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
       
       {/* Content */}
