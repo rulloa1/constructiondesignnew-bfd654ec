@@ -291,8 +291,8 @@ const ProjectDetail = () => {
               </div>
             </div>}
 
-          {/* Gallery Grid */}
-          {allImages.length > 0 && <div className="mb-16">
+          {/* Gallery Grid - Skip first image since it's already shown as hero */}
+          {allImages.length > 1 && <div className="mb-16">
               <div className="mb-8">
                 <span className="font-playfair text-7xl lg:text-8xl text-accent/10 font-light leading-none block -mb-4 lg:-mb-6">{videos.length > 0 ? '03' : '02'}</span>
                 <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Photography</p>
@@ -300,22 +300,7 @@ const ProjectDetail = () => {
               </div>
               <div className="w-12 h-[1px] bg-accent mb-8" />
               
-              {/* Cover Photo - First Image */}
-              {allImages.length > 0 && <ImageWithWatermark key={`${allImages[0]}-cover`}>
-                  <button 
-                    onClick={() => setSelectedImageIndex(0)} 
-                    className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-card border border-border group cursor-pointer transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent/50 mb-6"
-                  >
-                    <img 
-                      src={allImages[0]} 
-                      alt={`${project.title} - Cover`} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 gallery-image" 
-                    />
-                  </button>
-                </ImageWithWatermark>}
-
-              {/* Remaining Gallery Images */}
-              {allImages.length > 1 && <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                   {allImages.slice(1).map((image, index) => {
               const actualIndex = index + 1;
               const label = getImageLabel(image, actualIndex);
@@ -328,7 +313,7 @@ const ProjectDetail = () => {
                         </button>
                       </ImageWithWatermark>;
             })}
-                </div>}
+                </div>
             </div>}
         </div>
       </div>
