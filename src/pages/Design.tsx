@@ -13,6 +13,54 @@ import detailMarbleBath from "@/assets/details/detail-marble-bath.jpg";
 import detailProRange from "@/assets/details/detail-pro-range.jpg";
 import detailOceanviewFraming from "@/assets/details/detail-oceanview-framing.jpg";
 
+/**
+ * Architectural motif SVG icons
+ */
+const BlueprintCorner: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <svg viewBox="0 0 40 40" className={className} fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M4 36V4h32" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 32V8h24" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+    <circle cx="4" cy="4" r="2" fill="currentColor" stroke="none" />
+    <circle cx="36" cy="4" r="2" fill="currentColor" stroke="none" />
+    <circle cx="4" cy="36" r="2" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const BuildingSilhouette: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <svg viewBox="0 0 40 40" className={className} fill="currentColor">
+    <rect x="4" y="16" width="10" height="24" opacity="0.7" />
+    <rect x="16" y="8" width="12" height="32" />
+    <rect x="30" y="20" width="8" height="20" opacity="0.5" />
+    <rect x="6" y="20" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="6" y="26" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="19" y="12" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="24" y="12" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="19" y="18" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="24" y="18" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="19" y="24" width="2" height="3" fill="white" opacity="0.5" />
+    <rect x="24" y="24" width="2" height="3" fill="white" opacity="0.5" />
+  </svg>
+);
+
+const TreeMotif: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <svg viewBox="0 0 40 40" className={className} fill="currentColor">
+    <ellipse cx="20" cy="12" rx="12" ry="10" opacity="0.8" />
+    <ellipse cx="12" cy="18" rx="8" ry="7" opacity="0.6" />
+    <ellipse cx="28" cy="18" rx="8" ry="7" opacity="0.6" />
+    <rect x="18" y="24" width="4" height="16" opacity="0.9" />
+  </svg>
+);
+
+const CompassMotif: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <svg viewBox="0 0 40 40" className={className} fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="20" cy="20" r="16" />
+    <circle cx="20" cy="20" r="12" opacity="0.5" />
+    <path d="M20 4v6M20 30v6M4 20h6M30 20h6" strokeLinecap="round" />
+    <path d="M20 8l3 12-3 3-3-3 3-12z" fill="currentColor" stroke="none" />
+    <path d="M20 32l-3-12 3-3 3 3-3 12z" fill="currentColor" opacity="0.4" stroke="none" />
+  </svg>
+);
+
 /** 
  * Gradient placeholder component for image cards
  */
@@ -31,7 +79,7 @@ const GradientPlaceholder: React.FC<{ label: string; className?: string }> = ({ 
 interface BentoCardProps {
   image?: string;
   label: string;
-  number?: string;
+  motif?: React.ReactNode;
   subtitle?: string;
   tags?: string[];
   className?: string;
@@ -42,7 +90,7 @@ interface BentoCardProps {
 const BentoCard: React.FC<BentoCardProps> = ({ 
   image, 
   label, 
-  number, 
+  motif, 
   subtitle,
   tags,
   className = "",
@@ -69,11 +117,11 @@ const BentoCard: React.FC<BentoCardProps> = ({
       )}
     </div>
     
-    {/* Category number */}
-    {number && (
-      <span className="absolute top-4 left-4 font-playfair text-2xl lg:text-3xl text-gold font-light transition-all duration-300 group-hover:text-gold/80 group-hover:drop-shadow-[0_0_8px_rgba(201,169,97,0.5)]">
-        {number}
-      </span>
+    {/* Architectural motif */}
+    {motif && (
+      <div className="absolute top-4 left-4 w-8 h-8 lg:w-10 lg:h-10 text-gold transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(201,169,97,0.5)]">
+        {motif}
+      </div>
     )}
     
     {/* Label */}
@@ -201,10 +249,10 @@ const Design = () => {
                   </div>
                 </div>
                 
-                {/* Category number */}
-                <span className="absolute top-6 left-6 font-playfair text-4xl lg:text-5xl text-gold font-light transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(201,169,97,0.5)]">
-                  01
-                </span>
+                {/* Architectural motif */}
+                <div className="absolute top-6 left-6 w-10 h-10 lg:w-12 lg:h-12 text-gold transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(201,169,97,0.5)]">
+                  <BlueprintCorner className="w-full h-full" />
+                </div>
                 
                 {/* Label */}
                 <div className="absolute bottom-6 left-6">
@@ -270,7 +318,7 @@ const Design = () => {
               <BentoCard 
                 image={detailLimestoneFireplace}
                 label="EXTERIOR SPACES & LANDSCAPE"
-                number="02"
+                motif={<TreeMotif className="w-full h-full" />}
                 tags={["Outdoor Living", "Pool & Spa", "Motor Courts", "Native Landscape"]}
                 aspectRatio="aspect-[4/3]"
               />
@@ -285,7 +333,7 @@ const Design = () => {
               <BentoCard 
                 image={detailLeatherCabinetry}
                 label="CUSTOM FURNITURE"
-                number="03"
+                motif={<BuildingSilhouette className="w-full h-full" />}
                 tags={["Statement Tables", "Built-Ins", "Vanities", "Specialty Storage"]}
                 aspectRatio="aspect-[4/3]"
               />
@@ -306,7 +354,9 @@ const Design = () => {
               section3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <span className="font-playfair text-3xl text-gold font-light">04</span>
+            <div className="flex justify-center mb-2">
+              <CompassMotif className="w-10 h-10 text-gold" />
+            </div>
             <h2 className="font-playfair text-2xl lg:text-3xl text-charcoal mt-2">DEVELOPMENT & CONCEPTS</h2>
             
             {/* Connector line */}
