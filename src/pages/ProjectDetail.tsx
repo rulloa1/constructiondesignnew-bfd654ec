@@ -6,6 +6,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ImageWithWatermark } from "@/components/ImageWithWatermark";
+import { BlueprintCorner, GalleryMotif } from "@/components/ui/architectural-motifs";
 interface ProjectVideo {
   id: string;
   video_url: string;
@@ -190,11 +191,13 @@ const ProjectDetail = () => {
           
           {/* Project Details Section */}
           <div className="mb-16">
-            {/* Section Header with Decorative Number */}
-            <div className="mb-8">
-              <span className="font-playfair text-7xl lg:text-8xl text-accent/10 font-light leading-none block -mb-4 lg:-mb-6">01</span>
-              <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Project Details</p>
-              <h2 className="font-playfair text-2xl lg:text-3xl text-foreground">Overview</h2>
+            {/* Section Header with Decorative Motif */}
+            <div className="mb-8 flex items-end gap-4">
+              <BlueprintCorner className="w-12 h-12 lg:w-16 lg:h-16 text-accent/20" />
+              <div>
+                <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Project Details</p>
+                <h2 className="font-playfair text-2xl lg:text-3xl text-foreground">Overview</h2>
+              </div>
             </div>
 
             <div className="w-12 h-[1px] bg-accent mb-8" />
@@ -274,10 +277,12 @@ const ProjectDetail = () => {
 
           {/* Videos Section */}
           {videos.length > 0 && <div className="mb-16">
-              <div className="mb-8">
-                <span className="font-playfair text-7xl lg:text-8xl text-accent/10 font-light leading-none block -mb-4 lg:-mb-6">02</span>
-                <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Media</p>
-                <h3 className="font-playfair text-2xl lg:text-3xl text-foreground">Project Videos</h3>
+              <div className="mb-8 flex items-end gap-4">
+                <GalleryMotif className="w-12 h-12 lg:w-16 lg:h-16 text-accent/20" />
+                <div>
+                  <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Media</p>
+                  <h3 className="font-playfair text-2xl lg:text-3xl text-foreground">Project Videos</h3>
+                </div>
               </div>
               <div className="w-12 h-[1px] bg-accent mb-8" />
               <div className="grid md:grid-cols-2 gap-6">
@@ -293,10 +298,12 @@ const ProjectDetail = () => {
 
           {/* Gallery Grid - Skip first image since it's already shown as hero */}
           {allImages.length > 1 && <div className="mb-16">
-              <div className="mb-8">
-                <span className="font-playfair text-7xl lg:text-8xl text-accent/10 font-light leading-none block -mb-4 lg:-mb-6">{videos.length > 0 ? '03' : '02'}</span>
-                <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Photography</p>
-                <h3 className="font-playfair text-2xl lg:text-3xl text-foreground">Gallery</h3>
+              <div className="mb-8 flex items-end gap-4">
+                <GalleryMotif className="w-12 h-12 lg:w-16 lg:h-16 text-accent/20" />
+                <div>
+                  <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-2">Photography</p>
+                  <h3 className="font-playfair text-2xl lg:text-3xl text-foreground">Gallery</h3>
+                </div>
               </div>
               <div className="w-12 h-[1px] bg-accent mb-8" />
               
