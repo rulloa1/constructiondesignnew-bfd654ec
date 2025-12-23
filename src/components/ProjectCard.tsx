@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ImageWithWatermark } from "@/components/ImageWithWatermark";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import logo from "@/assets/mc-logo.png";
 
 interface ProjectCardProps {
   project: {
@@ -20,7 +19,6 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, categoryColor, index }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
   
   const {
     elementRef,
@@ -36,11 +34,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
     .replace(" ", " • ")
     .replace("/", " • ");
 
-  const handleImageError = () => {
-    setImageError(true);
-    setImageLoaded(true);
-  };
-
   return (
     <div 
       ref={elementRef as React.RefObject<HTMLDivElement>}
@@ -55,40 +48,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, ca
         {/* Image Container */}
         <div className="relative aspect-[4/3] overflow-hidden mb-4 bg-muted">
           <ImageWithWatermark>
-            {/* Blur placeholder background */}
-            <div 
-              className={`absolute inset-0 bg-gradient-to-br from-stone/20 via-cream to-gold/10 transition-opacity duration-500 ${
-                imageLoaded ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
-              <div className="absolute inset-0 backdrop-blur-sm" />
+            {!imageLoaded && (
               <Skeleton className="absolute inset-0" />
-            </div>
-            
-            {/* Error fallback */}
-            {imageError ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-cream via-offWhite to-stone/10">
-                <img 
-                  src={logo} 
-                  alt="MC Design" 
-                  className="w-16 h-16 object-contain opacity-30 mb-2"
-                />
-                <span className="text-xs text-charcoal/40 font-inter uppercase tracking-wider">
-                  Image Unavailable
-                </span>
-              </div>
-            ) : (
-              <img
-                src={coverImage}
-                alt={project.title}
-                className={`w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 project-image ${
-                  imageLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-105'
-                }`}
-                onLoad={() => setImageLoaded(true)}
-                onError={handleImageError}
-                loading="lazy"
-              />
             )}
+            <img
+              src={coverImage}
+              alt={project.title}
+              className={`w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105 project-image ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoad={() => setImageLoaded(true)}
+            />
           </ImageWithWatermark>
           
           {/* Category Badge - Bottom Left */}

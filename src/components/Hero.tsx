@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import heroImage from "@/assets/michael-chandler-portfolio.png";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Button } from "@/components/ui/button";
-import { CompassMotif } from "@/components/ui/architectural-motifs";
-
 export const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const {
@@ -35,10 +33,10 @@ export const Hero = () => {
       <div className="relative h-screen flex items-center">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            {/* Large decorative motif */}
-            <div className={`w-24 h-24 lg:w-32 lg:h-32 text-white/15 -mb-8 lg:-mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <CompassMotif className="w-full h-full" />
-            </div>
+            {/* Large decorative number */}
+            <span className={`font-playfair text-[8rem] lg:text-[12rem] text-white/10 font-light leading-none block -mb-16 lg:-mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              01
+            </span>
 
             {/* Main heading */}
             <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

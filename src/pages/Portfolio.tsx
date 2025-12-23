@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { GalleryMotif, CompassMotif } from "@/components/ui/architectural-motifs";
 import { Button } from "@/components/ui/button";
 import { projects, getProjectsByCategory, type ProjectCategory } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -68,12 +67,12 @@ const Portfolio = () => {
             </h1>
           </div>
 
-          {/* Large decorative motif */}
-          <div className={`absolute bottom-6 right-6 transition-all duration-1000 delay-400 ${
+          {/* Large decorative number */}
+          <span className={`absolute bottom-6 right-6 font-playfair text-7xl lg:text-9xl text-white/15 font-light leading-none transition-all duration-1000 delay-400 ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <GalleryMotif className="w-20 h-20 lg:w-28 lg:h-28 text-white/15" />
-          </div>
+            01
+          </span>
         </div>
 
         {/* Right Side - Content */}
@@ -151,8 +150,8 @@ const Portfolio = () => {
             gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <div className="flex items-end justify-between">
-              <div className="flex items-end gap-4">
-                <GalleryMotif className="w-12 h-12 lg:w-16 lg:h-16 text-gold/20 -mb-1" />
+              <div>
+                <span className="font-playfair text-7xl lg:text-8xl text-gold/10 font-light leading-none block -mb-4 lg:-mb-6">02</span>
                 <h2 className="font-playfair text-2xl lg:text-3xl text-foreground">
                   {selectedCategory === "All" ? "All Projects" : selectedCategory}
                 </h2>
@@ -189,7 +188,7 @@ const Portfolio = () => {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <CompassMotif className="w-16 h-16 lg:w-20 lg:h-20 text-gold/30 mb-4" />
+              <span className="font-playfair text-7xl lg:text-8xl text-gold/20 font-light leading-none block mb-4">03</span>
               <h2 className="font-playfair text-3xl lg:text-4xl text-background mb-4">Start Your Project</h2>
               <p className="font-inter text-background/70 leading-relaxed max-w-md">
                 Every exceptional project begins with a conversation. Let's discuss how we can bring your vision to life.
