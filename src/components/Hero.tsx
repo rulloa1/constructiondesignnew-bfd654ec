@@ -54,8 +54,16 @@ export const Hero = () => {
 
             {/* CTAs */}
             <div className={`flex flex-wrap gap-4 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <Button asChild className="bg-gold hover:bg-gold/90 text-white px-8 py-3">
-                <Link to="/portfolio">View Portfolio</Link>
+              <Button 
+                onClick={() => {
+                  const portfolioSection = document.getElementById('portfolio-trigger');
+                  if (portfolioSection) {
+                    portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="bg-gold hover:bg-gold/90 text-white px-8 py-3 cursor-pointer"
+              >
+                View Portfolio
               </Button>
               <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-3">
                 <Link to="/contact" className="bg-secondary opacity-85 text-zinc-950">Get in Touch</Link>

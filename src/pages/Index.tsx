@@ -18,6 +18,14 @@ const Index: React.FC = () => {
     if (location.state?.openPortfolio) {
       setBookOpened(true);
       window.history.replaceState(null, "", "#portfolio");
+    } else if (location.state?.scrollTo) {
+      setTimeout(() => {
+        const element = document.getElementById(location.state.scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      window.history.replaceState({}, document.title);
     }
   }, [location]);
 
