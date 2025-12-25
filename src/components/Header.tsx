@@ -21,9 +21,13 @@ export const Header = React.memo(({ onPortfolioClick }: HeaderProps) => {
   const location = useLocation();
 
   const handleSmoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string, itemName: string) => {
-    if (itemName === "Portfolio" && onPortfolioClick) {
+    if (itemName === "Portfolio") {
       e.preventDefault();
-      onPortfolioClick();
+      if (location.pathname === "/" && onPortfolioClick) {
+        onPortfolioClick();
+      } else {
+        navigate("/", { state: { openPortfolio: true } });
+      }
       return;
     }
 

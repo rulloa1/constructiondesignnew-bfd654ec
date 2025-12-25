@@ -13,7 +13,6 @@ const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminUsers = lazy(() => import("./pages/AdminUsers"));
 const Login = lazy(() => import("./pages/Login"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
 const Design = lazy(() => import("./pages/Design"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
   {
     path: "/projects/:id",
     element: <ProjectDetail />,
-  },
-  {
-    path: "/portfolio",
-    element: <Portfolio />,
   },
   {
     path: "/auth",

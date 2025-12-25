@@ -17,7 +17,7 @@ const Index: React.FC = () => {
   useEffect(() => {
     if (location.state?.openPortfolio) {
       setBookOpened(true);
-      window.history.replaceState({}, document.title);
+      window.history.replaceState(null, "", "#portfolio");
     }
   }, [location]);
 
@@ -32,8 +32,9 @@ const Index: React.FC = () => {
   }, []);
 
   const handleOpenBook = useCallback(() => {
-    if (animating) return;
+    if (animating || bookOpened) return;
     setAnimating(true);
+    window.history.pushState({ portfolio: true }, "", "#portfolio");
 
     if (prefersReducedMotion) {
       setBookOpened(true);
@@ -44,23 +45,23 @@ const Index: React.FC = () => {
       setBookOpened(true);
       setAnimating(false);
     }, 1500);
-  }, [animating, prefersReducedMotion]);
+  }, [animating, bookOpened, prefersReducedMotion]);
 
   const handleCloseBook = useCallback(() => {
-    if (animating) return;
+    if (animating || !bookOpened) return;
     setAnimating(true);
+    window.history.back();
 
     if (prefersReducedMotion) {
       setBookOpened(false);
       setAnimating(false);
       return;
     }
-
     setTimeout(() => {
       setBookOpened(false);
       setAnimating(false);
     }, 1500);
-  }, [animating, prefersReducedMotion]);
+  }, [animating, bookOpened, prefersReducedMotion]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -68,8 +69,20 @@ const Index: React.FC = () => {
         handleCloseBook();
       }
     };
+    const handlePopState = (e: PopStateEvent) => {
+      if (e.state?.portfolio) {
+        setBookOpened(true);
+      } else {
+        setBookOpened(false);
+      }
+    };
+
     window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, [bookOpened, animating, handleCloseBook]);
 
   useEffect(() => {
