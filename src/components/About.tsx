@@ -38,7 +38,7 @@ export const About = ({ onPortfolioClick }: AboutProps) => {
             }`}>
             <div className="border-l-2 border-gold/40 pl-8">
               <p className="font-inter text-lg lg:text-xl text-foreground/90 leading-relaxed mb-6">
-                With a <span className="text-gold font-semibold">Bachelor of Architecture</span> from Kansas State University and <span className="text-gold font-semibold">37+ years</span> of hands-on field experience, I possess a rare ability to bridge high-level architectural design with rigorous P&L stewardship and construction execution.
+                With <span className="text-gold font-semibold">architecture studies</span> from University of Austin and <span className="text-gold font-semibold">37+ years</span> of hands-on field experience, I transitioned from academic pursuit to direct industry engagement to capitalize on business opportunities and provide family support—a decision that shaped my unique ability to bridge high-level architectural design with rigorous P&L stewardship and construction execution.
               </p>
               <p className="font-inter text-foreground/70 leading-relaxed mb-6">
                 I specialize in navigating the complex challenges of modern construction—labor shortages, technological integration, and international logistics—while consistently delivering exceptional results for high-net-worth individuals and institutional developers.

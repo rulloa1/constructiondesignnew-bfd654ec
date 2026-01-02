@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { DecorativeSeparator } from "@/components/DecorativeSeparator";
 
 // Detail images
 import detailBronzeBase from "@/assets/details/detail-bronze-base.jpg";
@@ -30,16 +31,16 @@ const moodBoardImages = [
 ];
 
 const projectShowcase = [
-  { num: "01", image: detailOceanviewFraming, title: "Coastal Modern", subtitle: "Oceanfront living" },
-  { num: "02", image: detailLimestoneFireplace, title: "Hill Country", subtitle: "Native limestone" },
-  { num: "03", image: detailTimberBeams, title: "Mountain Lodge", subtitle: "Heavy timber" },
-  { num: "04", image: detailSculpturalChandelier, title: "Resort Living", subtitle: "Hospitality-inspired" },
+  { num: "01", image: detailOceanviewFraming, title: "Private Island Estate", subtitle: "$125M+ • Bahamas", value: "$125M+" },
+  { num: "02", image: detailLimestoneFireplace, title: "The Clubs at Houston Oaks", subtitle: "$67MM • Texas", value: "$67MM" },
+  { num: "03", image: detailTimberBeams, title: "Yellowstone Club", subtitle: "Luxury Condo Towers • Montana", value: "Multi-Million" },
+  { num: "04", image: detailSculpturalChandelier, title: "Bakers Bay Resort", subtitle: "Beach Club & Spa • Bahamas", value: "Resort Development" },
 ];
 
 const services = [
-  { title: "ARCHITECTURE", description: "Site-responsive design, structural coordination, and smart home integration." },
-  { title: "INTERIORS", description: "Custom millwork, lighting design, and curated material selections." },
-  { title: "DEVELOPMENT", description: "Feasibility analysis, entitlement processing, and construction management." },
+  { title: "OWNER'S REPRESENTATION", description: "Trusted advocate protecting your investment throughout the construction process." },
+  { title: "DESIGN-BUILD CONSULTING", description: "Bridging architectural vision with constructability through unique dual expertise." },
+  { title: "INTERNATIONAL LOGISTICS", description: "Complex supply chains and regulatory navigation across international projects." },
 ];
 
 const processSteps = [
@@ -111,6 +112,38 @@ const Design = () => {
             <p className="font-inter leading-relaxed max-w-sm">
               $500M+ portfolio across 12 US states and 4 countries. Procore Certified professional with 37+ years delivering ultra-high-end residential and resort developments. Bilingual English/Spanish.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 lg:py-24 bg-foreground text-background">
+        <div className="container mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
+            <div className="text-center">
+              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">$500M+</div>
+              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Portfolio Managed</div>
+            </div>
+            <div className="text-center">
+              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">37+</div>
+              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">12</div>
+              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">US States</div>
+            </div>
+            <div className="text-center">
+              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">4</div>
+              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Countries</div>
+            </div>
+            <div className="text-center">
+              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">±2%</div>
+              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Budget Accuracy</div>
+            </div>
+            <div className="text-center">
+              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">100%</div>
+              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">On-Time Delivery</div>
+            </div>
           </div>
         </div>
       </section>
@@ -311,6 +344,43 @@ const Design = () => {
                 <p className="font-inter text-sm text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Credentials Section */}
+      <section className="py-24 lg:py-32 px-4 lg:px-8 bg-[#FAF9F7]">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <span className="font-playfair text-8xl lg:text-[10rem] text-gold/10 font-light leading-none block">05</span>
+            <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-3 -mt-8 lg:-mt-16">Credentials</p>
+            <h2 className="font-playfair text-3xl lg:text-4xl text-foreground">QUALIFICATIONS</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center p-6 bg-white shadow-luxury hover:shadow-luxury-lg transition-shadow duration-300">
+              <div className="font-playfair text-5xl text-gold/30 mb-4">🎓</div>
+              <h3 className="font-playfair text-lg text-foreground mb-2">Bachelor of Architecture</h3>
+              <p className="font-inter text-sm text-muted-foreground">University of Texas at Austin</p>
+            </div>
+
+            <div className="text-center p-6 bg-white shadow-luxury hover:shadow-luxury-lg transition-shadow duration-300">
+              <div className="font-playfair text-5xl text-gold/30 mb-4">✓</div>
+              <h3 className="font-playfair text-lg text-foreground mb-2">Procore Certified</h3>
+              <p className="font-inter text-sm text-muted-foreground">Project Manager Professional</p>
+            </div>
+
+            <div className="text-center p-6 bg-white shadow-luxury hover:shadow-luxury-lg transition-shadow duration-300">
+              <div className="font-playfair text-5xl text-gold/30 mb-4">37+</div>
+              <h3 className="font-playfair text-lg text-foreground mb-2">Years Experience</h3>
+              <p className="font-inter text-sm text-muted-foreground">Construction Leadership</p>
+            </div>
+
+            <div className="text-center p-6 bg-white shadow-luxury hover:shadow-luxury-lg transition-shadow duration-300">
+              <div className="font-playfair text-5xl text-gold/30 mb-4">🌎</div>
+              <h3 className="font-playfair text-lg text-foreground mb-2">Bilingual</h3>
+              <p className="font-inter text-sm text-muted-foreground">English / Spanish</p>
+            </div>
           </div>
         </div>
       </section>
