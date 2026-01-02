@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { DecorativeSeparator } from "@/components/DecorativeSeparator";
+import { StatsSection } from "@/components/StatsSection";
 
 // Detail images
 import detailBronzeBase from "@/assets/details/detail-bronze-base.jpg";
@@ -117,36 +118,7 @@ const Design = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 lg:py-24 bg-foreground text-background">
-        <div className="container mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
-            <div className="text-center">
-              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">$500M+</div>
-              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Portfolio Managed</div>
-            </div>
-            <div className="text-center">
-              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">37+</div>
-              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">12</div>
-              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">US States</div>
-            </div>
-            <div className="text-center">
-              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">4</div>
-              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Countries</div>
-            </div>
-            <div className="text-center">
-              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">±2%</div>
-              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">Budget Accuracy</div>
-            </div>
-            <div className="text-center">
-              <div className="font-playfair text-4xl lg:text-5xl text-gold mb-2">100%</div>
-              <div className="font-inter text-xs lg:text-sm text-background/60 uppercase tracking-wider">On-Time Delivery</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatsSection />
 
       {/* Mood Board Section */}
       <section
