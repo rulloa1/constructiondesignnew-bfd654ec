@@ -1,1 +1,45 @@
-import React, { useState, useEffect } from \"react\";\nimport { ArrowUp } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\n\nexport const ScrollToTop: React.FC = () => {\n  const [isVisible, setIsVisible] = useState(false);\n\n  useEffect(() => {\n    const toggleVisibility = () => {\n      if (window.scrollY > 300) {\n        setIsVisible(true);\n      } else {\n        setIsVisible(false);\n      }\n    };\n\n    window.addEventListener('scroll', toggleVisibility, { passive: true });\n    return () => window.removeEventListener('scroll', toggleVisibility);\n  }, []);\n\n  const scrollToTop = () => {\n    window.scrollTo({\n      top: 0,\n      behavior: 'smooth',\n    });\n  };\n\n  return (\n    <button\n      onClick={scrollToTop}\n      className={`\n        fixed bottom-8 right-8 z-40\n        bg-gold hover:bg-gold-dark text-white\n        p-3 rounded-full shadow-luxury hover:shadow-luxury-lg\n        transition-all duration-300\n        ${\n          isVisible \n            ? 'opacity-100 translate-y-0' \n            : 'opacity-0 translate-y-16 pointer-events-none'\n        }\n      `}\n      aria-label=\"Scroll to top\"\n    >\n      <ArrowUp className=\"w-5 h-5\" />\n    </button>\n  );\n};\n
+import React, { useState, useEffect } from "react";
+import { ArrowUp } from "lucide-react";
+
+export const ScrollToTop: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const toggleVisibility = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener('scroll', toggleVisibility, { passive: true });
+        return () => window.removeEventListener('scroll', toggleVisibility);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
+    return (
+        <button
+            onClick={scrollToTop}
+            className={`
+        fixed bottom-8 right-8 z-40
+        bg-gold hover:bg-gold-dark text-white
+        p-3 rounded-full shadow-luxury hover:shadow-luxury-lg
+        transition-all duration-300
+        ${isVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-16 pointer-events-none'
+                }
+      `}
+            aria-label="Scroll to top"
+        >
+            <ArrowUp className="w-5 h-5" />
+        </button>
+    );
+};
