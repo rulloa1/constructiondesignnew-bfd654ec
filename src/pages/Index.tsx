@@ -6,6 +6,7 @@ import { About } from "@/components/About";
 import { BookCoverHero } from "@/components/BookCoverHero";
 import { PortfolioGrid } from "@/components/PortfolioGrid";
 import { Services } from "@/components/Services";
+import { Testimonials } from "@/components/Testimonials";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -116,6 +117,7 @@ const Index: React.FC = () => {
           <Hero />
           <About onPortfolioClick={handleOpenBook} />
           <Services />
+          <Testimonials />
           <BookCoverHero onOpenBook={handleOpenBook} />
           <Footer />
         </>
