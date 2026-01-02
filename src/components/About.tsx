@@ -1,46 +1,52 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+
 interface AboutProps {
   onPortfolioClick?: () => void;
 }
-export const About = ({
-  onPortfolioClick
-}: AboutProps) => {
-  const {
-    elementRef,
-    isVisible
-  } = useScrollAnimation({
-    threshold: 0.1
-  });
-  const {
-    elementRef: contentRef,
-    isVisible: contentVisible
-  } = useScrollAnimation({
-    threshold: 0.15
-  });
-  return <section id="about" ref={elementRef as React.RefObject<HTMLElement>} className="relative py-20 lg:py-32 bg-[#FAF9F7]">
+
+export const About = ({ onPortfolioClick }: AboutProps) => {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation({ threshold: 0.15 });
+
+  return (
+    <section 
+      id="about" 
+      ref={elementRef as React.RefObject<HTMLElement>} 
+      className="relative py-20 lg:py-32 bg-[#FAF9F7]"
+    >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className={`mb-16 lg:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`mb-16 lg:mb-20 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <span className="font-playfair text-8xl lg:text-[10rem] text-gold/10 font-light leading-none block -mb-6 lg:-mb-12">
             02
           </span>
           <p className="font-inter text-xs tracking-[0.3em] text-muted-foreground uppercase mb-3">About</p>
-          <h2 className="font-playfair text-3xl lg:text-4xl text-foreground">ABOUT</h2>
+          <h2 className="font-playfair text-3xl lg:text-4xl text-foreground">Who I Am</h2>
         </div>
 
         {/* Main Content Grid */}
-        <div ref={contentRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div 
+          ref={contentRef as React.RefObject<HTMLDivElement>}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16"
+        >
           {/* Left Column - Main Text */}
-          <div className={`lg:col-span-7 transition-all duration-1000 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
+          <div className={`lg:col-span-7 transition-all duration-1000 ${
+            contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+          }`}>
             <div className="border-l-2 border-gold/40 pl-8">
-              <p className="font-inter text-lg lg:text-xl text-foreground/90 leading-relaxed mb-6">The "Triple Threat" of Modern Construction In a market defined by complexity, I offer a unique dual-threat perspective: the design eye of an Architect and the field discipline of a Civil Engineering Contractor.<span className="text-gold font-semibold">37 years</span> as a Business, Design, and Construction professional, I have found that exceptional results come from exceptional teams.
+              <p className="font-inter text-lg lg:text-xl text-foreground/90 leading-relaxed mb-6">
+                Through my experience of <span className="text-gold font-semibold">37 years</span> as a Business, Design, and Construction professional, I have found that exceptional results come from exceptional teams.
               </p>
-              <p className="font-inter text-foreground/70 leading-relaxed mb-6">With over 37 years of experience and a portfolio exceeding $500M across 12 states and 4 countries, I don't just oversee projects; I navigate the "triple threat" of modern development:</p>
-              <p className="font-inter text-foreground/70 leading-relaxed mb-8">Mitigating Labor Shortages: Strategic sourcing of human capital.
-Integrating Advanced Tech: Procore Certified risk mitigation and BIM workflows.
-Mastering Logistics: Managing complex supply chains for international and remote island sites.</p>
+              <p className="font-inter text-foreground/70 leading-relaxed mb-6">
+                My approach is simple: bring together the right people, create an environment built on mutual respect, and stay closely attuned to client feedback throughout every phase of a project.
+              </p>
+              <p className="font-inter text-foreground/70 leading-relaxed mb-8">
+                I've built my career on the universal business principle that quality construction isn't just about meeting standards—it's about exceeding them by combining rigorous processes with forward-thinking design.
+              </p>
               <p className="font-playfair text-lg italic text-foreground/60">
                 — Michael Chandler
               </p>
@@ -48,7 +54,9 @@ Mastering Logistics: Managing complex supply chains for international and remote
           </div>
 
           {/* Right Column - Philosophy Cards */}
-          <div className={`lg:col-span-5 space-y-6 transition-all duration-1000 delay-200 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+          <div className={`lg:col-span-5 space-y-6 transition-all duration-1000 delay-200 ${
+            contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+          }`}>
             {/* Philosophy Card */}
             <div className="bg-white p-8 shadow-sm">
               <span className="font-playfair text-4xl text-gold/30 font-light block mb-4">01</span>
@@ -76,5 +84,6 @@ Mastering Logistics: Managing complex supply chains for international and remote
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
