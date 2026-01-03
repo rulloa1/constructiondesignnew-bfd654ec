@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { BookCoverHero } from "@/components/BookCoverHero";
-import { PortfolioGrid } from "@/components/PortfolioGrid";
+import { HeaderNew } from "@/components/HeaderNew";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { AboutNew } from "@/components/AboutNew";
+import { FeaturedProjects } from "@/components/FeaturedProjects";
+import { CTASection } from "@/components/CTASection";
 import { Services } from "@/components/Services";
-import { Testimonials } from "@/components/Testimonials";
-import { Footer } from "@/components/Footer";
+import { FooterNew } from "@/components/FooterNew";
+import { PortfolioGrid } from "@/components/PortfolioGrid";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 const Index: React.FC = () => {
@@ -24,7 +24,7 @@ const Index: React.FC = () => {
       setTimeout(() => {
         const element = document.getElementById(location.state.scrollTo);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
       window.history.replaceState({}, document.title);
@@ -102,37 +102,62 @@ const Index: React.FC = () => {
   }, [bookOpened, animating]);
 
   return (
-    <div className="min-h-screen bg-[#FAF9F7]">
+    <div className="min-h-screen bg-charcoal">
       {/* Book animation overlay */}
       {animating && !prefersReducedMotion && (
-        <div className="fixed inset-0 z-50 flex" role="presentation" aria-hidden="true">
-          <div className={`w-1/2 h-full bg-charcoal origin-right transition-transform ${!bookOpened ? "animate-book-open-left" : "animate-book-close-left"}`} />
-          <div className={`w-1/2 h-full bg-charcoal origin-left transition-transform ${!bookOpened ? "animate-book-open-right" : "animate-book-close-right"}`} />
+        <div
+          className="fixed inset-0 z-50 flex"
+          role="presentation"
+          aria-hidden="true"
+        >
+          <div
+            className={`w-1/2 h-full bg-charcoal origin-right transition-transform ${
+              !bookOpened ? "animate-book-open-left" : "animate-book-close-left"
+            }`}
+          />
+          <div
+            className={`w-1/2 h-full bg-charcoal origin-left transition-transform ${
+              !bookOpened
+                ? "animate-book-open-right"
+                : "animate-book-close-right"
+            }`}
+          />
         </div>
       )}
 
       {!bookOpened ? (
         <>
-          <Header onPortfolioClick={handleOpenBook} />
-          <Hero />
-          <About onPortfolioClick={handleOpenBook} />
-          <Services />
-          <Testimonials />
-          <BookCoverHero onOpenBook={handleOpenBook} />
-          <Footer />
+          <HeaderNew onPortfolioClick={handleOpenBook} />
+          <HeroCarousel onExplorePortfolio={handleOpenBook} />
+          <AboutNew />
+          <FeaturedProjects onViewAllClick={handleOpenBook} />
+          <section id="services">
+            <Services />
+          </section>
+          <CTASection />
+          <FooterNew />
         </>
       ) : (
         <>
           {/* Portfolio view header */}
-          <div className="sticky top-0 z-30 bg-foreground/95 backdrop-blur-sm border-b border-white/10">
+          <div className="sticky top-0 z-30 bg-charcoal/95 backdrop-blur-sm border-b border-white/10">
             <div className="container mx-auto px-4 sm:px-6 py-4">
               <button
                 onClick={handleCloseBook}
                 disabled={animating}
-                className="flex items-center gap-2 text-background bg-background/10 hover:bg-background/20 px-6 py-3 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed group font-inter text-sm"
+                className="flex items-center gap-2 text-white bg-white/10 hover:bg-white/20 px-6 py-3 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed group font-inter text-sm"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 group-hover:-translate-x-1 transition-transform"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Back to Home
               </button>
