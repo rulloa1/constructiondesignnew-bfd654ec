@@ -12,11 +12,16 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+interface ProjectSummary {
+  id: string;
+  title: string;
+}
+
 export default function Admin() {
   const navigate = useNavigate();
   const { user, loading, isAdmin } = useAuth();
   const [selectedProjectId, setSelectedProjectId] = useState<string>("");
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<ProjectSummary[]>([]);
   const [fixingCovers, setFixingCovers] = useState(false);
 
   useEffect(() => {
