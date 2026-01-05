@@ -9,6 +9,7 @@ import { Services } from "@/components/Services";
 import { FooterNew } from "@/components/FooterNew";
 import { PortfolioGrid } from "@/components/PortfolioGrid";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { BackgroundCollage } from "@/components/BackgroundCollage";
 
 const Index: React.FC = () => {
   const location = useLocation();
@@ -139,6 +140,9 @@ const Index: React.FC = () => {
         </>
       ) : (
         <>
+          {/* Animated background collage */}
+          <BackgroundCollage />
+          
           {/* Portfolio view header */}
           <div className="sticky top-0 z-30 bg-charcoal/95 backdrop-blur-sm border-b border-white/10">
             <div className="container mx-auto px-4 sm:px-6 py-4">
