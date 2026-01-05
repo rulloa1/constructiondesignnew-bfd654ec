@@ -21,7 +21,16 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
 
   const validateUrl = (url: string): boolean => {
     try {
-      new URL(url);
+      const parsed = new URL(url);
+      // Whitelist safe protocols only
+      const allowedProtocols = ['http:', 'https:'];
+      if (!allowedProtocols.includes(parsed.protocol)) {
+        return false;
+      }
+      // Add length limit (URLs over 2048 chars may cause issues)
+      if (url.length > 2048) {
+        return false;
+      }
       return true;
     } catch {
       return false;
@@ -65,7 +74,7 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
       const fileName = `${projectId}/${Date.now()}-${file.name}`;
 
       const { error: uploadError, data } = await supabase.storage
-        .from('project-images')
+        .from('project-videos')
         .upload(fileName, file, {
           cacheControl: '3600',
           upsert: false
@@ -74,7 +83,7 @@ export const VideoUpload = ({ projectId, onUploadComplete }: VideoUploadProps) =
       if (uploadError) throw uploadError;
 
       const { data: { publicUrl } } = supabase.storage
-        .from('project-images')
+        .from('project-videos')
         .getPublicUrl(fileName);
 
       // Save to database

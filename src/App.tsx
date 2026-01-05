@@ -14,7 +14,7 @@ const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminUsers = lazy(() => import("./pages/AdminUsers"));
 const Login = lazy(() => import("./pages/Login"));
-// const Design = lazy(() => import("./pages/Design"));
+const Design = lazy(() => import("./pages/Design"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -57,10 +57,10 @@ const router = createBrowserRouter([
     path: "/contact",
     element: <Contact />,
   },
-  // {
-  //   path: "/design",
-  //   element: <Design />,
-  // },
+  {
+    path: "/design",
+    element: <Design />,
+  },
   {
     path: "*",
     element: <NotFound />,
